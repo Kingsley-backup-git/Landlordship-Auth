@@ -66,7 +66,11 @@ function PinTextInput({ numberOfDigits, }: pinTextInpProps) {
              
             }}
             onKeyUp={(e) => handleBackspaceAndEnter(e, index)}
-            ref={(reference) => (pinBoxReference.current[index] = reference)}
+            ref={(reference) => {
+                
+                pinBoxReference.current[index] = reference;
+              }}
+             
             className={`border ${
               isNumber(pin[index])
                 ? "bg-lightgreen border-streamgreen"
