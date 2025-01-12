@@ -14,7 +14,7 @@ function PinTextInput({ numberOfDigits, }: pinTextInpProps) {
   const pinBoxReference = useRef<Array<HTMLInputElement | null>>([]);
 
   function handleChange(value: string, index: number) {
-    let newArr = [...pin];
+    const newArr = [...pin];
     newArr[index] = value;
     setPin(newArr);
     // if (handleFn) {
