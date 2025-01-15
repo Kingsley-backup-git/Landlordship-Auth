@@ -29,10 +29,10 @@ export default function TopNavbar() {
 
 
 
-        <div className='ms-auto flex items-center gap-x-3'>
-<div className='bg-[#0000000A] rounded-lg px-2 py-[6px] gap-x-[6px] flex items-center'>
+        <div className='ms-auto flex items-center gap-x-4'>
+<div className='bg-[#0000000A] max-w-[160px] w-[100%] rounded-lg px-2 py-[6px] gap-x-[6px] flex items-center'>
 <CiSearch className='text-xl text-[#00000033]'/>
-<TextInput type='text' classname='flex-1  bg-transparent text-black text-sm outline-0 border-[0px] border-transparent' placeholder='Search'  name={'searchinput'}/>
+<TextInput type='text' classname='flex-1 w-[100%]  bg-transparent text-black text-sm outline-0 border-[0px] border-transparent' placeholder='Search'  name={'searchinput'}/>
 <BsCommand className='text-xl text-[#00000033]'/>
 </div>
 
