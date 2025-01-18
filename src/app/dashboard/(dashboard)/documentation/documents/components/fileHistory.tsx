@@ -7,6 +7,7 @@ import { PiFilePdf } from "react-icons/pi";
 import { PiCalendarBlank } from "react-icons/pi";
 import { BsThreeDots } from "react-icons/bs";
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import styles from "../../../dashboard.module.css"
 export default function FileHistory() {
 const [show, setShow] = useState<number | null>(null)
 
@@ -125,7 +126,7 @@ const [show, setShow] = useState<number | null>(null)
 
 
 
-        <div className='flex flex-col overflow-y-auto'>
+        <div className={`flex flex-col overflow-y-auto ${styles.overflow}`}>
             {fileHistory.map((history, index)=> {
         return <div key = {index} className='flex items-center cursor-pointer py-3  hover:rounded-xl border-b-[1px] border-[#0000000A]'onMouseLeave={()=>  setShow(index)} onMouseEnter={()=> setShow(index)}>
             <div className='flex-[4%] ps-1'>
