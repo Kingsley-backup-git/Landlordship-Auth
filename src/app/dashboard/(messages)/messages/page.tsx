@@ -1,7 +1,7 @@
 import React from 'react'
 import Options from './components/options'
 import { PiFunnelSimple } from "react-icons/pi";
-
+import styles from "../messages.module.css"
 import Chats from './components/chats';
 import SelectedChats from './components/selectedChats';
 import MessageHeader from './components/messageHeader';
@@ -23,7 +23,7 @@ export default function Messages() {
                 </div>
 
 
-                <div className='overflow-y-auto mt-1 py-1 divide-y-[1px] divide-[#0000000A]  flex-1 h-[160%] flex flex-col'>
+                <div className={`overflow-y-auto mt-1 py-1 divide-y-[1px] divide-[#0000000A] ${styles.overflow} flex-1 h-[160%] flex flex-col`}>
                     <Chats />
                     </div>
             </div>
