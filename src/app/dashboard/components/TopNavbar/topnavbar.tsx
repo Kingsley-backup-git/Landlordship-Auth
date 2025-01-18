@@ -9,21 +9,25 @@ import { PiSunDuotone } from "react-icons/pi";
 import { PiCalendarDuotone } from "react-icons/pi";
 import { PiSidebarDuotone } from "react-icons/pi";
 import { VscBell } from "react-icons/vsc";
-import { usePathname } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 export default function TopNavbar() {
+  const {push} = useRouter()
   const pathname = usePathname()
-  const path = pathname.split("/").filter(Boolean).pop()
+  const menu = pathname.split("/")
+  const path =menu[menu.length - 2];
+
+  const lastPath = menu.filter(Boolean).pop()
   return (
-    <div className = "flex items-center px-4 border-b-[1px] border-[#1C1C1C1A] pb-4 w-[100%]">
+    <div className = "flex items-center px-4 border-b-[1px] border-[#1C1C1C1A]  pb-4 w-[100%]">
         <div className='me-auto flex gap-x-3 items-center'>
-<PiSidebar className='text-black text-xl'/>
-<PiChatsDuotone className='text-xl text-black'/>
+<PiSidebar className='text-black cursor-pointer text-xl'/>
+<PiChatsDuotone className='text-xl cursor-pointer text-black' onClick = {()=> push("/dashboard/messages")}/>
 
 <div className='flex gap-x-3 items-center'>
-    <h1 className='text-[#00000066] font-[400] text-sm'>Dashboard</h1>
+    <h1 className='text-[#00000066] font-[400] text-sm capitalize'>{path}</h1>
     <div className='text-sm font-[400] text-[#00000033]'>/</div>
-    <h1 className='font-[400] text-sm text-black capitalize'>{path}</h1>
+    <h1 className='font-[400] text-sm text-black capitalize'>{lastPath}</h1>
 </div>
         </div>
 

@@ -11,7 +11,7 @@ export default function Tenancies() {
  </div>
  
  <div className='mt-4 flex gap-x-2 items-center'>
- <h1 className='text-2xl font-semibold text-black'>31</h1>
+ <h1 className='text-xl font-semibold text-black'>31</h1>
  
  <h1 className="text-xs font-[400] ms-auto text-black">+15.03%</h1>
  

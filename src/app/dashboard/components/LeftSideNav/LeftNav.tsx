@@ -7,7 +7,7 @@ import DocList from './Documentation/documentation'
 import Logo from "../../../../../public/Logo.png"
 export default function LeftNav() {
   return (
-    <div className='w-[100%] py-5 flex flex-col h-screen gap-y-6'>
+    <div className='w-[100%] py-5 flex flex-col h-screen gap-y-6 '>
       <div className='flex-1'>
 <div className='flex gap-x-3 items-center px-2'>
 <Image src = {User} alt = "user" className='w-[24px] h-[24px] rounded-full'/>
