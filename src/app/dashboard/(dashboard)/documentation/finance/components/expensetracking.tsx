@@ -1,5 +1,5 @@
 import React from 'react'
-
+import styles from "../../../dashboard.module.css"
 export default function Expensetracking() {
     const expenses = [
         {
@@ -71,7 +71,7 @@ export default function Expensetracking() {
 
 
         </div>
-      <div className='overflow-y-auto flex-1'>
+      <div className={`overflow-y-auto flex-1 ${styles.overflow}`}>
 {expenses.map((expense, index)=> {
     return <div key={index} className='grid grid-cols-10 w-[100%] py-3  gap-x-1'>
 

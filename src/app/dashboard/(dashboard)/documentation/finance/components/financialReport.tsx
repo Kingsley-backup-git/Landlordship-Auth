@@ -1,5 +1,6 @@
 import React from 'react'
 import { PiCalendarBlank, PiDownloadSimple } from "react-icons/pi";
+import styles from "../../../dashboard.module.css"
 export default function FinancialReport() {
     const reports = [
         {
@@ -86,7 +87,7 @@ export default function FinancialReport() {
         </div>
 
 
-<div className = "overflow-y-auto w-[100%] mt-2">
+<div className = {`overflow-y-auto w-[100%] mt-2 ${styles.overflow}`}>
 {reports.map((report, index)=> {
 return <div key ={index} className='flex items-center w-[100%] gap-x-1  pb-5'>
             <div className='text-black  flex-[15%] font-[400] text-xs col-span-4'>

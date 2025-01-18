@@ -5,6 +5,7 @@ import Img1 from "./../../../../../../../public/contact1.png"
 import Image from 'next/image'
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import styles from "../../../dashboard.module.css"
 export default function TransactionHistory() {
 //     const [show, setShow] = useState<string | number>("")
 //     const [checkedIndex, setCheckedIndex] = useState<string | number>("")
@@ -139,7 +140,7 @@ status : "In Progress"
 
 
 
-<div className='flex flex-col overflow-y-auto'>
+<div className={`flex flex-col overflow-y-auto ${styles.overflow}`}>
     {transactions.map((transaction, index)=> {
 return <div key = {index} onClick = {()=> null} className={`flex cursor-pointer rounded-lg items-center py-3 px-1 border-b-[1px] border-[#0000000A]`}>
     <div className='flex-[4%] ps-1'>
