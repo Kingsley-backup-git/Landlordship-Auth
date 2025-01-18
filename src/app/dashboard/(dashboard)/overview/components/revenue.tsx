@@ -10,7 +10,7 @@ export default function Revenue() {
  </div>
  
  
- <h1 className='text-2xl mt-4 font-semibold text-black'>$12,000</h1>
+ <h1 className='text-xl mt-4 font-semibold text-black'>$12,000</h1>
 
      </div>
   )
