@@ -95,16 +95,16 @@ export default function AllApplications() {
         }
     ]
   return (
-    <div className='grid grid-cols-3 mt-5 gap-5'>
+    <div className='grid sm:grid-cols-3 grid-cols-1 mt-5 gap-5'>
     {allApplications.map((application, index)=> {
-    return <div className='bg-[#F9F9FA] rounded-2xl p-5' key={index}>
+    return <div className='sm:bg-[#F9F9FA] bg-white rounded-2xl p-5' key={index}>
         <div className='flex items-center justify-between gap-x-1'>
             <div>
                 <h1 className='font-semibold text-sm text-black'>{application.propertyName}</h1>
                 <p className='text-xs font-[400] text-[#00000066] mt-[.5px]'>{application.address}</p>
             </div>
 
-            <div className='bg-[#0000000A] w-[35px] h-[35px] rounded-lg'>
+            <div className='bg-[#0000000A] min-w-[35px] max-w-[35px] h-[35px] rounded-lg'>
 
             </div>
         </div>

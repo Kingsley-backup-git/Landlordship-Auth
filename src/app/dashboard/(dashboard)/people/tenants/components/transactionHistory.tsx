@@ -1,30 +1,38 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Checkbox from '../../../unit/components/inputs/checkbox'
 import Img1 from "./../../../../../../../public/contact1.png"
 import Image from 'next/image'
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import styles from "../../../dashboard.module.css"
+import MobileDevice from './mobile/mobileDevice'
 export default function TransactionHistory() {
-//     const [show, setShow] = useState<string | number>("")
-//     const [checkedIndex, setCheckedIndex] = useState<string | number>("")
-//     const [checkedAll, setCheckedAll] = useState<boolean>(false)
 
-//     function checkAllHandler() {
-//        setCheckedAll(val => !val)
-//     }
-//     function checkHandler(val:(string | number)) {
-//       setCheckedIndex(val)
-//     }
+const [indexes, setIndexes] = useState<number[]>([])
+const [allChecked, setallChecked] = useState<boolean>(false)
+function addIndex(index:number) {
+    if(indexes.includes(index)) {
+const checked = indexes.filter(val => val !== index)
+setIndexes(checked)
+    } else {
+        setIndexes([...indexes, index])
+    }
 
-//     useEffect(()=> {
-// if(checkedAll===true) {
-//     setCheckedIndex("All")
-// } else {
-//     setCheckedIndex("")
-// }
-//     },[checkedAll])
+}
+
+useEffect(()=> {
+if(indexes.length < 1 && allChecked) {
+    setallChecked(false)
+} else if(indexes.length === transactions.length) {
+    setallChecked(true)
+}
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[indexes])
+
+function toggleAll() {
+    setallChecked(prev => !prev)
+}
     const transactions = [
         {
 property: "New Porperty #001",
@@ -91,12 +99,30 @@ status : "In Progress"
                                         }, 
 
     ]
+
+      useEffect(()=>  {
+        const addAllIndexes = () => {
+            if (allChecked) {
+            
+              const allIndexes = transactions.map((_, index) => index);
+              setIndexes(allIndexes);
+            } else {
+            
+              setIndexes([]);
+            }
+            
+          };
+    
+          addAllIndexes()
+   
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      },[allChecked])
   return (
     <>
-    <div className='w-full mt-4 flex flex-col h-[350px]'>
-<div className='flex items-center w-[100%] py-3 px-1 border-b-[1px] border-[#0000000A]'>
+    <div className='w-full mt-4 sm:flex hidden flex-col h-[350px] select-none'>
+<div className='flex items-center w-[100%] py-3 px-1 border-b-[1px]  border-[#0000000A]'>
 <div className='flex-[4%] ps-1'>
-<Checkbox clicked = {()=> null} checked = {false}  classname={`w-[14px] h-[14px] border-[#00000033] flex justify-center items-center  border-[1px]  rounded`}/>
+<Checkbox clicked = {()=> toggleAll()} checked ={allChecked}   classname={`w-[14px] h-[14px] border-[#00000033] flex justify-center items-center cursor-pointer border-[1px] ${(allChecked) ? "bg-black" : ""} rounded`}/>
 </div>
 
 
@@ -142,9 +168,10 @@ status : "In Progress"
 
 <div className={`flex flex-col overflow-y-auto ${styles.overflow}`}>
     {transactions.map((transaction, index)=> {
-return <div key = {index} onClick = {()=> null} className={`flex cursor-pointer rounded-lg items-center py-3 px-1 border-b-[1px] border-[#0000000A]`}>
+
+return <div key={index} onClick = {()=> addIndex(index)} className={`flex cursor-pointer hover:bg-[#0000000A] items-center py-3 px-1 border-b-[1px] border-[#0000000A]`} >
     <div className='flex-[4%] ps-1'>
-<Checkbox clicked = {()=> null} checked = {false} classname={`w-[14px]   h-[14px] border-[#00000033] flex justify-center items-center border-[1px]  rounded`}/>
+<Checkbox clicked={()=> null}  checked ={indexes.includes(index) }  classname={`w-[14px] cursor-pointer  h-[14px] border-[#00000033] flex justify-center items-center border-[1px] ${(indexes.includes(index)) ? "bg-black" : ""} rounded`}/>
 </div>
 
 
@@ -178,12 +205,13 @@ return <div key = {index} onClick = {()=> null} className={`flex cursor-pointer 
 
 <div className='flex-[4%]'></div>
 </div>
+
     })}
 </div>
 
 </div>
 
-<div className='flex items-center gap-x-2 mt-3'>
+<div className='sm:flex hidden items-center gap-x-2 mt-3'>
 <div className='py-1 text-center cursor-pointer flex-1 rounded-lg border-[#0000001A] border-[0.5px] font-[400] text-sm text-black'>
 1
 </div>
@@ -224,6 +252,7 @@ return <div key = {index} onClick = {()=> null} className={`flex cursor-pointer 
 </div>
 </div>
     
+    <MobileDevice />
     </>
   )
 }

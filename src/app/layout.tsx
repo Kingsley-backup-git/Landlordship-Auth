@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
 import "./globals.css";
-
+import ProgressProvider from "./components/Layouts/nProgressBar";
+import { MyContextProvider } from "@/context/NavProvider";
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
 //   subsets: ["latin"],
@@ -29,7 +30,11 @@ export default function RootLayout({
       <body
         className={`${inter.className}`}
       >
-        {children}
+        <MyContextProvider>
+     <ProgressProvider> {children}
+      </ProgressProvider>  
+      
+      </MyContextProvider>
       </body>
     </html>
   );

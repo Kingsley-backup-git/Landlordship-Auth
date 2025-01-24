@@ -2,7 +2,7 @@ import React from 'react'
 import { PiMoneyDuotone } from "react-icons/pi";
 export default function Revenue() {
   return (
-<div className='bg-[#EDEEFC] rounded-2xl p-6'>
+<div className='bg-[#EDEEFC] rounded-2xl sm:p-6 p-4 sm:col-span-1 col-span-4 1sm:col-span-2'>
  <div className='flex items-center'>
      <h1 className='text-sm text-black font-[400] flex-1'>Revenue</h1>
  
@@ -10,7 +10,7 @@ export default function Revenue() {
  </div>
  
  
- <h1 className='text-xl mt-4 font-semibold text-black'>$12,000</h1>
+ <h1 className='sm:text-xl text-base mt-4 font-semibold text-black'>$12,000</h1>
 
      </div>
   )

@@ -10,8 +10,8 @@ import styles from "../../dashboard/(dashboard)/dashboard.module.css"
 const Layout = ({ children }: { children: ReactNode }) => {
   
   return (
-    <div className="bg-white min-h-screen h-[100%] flex">
-    <div className={`flex-[15%] px-3 overflow-y-auto h-screen ${styles.overflow} sticky top-0 border-r-[1px] border-[#1C1C1C1A]`}>
+    <div className="sm:bg-white bg-[#F9F9FA] min-h-screen h-[100%] flex">
+    <div className={`flex-[15%]  md:flex hidden px-3 overflow-y-auto h-screen ${styles.overflow} sticky top-0 border-r-[1px] border-[#1C1C1C1A]`}>
 <LeftNav />
     </div>
 

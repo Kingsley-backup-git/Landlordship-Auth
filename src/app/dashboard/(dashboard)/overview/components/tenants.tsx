@@ -3,7 +3,7 @@ import { PiListChecksBold } from "react-icons/pi";
 import { FaArrowTrendDown } from "react-icons/fa6";
 export default function Tenants() {
   return (
-     <div className='bg-[#EDEEFC] rounded-2xl p-6'>
+     <div className='bg-[#EDEEFC] rounded-2xl sm:p-6 p-4 sm:col-span-1 col-span-4 1sm:col-span-2'>
     <div className='flex items-center'>
         <h1 className='text-sm text-black font-[400] flex-1'>Tenants</h1>
     
@@ -11,7 +11,7 @@ export default function Tenants() {
     </div>
     
     <div className='mt-4 flex gap-x-2 items-center'>
-    <h1 className='text-xl font-semibold text-black'>715</h1>
+    <h1 className='sm:text-xl text-base font-semibold text-black'>715</h1>
     
     <h1 className="text-xs font-[400] ms-auto text-black">-0.03%</h1>
     

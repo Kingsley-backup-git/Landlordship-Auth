@@ -2,7 +2,7 @@ import React from 'react'
 import { PiFileDoc } from "react-icons/pi";
 export default function AllDocuments() {
   return (
-     <div className='bg-[#EDEEFC] rounded-2xl p-6'>
+     <div className='bg-[#EDEEFC] rounded-2xl xs:p-6 p-4 sm:col-span-1 1sm:col-span-2 col-span-4'>
              <div className='flex items-center gap-x-1'>
                  <h1 className='text-sm text-black font-[400] flex-1'>Documents</h1>
              
@@ -10,7 +10,7 @@ export default function AllDocuments() {
              </div>
              
            <div className='mt-4 justify-between flex items-center gap-x-1'>
-           <h1 className='text-xl font-semibold text-black'>0</h1>
+           <h1 className='sm:text-xl text-base font-semibold text-black'>0</h1>
            <h1 className='text-xs font-[400] text-black'>0 MB/512 MB</h1>
            </div>
            

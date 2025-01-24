@@ -3,21 +3,35 @@ import { CiSearch } from 'react-icons/ci'
 import TextInput from '../../../components/inputs/TextInput'
 import { PiArrowsDownUp } from "react-icons/pi";
 import { PiFunnelSimple } from "react-icons/pi";
-import { FiPlus } from "react-icons/fi";
+import { FiPlus, FiSearch } from "react-icons/fi";
 import TotalTenants from './components/totalTenants'
 import Applications from './components/applications'
 import Accepted from './components/accepted';
 import Rejected from './components/rejected';
 import TransactionHistory from './components/transactionHistory';
+import { BsThreeDots } from 'react-icons/bs';
+import { FaChevronLeft } from 'react-icons/fa6';
+import { RiAddLargeLine } from 'react-icons/ri';
 
 
 export default function Tenant() {
   return (
-     <div className='p-6'>
-            <h1 className = "text-black font-semibold text-sm">Tenants</h1>
+     <div className='sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]'>
+            <div className='flex sm:block items-center justify-between'>
+               <div className='flex items-center sm:hidden gap-x-[1px]'>
+               <FaChevronLeft className='text-[#007AFF] text-lg'/>
+               <h1 className='font-[400] sm:text-base text-sm tracking-[-0.43px] text-[#007AFF]'>Home</h1>
+               </div>
+             
+             
+               <h1 className = "text-black font-semibold sm:tracking-normal tracking-[-0.43px] sm:text-sm text-base">Tenants</h1>
+             
+             
+               <BsThreeDots className='text-[#007AFF] text-lg sm:hidden flex'/>
+             </div>
     
     
-            <div className='grid grid-cols-4 mt-5 gap-5'>
+            <div className='grid grid-cols-4 mt-5 sm:gap-5 gap-4'>
                 <TotalTenants />
     
                 <Applications />
@@ -27,9 +41,22 @@ export default function Tenant() {
 
                 <Rejected />
             </div>
+
+
+
+             <div className='sm:hidden flex gap-x-6 ps-4 pe-4 py-4 rounded-full bg-white items-center my-5'>
+                    <RiAddLargeLine className='text-black  text-lg'/>
+                    
+                    <PiFunnelSimple className='text-black  text-lg' />
+                    
+                    <PiArrowsDownUp className='text-black  text-lg'/>
+                    
+                    
+                    <FiSearch className='text-black text-lg ms-auto'/>
+                    </div>
     
     
-            <div className='flex justify-between items-center bg-[#F9F9FA] rounded-lg p-2 mt-6'>
+            <div className='sm:flex hidden justify-between items-center bg-[#F9F9FA] rounded-lg p-2 mt-6'>
     <div className='flex gap-x-5 items-center'>
     <div className='flex gap-x-1 items-center'>
     
