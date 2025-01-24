@@ -1,20 +1,38 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Checkbox from './inputs/checkbox'
 import Img1 from "./../../../../../../public/contact1.png"
 import Image from 'next/image'
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import MobileDevice from './mobileDevices'
+import { BsThreeDots } from 'react-icons/bs'
 export default function TransactionHistory() {
-   
-// const [checkedIndex, setCheckedIndex] = useState<string | number>("All")
-// function checkHandler(val:(string | number)) {
-//     if(val === "All") {
-// setCheckedIndex("All")
-//     } else {
-//         setCheckedIndex(val)
-//     }
-// }
+     const [show, setShow] = useState<number | null>(null)
+const [indexes, setIndexes] = useState<number[]>([])
+const [allChecked, setallChecked] = useState<boolean>(false)
+function addIndex(index:number) {
+    if(indexes.includes(index)) {
+const checked = indexes.filter(val => val !== index)
+setIndexes(checked)
+    } else {
+        setIndexes([...indexes, index])
+    }
+
+}
+
+useEffect(()=> {
+if(indexes.length < 1 && allChecked) {
+    setallChecked(false)
+} else if(indexes.length === transactions.length) {
+    setallChecked(true)
+}
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[indexes])
+
+function toggleAll() {
+    setallChecked(prev => !prev)
+}
     const transactions = [
         {
 property : "New Porperty #001",
@@ -98,12 +116,30 @@ status : "Complete"
                                                     status : "In Progress"
                                                             },
     ]
+
+    useEffect(()=>  {
+        const addAllIndexes = () => {
+            if (allChecked) {
+            
+              const allIndexes = transactions.map((_, index) => index);
+              setIndexes(allIndexes);
+            } else {
+            
+              setIndexes([]);
+            }
+            
+          };
+    
+          addAllIndexes()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      },[allChecked])
   return (
     <>
-    <div className='w-full mt-4 flex flex-col h-[350px]'>
-<div className='flex items-center w-[100%] py-3 border-b-[1px] border-[#0000000A]'>
+    <div className='col-span-12 overflow-auto'>
+    <div className='mt-4 sm:min-w-[700px] 2sm:min-w-[100%] 1/2md:min-w-[100%] md:min-w-[800px] 1md:min-w-[970px] min-w-[100%] lg:min-w-[100%]  w-[100%] sm:flex hidden flex-col h-[350px]  select-none'>
+<div className='flex items-center w-[100%] py-3 border-b-[1px] gap-x-4 border-[#0000000A]'>
 <div className='flex-[4%] ps-1'>
-<Checkbox clicked = {()=> null} checked = {false} classname={`w-[14px] h-[14px] border-[#00000033] flex justify-center items-center  border-[1px]  rounded`}/>
+<Checkbox  clicked = {()=> toggleAll()} checked ={allChecked}   classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] ${(allChecked) ? "bg-black" : ""} rounded`}/>
 </div>
 
 
@@ -146,9 +182,9 @@ status : "Complete"
 
 <div className='flex flex-col overflow-y-auto'>
     {transactions.map((transaction, index)=> {
-return <div key = {index} className='flex items-center py-3 border-b-[1px] border-[#0000000A]'>
+return <div key = {index} onClick = {()=> addIndex(index)} className='flex gap-x-4 items-center cursor-pointer hover:bg-[#0000000A]  py-3 border-b-[1px] border-[#0000000A]' onMouseLeave={()=>  setShow(index)} onMouseEnter={()=> setShow(index)}>
     <div className='flex-[4%] ps-1'>
-<Checkbox clicked = {()=> null} checked = {false} classname={`w-[14px] h-[14px] border-[#00000033] flex justify-center items-center  border-[1px]  rounded`}/>
+<Checkbox clicked={()=> null}  checked ={indexes.includes(index) }  classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] ${(indexes.includes(index)) ? "bg-black" : ""} rounded`}/>
 </div>
 
 
@@ -177,14 +213,20 @@ return <div key = {index} className='flex items-center py-3 border-b-[1px] borde
 <h1 className='font-[400] text-xs'>{transaction.status}</h1>
 </div>
 
-<div className='flex-[5%]'></div>
+<div className='flex-[5%]'>
+ <BsThreeDots  className={`text-lg  ${(show === index) ? "visible":"invisible"} text-black`}   onClick={(event) => {
+                    event.stopPropagation();
+                    
+                  }}/>
+
+</div>
 </div>
     })}
 </div>
 
 </div>
-
-<div className='flex items-center gap-x-2 mt-3'>
+</div>
+<div className='sm:flex col-span-12 hidden items-center gap-x-2 mt-3'>
 <div className='py-1 text-center cursor-pointer flex-1 rounded-lg border-[#0000001A] border-[0.5px] font-[400] text-sm text-black'>
 1
 </div>
@@ -225,6 +267,9 @@ return <div key = {index} className='flex items-center py-3 border-b-[1px] borde
 </div>
 </div>
    
+
+
+<MobileDevice />
     </>
   )
 }

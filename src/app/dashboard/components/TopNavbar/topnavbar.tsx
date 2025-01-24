@@ -10,18 +10,18 @@ import { PiCalendarDuotone } from "react-icons/pi";
 import { PiSidebarDuotone } from "react-icons/pi";
 import { VscBell } from "react-icons/vsc";
 import { useRouter, usePathname } from 'next/navigation';
-
+import { useMyContext } from '@/context/NavProvider';
 export default function TopNavbar() {
   const {push} = useRouter()
   const pathname = usePathname()
   const menu = pathname.split("/")
   const path =menu[menu.length - 2];
-
+const {toggleNav} = useMyContext()
   const lastPath = menu.filter(Boolean).pop()
   return (
-    <div className = "flex items-center px-4 border-b-[1px] border-[#1C1C1C1A]  pb-4 w-[100%]">
+    <div className = "sm:flex hidden items-center px-4 border-b-[1px] border-[#1C1C1C1A]  pb-4 w-[100%]">
         <div className='me-auto flex gap-x-3 items-center'>
-<PiSidebar className='text-black cursor-pointer text-xl'/>
+<PiSidebar className='text-black cursor-pointer text-xl' onClick={()=> toggleNav()}/>
 <PiChatsDuotone className='text-xl cursor-pointer text-black' onClick = {()=> push("/dashboard/messages")}/>
 
 <div className='flex gap-x-3 items-center'>

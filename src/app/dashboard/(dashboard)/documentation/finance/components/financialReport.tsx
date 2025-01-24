@@ -1,6 +1,7 @@
 import React from 'react'
 import { PiCalendarBlank, PiDownloadSimple } from "react-icons/pi";
 import styles from "../../../dashboard.module.css"
+import FinancialReportMobile from './mobileDevices/financialReport';
 export default function FinancialReport() {
     const reports = [
         {
@@ -42,7 +43,9 @@ export default function FinancialReport() {
         },
     ]
   return (
- <div className='bg-[#F9F9FA] rounded-2xl p-6 mt-6 flex flex-col h-[312px]  w-[100%]'>
+    <>
+    <FinancialReportMobile />
+ <div className='bg-[#F9F9FA] rounded-2xl p-6 mt-6 sm:flex hidden flex-col h-[312px]  w-[100%]'>
 
 <div className='flex items-center gap-x-2'>
 <div className='font-semibold text-black text-sm flex-1'>Financial report</div>
@@ -120,5 +123,6 @@ return <div key ={index} className='flex items-center w-[100%] gap-x-1  pb-5'>
         })}
 </div>
  </div>
+ </>
   )
 }

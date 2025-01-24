@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from "../../../dashboard.module.css"
+import ExpenseTrackingMobile from './mobileDevices/expenseTracking'
 export default function Expensetracking() {
     const expenses = [
         {
@@ -41,9 +42,40 @@ export default function Expensetracking() {
             quantity : 82,
             amount : "$6,518.18"
         },
+        {
+            name : "ASOS Ridley High Waist",
+            price : "$79.49",
+            quantity : 82,
+            amount : "$6,518.18"
+        },
+
+
+
+        {
+            name : "ASOS Ridley High Waist",
+            price : "$79.49",
+            quantity : 82,
+            amount : "$6,518.18"
+        },
+
+        {
+            name : "ASOS Ridley High Waist",
+            price : "$79.49",
+            quantity : 82,
+            amount : "$6,518.18"
+        },
+
+        {
+            name : "ASOS Ridley High Waist",
+            price : "$79.49",
+            quantity : 82,
+            amount : "$6,518.18"
+        },
+      
     ]
   return (
-    <div className='bg-[#F9F9FA] rounded-2xl p-5 flex flex-col  col-span-9 w-[100%]'>
+    <>
+    <div className='sm:bg-[#F9F9FA] sm:order-first order-last bg-white rounded-2xl p-5 sm:flex hidden flex-col col-span-12 sm:h-auto h-[270px]  sm:col-span-9 w-[100%]'>
 
         <h1 className='font-semibold text-black text-sm'>Expense tracking</h1>
 
@@ -101,5 +133,8 @@ export default function Expensetracking() {
 })}
 </div>
     </div>
+<ExpenseTrackingMobile />
+
+</>
   )
 }

@@ -63,7 +63,7 @@ Img3
         }
     ]
   return (
-    <div className='bg-[#F9F9FA] rounded-2xl p-6 flex flex-col h-[280px] col-span-10'>
+    <div className='sm:bg-[#F9F9FA] bg-white rounded-2xl py-6 sm:px-6 p-3 flex flex-col h-[280px] lg:col-span-9 col-span-12'>
 <div className='flex justify-between itwems-center'>
     <h1 className='font-semibold text-black text-sm'>Maintenance</h1>
 
@@ -72,22 +72,22 @@ Img3
 
 
 <div className='grid grid-cols-12 border-b-[1px] border-[#1C1C1C1A] pb-2 mt-3 mb-2'>
-<div className='col-span-4 text-[#00000066] font-[400] text-xs'>
+<div className='sm:col-span-4 col-span-5 text-[#00000066] font-[400] text-xs'>
     Description
 </div>
 
 
-<div className='col-span-2 text-[#00000066] font-[400] text-xs'>
+<div className='sm:col-span-2 col-span-4 text-[#00000066] font-[400] text-xs'>
     Property
 </div>
 
 
-<div className='col-span-2 text-[#00000066] font-[400] text-xs'>
+<div className='col-span-2 text-[#00000066] sm:flex hidden font-[400] text-xs'>
     Date
 </div>
 
 
-<div className='col-span-2 text-[#00000066] font-[400] text-xs'>
+<div className='col-span-3 text-[#00000066] sm:flex hidden  font-[400] text-xs'>
     Assigned to
 </div>
 
@@ -102,24 +102,24 @@ Img3
 
 <div className={`mt-1 overflow-y-auto flex flex-col  gap-y-4 ${styles.overflow}`}>
 {maintenances.map((maintenance, index)=> {
-    return <div key = {index} className='grid grid-cols-12'>
+    return <div key = {index} className='grid grid-cols-12 gap-x-2 items-center'>
 
-    <div className='col-span-4 text-black font-[400] text-xs'>
+    <div className='sm:col-span-4 col-span-5 text-black font-[400] text-xs'>
     {maintenance.description}
     </div>
     
     
-    <div className='col-span-2 text-black pe-2 font-[400] text-xs truncate'>
+    <div className='sm:col-span-2 col-span-4 text-black pe-2 font-[400] text-xs truncate'>
     {maintenance.property}
     </div>
     
     
-    <div className='col-span-2 text-black font-[400] text-xs'>
+    <div className='col-span-2 text-black sm:flex hidden font-[400] text-xs'>
     {maintenance.date}
     </div>
     
     
-    <div className='col-span-2 flex items-center'>
+    <div className='col-span-2 sm:flex hidden items-center'>
         {maintenance.img.map((images, index)=> {
             return  <Image key = {index} src = {images} className={`rounded-full w-[18px] h-[18px] ${index === 1 && "relative left-[-4px]"}  ${index > 1 && "hidden"}`} alt = "assignedto-img" width={15} height={15} />
         })}
@@ -127,7 +127,7 @@ Img3
     </div>
     
     
-    <div className={`col-span-2 font-[400] gap-2 text-xs flex items-center ${maintenance.status === "In Progress" ? "text-[#8A8CD9]" : maintenance.status === "Complete" ? "text-[#94E9B8]" : maintenance.status === "Pending" ? "text-[#92BFFF]" : maintenance.status === "Approved" ? "text-[#FFDB56]" : maintenance.status === "Rejected" ? "text-[#00000066]" : null}`}>
+    <div className={`sm:col-span-2 col-span-3 font-[400] sm:gap-2 gap-1 text-xs flex items-center ${maintenance.status === "In Progress" ? "text-[#8A8CD9]" : maintenance.status === "Complete" ? "text-[#94E9B8]" : maintenance.status === "Pending" ? "text-[#92BFFF]" : maintenance.status === "Approved" ? "text-[#FFDB56]" : maintenance.status === "Rejected" ? "text-[#00000066]" : null}`}>
    <div className={`w-[5px] h-[5px] rounded-full ${maintenance.status === "In Progress" ? "bg-[#8A8CD9]" : maintenance.status === "Complete" ? "bg-[#94E9B8]" : maintenance.status === "Pending" ? "bg-[#92BFFF]" : maintenance.status === "Approved" ? "bg-[#FFDB56]" : maintenance.status === "Rejected" ? "bg-[#00000066]" : null}`}></div>
     <h1 className='font-[400] text-xs'>{maintenance.status}</h1>
     </div>

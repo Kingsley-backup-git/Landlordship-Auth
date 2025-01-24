@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect,useState } from 'react'
 import Checkbox from '../../../unit/components/inputs/checkbox'
 import Img1 from "../../../../../../../public/contact1.png"
 import Image from 'next/image'
@@ -8,9 +8,35 @@ import { PiCalendarBlank } from "react-icons/pi";
 import { BsThreeDots } from "react-icons/bs";
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import styles from "../../../dashboard.module.css"
+import FileHistoryMobile from './mobileDevices/fileHistory'
 export default function FileHistory() {
 const [show, setShow] = useState<number | null>(null)
+const [indexes, setIndexes] = useState<number[]>([])
+const [allChecked, setallChecked] = useState<boolean>(false)
+function addIndex(index:number) {
+    if(indexes.includes(index)) {
+const checked = indexes.filter(val => val !== index)
+setIndexes(checked)
+    } else {
+        setIndexes([...indexes, index])
+    }
 
+}
+
+useEffect(()=> {
+if(indexes.length < 1 && allChecked) {
+    setallChecked(false)
+} else if(indexes.length === fileHistory.length) {
+    setallChecked(true)
+}
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+},[indexes])
+
+function toggleAll() {
+    setallChecked(prev => !prev)
+}
+  
+    
       const fileHistory = [
             {
     property : "New Porperty #001",
@@ -79,14 +105,31 @@ const [show, setShow] = useState<number | null>(null)
                                                         size: 1.5,
                                                         time : "Just now"
                                                                 }]
+
+     useEffect(()=>  {
+    const addAllIndexes = () => {
+        if (allChecked) {
+        
+          const allIndexes = fileHistory.map((_, index) => index);
+          setIndexes(allIndexes);
+        } else {
+        
+          setIndexes([]);
+        }
+        
+      };
+
+      addAllIndexes()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[allChecked])
   return (
     <>
-    <div className='w-full mt-4 flex flex-col h-[400px]'>
+    <div className='w-full mt-4 sm:flex hidden flex-col h-[400px] select-none'>
 
 
         <div className='flex items-center w-[100%] py-3 border-b-[1px] border-[#0000000A]'>
         <div className='flex-[4%] ps-1'>
-        <Checkbox checked ={false} clicked = {()=> null} classname='w-[14px] h-[14px] border-[#00000033] flex justify-center items-center  border-[1px]  rounded' />
+        <Checkbox clicked = {()=> toggleAll()} checked ={allChecked} classname={`w-[14px] cursor-pointer h-[14px] border-[#00000033] flex justify-center items-center  border-[1px] ${(allChecked) ? "bg-black" : ""}`} />
         </div>
         
         
@@ -128,9 +171,9 @@ const [show, setShow] = useState<number | null>(null)
 
         <div className={`flex flex-col overflow-y-auto ${styles.overflow}`}>
             {fileHistory.map((history, index)=> {
-        return <div key = {index} className='flex items-center cursor-pointer py-3  hover:rounded-xl border-b-[1px] border-[#0000000A]'onMouseLeave={()=>  setShow(index)} onMouseEnter={()=> setShow(index)}>
-            <div className='flex-[4%] ps-1'>
-        <Checkbox checked ={false} clicked = {()=> null} classname='w-[14px] h-[14px]  border-[#00000033] flex justify-center items-center  border-[1px]  rounded' />
+        return <div key={index}  onClick = {()=> addIndex(index)}  className={`flex z-[-1px] items-center cursor-pointer py-3 w-full  hover:rounded-xl border-b-[1px] border-[#0000000A] hover:bg-[#0000000A]`} onMouseLeave={()=>  setShow(index)} onMouseEnter={()=> setShow(index)}>
+            <div className='flex-[4%]  w-full ps-1'>
+        <Checkbox clicked={()=> null}  checked ={indexes.includes(index) }  classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] ${(indexes.includes(index)) ? "bg-black" : ""} rounded`}/>
         </div>
         
         
@@ -159,10 +202,14 @@ const [show, setShow] = useState<number | null>(null)
 <PiCalendarBlank  className='text-xl'/>
 <h1>{history.time}</h1>
             </div>
-        <div className='flex-[5%]'>
-        <BsThreeDots className={`text-lg ${(show === index) ? "visible":"invisible"} text-black`}/>
+        <div className='flex-[5%] '>
+        <BsThreeDots  className={`text-lg  ${(show === index) ? "visible":"invisible"} text-black`}   onClick={(event) => {
+                event.stopPropagation();
+                
+              }}/>
         </div>
         </div>
+     
             })}
         </div>
         
@@ -170,7 +217,7 @@ const [show, setShow] = useState<number | null>(null)
 
 
 
-        <div className='flex items-center gap-x-2 mt-3'>
+        <div className='sm:flex hidden items-center gap-x-2 mt-3'>
         <div className='py-1 text-center cursor-pointer flex-1 rounded-lg border-[#0000001A] border-[0.5px] font-[400] text-sm text-black'>
         1
         </div>
@@ -210,6 +257,8 @@ const [show, setShow] = useState<number | null>(null)
         <IoIosArrowForward className='text-black mx-auto text-xl'/>
         </div>
         </div>
+
+        <FileHistoryMobile />
         </>
   )
 }

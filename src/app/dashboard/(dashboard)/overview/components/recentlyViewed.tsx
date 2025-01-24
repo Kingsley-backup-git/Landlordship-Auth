@@ -11,10 +11,14 @@ location : "234 Noble crescent avenue, LE, 144"
         },{
 property : "Apartment property 101",
 location : "3 Noble crescent avenue, LE, 144"
-        }
+        },{
+            property : "Apartment property 101",
+            location : "3 Noble crescent avenue, LE, 144"
+                    },
+                   
     ]
   return (
-    <div className='bg-[#F9F9FA] rounded-2xl pt-6 px-6 flex flex-col max-h-[272px] h-[100%]'>
+    <div className='sm:bg-[#F9F9FA] bg-white rounded-2xl pt-6 sm:px-6 px-[15px] flex flex-col h-[272px] '>
      <h1 className='text-black font-semibold text-sm'>Recently Viewed</h1>
 
 
@@ -28,7 +32,7 @@ location : "3 Noble crescent avenue, LE, 144"
         
             <div>
                 <h1 className='text-sm font-semibold text-black'>{recent.property}</h1>
-                <p className='text-[#00000066] text-sm font-[400] pt-1'>{recent.location}</p>
+                <p className='text-[#00000066] xs:text-sm text-xs font-[400] pt-1'>{recent.location}</p>
             </div>
         </div>
         })}
