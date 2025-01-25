@@ -10,7 +10,7 @@ export default function ExpenseCategoryChart() {
   return (
     <div className='sm:bg-[#F9F9FA] sm:order-last order-first sm:mt-0  flex flex-col  bg-white rounded-2xl sm:py-6 sm:px-6 p-4   sm:col-span-3 col-span-12'>
 
-<h1 className='font-semibold text-black text-sm '>Expense Category</h1>
+<h1 className='font-semibold text-black text-sm z-[99]'>Expense Category</h1>
 <div className='flex sm:flex-col flex-row items-center mt-1 overflow-auto flex-1  gap-x-4'>
 <div className="flex">
         <DonutChart />

@@ -9,7 +9,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="bg-[#F9F9FA] min-h-screen px-8 py-6">
     <AuthNavbar />
-      <div className="mt-[80px] rounded-2xl justify-center bg-[#FFFFFF] flex mx-auto max-w-[680px] w-[100%]">
+      <div className="mt-[80px] rounded-2xl justify-center bg-[#FFFFFF] p-6 flex mx-auto items-center min-h-[526px]  max-w-[680px] w-[100%]">
         
         {children}
       

@@ -5,7 +5,7 @@ import React from 'react'
 import { MdSmartphone } from "react-icons/md";
 export default function Verify() {
   return (
-    <div className='w-[100%] py-12'>
+    <div className='w-[100%]'>
 <MdSmartphone className='text-6xl mx-auto block text-black'/>
 <h1 className = "font-semibold text-2xl mt-5 text-black text-center">Two Step Verification</h1>
 <p className='text-[#00000066] text-center mt-1 text-sm fontt-[400]'>Enter the verification code we sent to</p>

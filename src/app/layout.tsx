@@ -31,9 +31,11 @@ export default function RootLayout({
         className={`${inter.className}`}
       >
         <MyContextProvider>
-     <ProgressProvider> {children}
+     <ProgressProvider> 
+     
+      {children}
       </ProgressProvider>  
-      
+
       </MyContextProvider>
       </body>
     </html>
