@@ -3,26 +3,30 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 
 const DonutChart = () => {
-  const series = [44, 55, 41, 17]; 
+  const series = [44, 55, 15, 10]; 
   const options = {
     chart: {
       type: "donut" as const, 
       width: 100, 
     },
-    labels: ["series-1", "series-2", "series-3", "series-4"], // Labels for each segment
+    labels: ["Income", "Expenses", "Income", "Overdue"], 
+    colors: ["#5856D6", "#000000", "#34C759", "#FFCC00"],
     legend: {
       show: false, // Remove legends
     },
     dataLabels: {
-        enabled: false, // Disable numbers on the chart
+        enabled: false, 
+      },
+      tooltip: {
+        enabled: false, 
       },
       plotOptions: {
         pie: {
           donut: {
-            size: "50%", // Adjust the size of the hole for inner padding
-            background: "transparent", // Optional: Set the background of the hole
+            size: "50%", 
+            background: "transparent", 
           },
-          expandOnClick: false, // Prevent the donut from expanding when clicked
+          expandOnClick: false, 
         },
       },
     responsive: [
