@@ -171,9 +171,9 @@ function toggleAll() {
 
         <div className={`flex flex-col overflow-y-auto ${styles.overflow}`}>
             {fileHistory.map((history, index)=> {
-        return <div key={index}  onClick = {()=> addIndex(index)}  className={`flex z-[-1px] items-center cursor-pointer py-3 w-full  hover:rounded-xl border-b-[1px] border-[#0000000A] hover:bg-[#0000000A]`} onMouseLeave={()=>  setShow(index)} onMouseEnter={()=> setShow(index)}>
+        return <div key={index}  onClick = {()=> null}  className={`flex z-[-1px] items-center cursor-pointer py-3 w-full  hover:rounded-xl border-b-[1px] border-[#0000000A] hover:bg-[#0000000A]`} onMouseLeave={()=>  setShow(null)} onMouseEnter={()=> setShow(index)}>
             <div className='flex-[4%]  w-full ps-1'>
-        <Checkbox clicked={()=> null}  checked ={indexes.includes(index) }  classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] ${(indexes.includes(index)) ? "bg-black" : ""} rounded`}/>
+        <Checkbox clicked={()=> addIndex(index)}  checked ={indexes.includes(index) }  classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] ${(indexes.includes(index)) ? "bg-black" : ""} rounded`}/>
         </div>
         
         

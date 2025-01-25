@@ -1,8 +1,10 @@
 'use client'
 import React from 'react'
 import styles from "../../../dashboard.module.css"
-import DonutChart from './charts/expenseCategory'
 
+import dynamic from 'next/dynamic';
+
+const DonutChart = dynamic(() => import('./charts/expenseCategory'), { ssr: false });
 
 export default function ExpenseCategoryChart() {
   return (
