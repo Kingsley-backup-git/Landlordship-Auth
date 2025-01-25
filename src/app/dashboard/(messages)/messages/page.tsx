@@ -12,16 +12,19 @@ import { PiNotePencil } from "react-icons/pi";
 import { PiGearSix } from "react-icons/pi";
 import { CiSearch } from 'react-icons/ci';
 import TextInput from '../../components/inputs/TextInput';
+import { BsThreeDots } from 'react-icons/bs';
 export default function Messages() {
   return (
     <div className= "sm:flex gap-x-5 sm:p-6 py-2 px-4 flex-1 overflow-hidden">
-        <div className="flex-[15%] sm:flex hidden">
+        <div className="flex-[13%] sm:flex hidden">
 <Options />
             </div>
-
-            <h1 className = "text-black text-center  font-semibold sm:hidden block mx-auto sm:tracking-normal tracking-[-0.43px] sm:text-sm text-base">Message</h1>
-           
-            <div className="flex-[25%] flex flex-col h-full">
+<div className="flex items-center sm:hidden ">
+  <div className="flex-1"></div>
+         <div className="flex-1">  <h1 className = "text-black text-center  font-semibold sm:hidden block  sm:tracking-normal tracking-[-0.43px] text-sm ">Message</h1></div>
+             <div className="flex-1 flex justify-end"><BsThreeDots className='text-[#007AFF]  text-lg sm:hidden flex'/></div> 
+</div>
+            <div className="flex-[30%] flex flex-col h-full">
                 <div className='bg-[#F9F9FA] rounded-lg sm:flex hidden items-center gap-x-4 p-2'>
                     <Checkbox classname='border-[1px] w-[17px] h-[17px] border-[#00000033] rounded'/>
 <PiFunnelSimple className="text-lg text-black"/>
@@ -40,12 +43,16 @@ export default function Messages() {
 
                 <div className={`overflow-y-auto  mt-1 py-1 divide-y-[1px] divide-[#0000000A] ${styles.overflow} flex-1 h-[160%] flex flex-col`}>
                     <Chats />
+                  
                     </div>
+                    <div className="h-[60px] sm:hidden flex">
+        
+        </div>
             </div>
 
 
 
-            <div className='flex-[60%] hidden sm:flex flex-col gap-y-4'>
+            <div className='flex-[57%] hidden sm:flex flex-col gap-y-4'>
                <SelectedChats />
 <div className="overflow-y-auto flex flex-col border-[1px]  flex-1 border-[#0000000A] rounded-lg">
 <MessageHeader />
@@ -53,7 +60,7 @@ export default function Messages() {
 <SendMessage />
 </div>
             </div>
-
+           
     </div>
   )
 }

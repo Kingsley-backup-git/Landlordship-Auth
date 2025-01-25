@@ -1,7 +1,9 @@
 import React from 'react'
 import styles from "../../dashboard.module.css"
-import DonutChart from './chart/revenueChart'
 
+import dynamic from 'next/dynamic'
+
+const DonutChart = dynamic(()=> import("./chart/revenueChart"), {ssr : false})
 export default function RevenueChart() {
   return (
     <div className='sm:bg-[#F9F9FA]  bg-white rounded-2xl py-6 sm:px-6 p-3 items-stretch flex flex-col  sm:h-[280px] lg:col-span-3 col-span-12'>

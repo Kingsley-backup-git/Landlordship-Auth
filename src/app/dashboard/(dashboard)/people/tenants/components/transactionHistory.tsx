@@ -169,9 +169,9 @@ status : "In Progress"
 <div className={`flex flex-col overflow-y-auto ${styles.overflow}`}>
     {transactions.map((transaction, index)=> {
 
-return <div key={index} onClick = {()=> addIndex(index)} className={`flex cursor-pointer hover:bg-[#0000000A] items-center py-3 px-1 border-b-[1px] border-[#0000000A]`} >
+return <div key={index} onClick = {()=> null} className={`flex cursor-pointer hover:bg-[#0000000A] items-center py-3 px-1 border-b-[1px] border-[#0000000A]`} >
     <div className='flex-[4%] ps-1'>
-<Checkbox clicked={()=> null}  checked ={indexes.includes(index) }  classname={`w-[14px] cursor-pointer  h-[14px] border-[#00000033] flex justify-center items-center border-[1px] ${(indexes.includes(index)) ? "bg-black" : ""} rounded`}/>
+<Checkbox clicked={()=> addIndex(index)}  checked ={indexes.includes(index) }  classname={`w-[14px] cursor-pointer  h-[14px] border-[#00000033] flex justify-center items-center border-[1px] ${(indexes.includes(index)) ? "bg-black" : ""} rounded`}/>
 </div>
 
 

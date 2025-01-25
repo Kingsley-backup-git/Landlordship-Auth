@@ -44,7 +44,7 @@ export default function Chats() {
         {
             Img : Img4,
             name : "Orlando Diggs",
-            text : "Hey man..Nah man sorry i don't. Should i get it?"
+            text : "Hey man..Nah man"
         },
         {
             Img :Chatgpt,
@@ -59,7 +59,7 @@ export default function Chats() {
         {
             Img : Img6,
             name : "Lane",
-            text : "Re: New mail settings, Will you answer him asap?"
+            text : "Re: New mail settings"
         },
         {
             Img : Facebook,
@@ -85,7 +85,7 @@ export default function Chats() {
         }, {
             Img : Img7,
             name : "Koray Okumus",
-            text : "Let's talk about the search box interaction again"
+            text : "Let's talk about the search box"
         }, {
             Img : Img1,
             name : "ByeWind",
@@ -99,18 +99,22 @@ export default function Chats() {
   return (
     <>
     {chats.map((chat, index)=> {
-        return <div key = {index} className='flex gap-x-2 hover:rounded-lg px-2 pt-2 cursor-pointer pb-4 hover:bg-[#0000000A]'>
-            <Image src ={chat.Img} className='w-[24px] h-[24px] rounded-full' alt = "profile-picture" width={24} height={24} />
+        return <div key = {index} className='flex items-stretch gap-x-2 hover:rounded-lg px-2 pt-2 cursor-pointer pb-4 hover:bg-[#0000000A]'>
+            <Image src ={chat.Img} className='w-[28px] h-[28px] self-center rounded-full' alt = "profile-picture" width={24} height={24} />
 
             <div className='flex-1'>
 <h1 className='text-sm font-[400] text-black'>{chat.name}</h1>
-<p className='text-[#00000066] text-xs font-[400]'>{chat.text}</p>
+<p className='text-[#00000066] text-[11px] font-[400] break-keep'>{chat.text}</p>
             </div>
 
 
-<div className='max-w-fit w-[100%] text-xs text-[#00000066] font-[400]'>19:28</div>
+<div className='max-w-fit w-[100%] self-start text-xs text-[#00000066] font-[400] flex flex-col items-center'>
+    <h1>19:28</h1>
+    <p className='bg-[#5856D6] flex items-center max-w-fit w-[100%] justify-center py-[3px] px-[7px] rounded-full text-white'>{index + 1}</p>
+    </div>
         </div>
     })}
+     
     </>
   )
 }

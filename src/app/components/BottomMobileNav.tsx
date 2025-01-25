@@ -5,7 +5,7 @@ import { PiCalendarDotsDuotone } from "react-icons/pi";
 import { LuBell } from "react-icons/lu";
 import { PiChatsDuotone } from "react-icons/pi";
 // import { usePathname } from "next/navigation";
-import { PiHouseFill } from "react-icons/pi";
+import { GrHomeRounded } from "react-icons/gr";
 import UserImg from "../../../public/user.png"
 import Link from "next/link";
 import Image from "next/image";
@@ -17,7 +17,7 @@ const BottomNav: React.FC = () => {
         href="/dashboard"
         className={`flex-1 cursor-pointer grow max-w-fit w-[100%]`}
       >
-        <PiHouseFill
+        <GrHomeRounded
           className={`text-black text-2xl`}
         />
       </Link>
