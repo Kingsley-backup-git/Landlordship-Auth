@@ -12,16 +12,17 @@ import TransactionHistory from './components/transactionHistory';
 import { BsThreeDots } from 'react-icons/bs';
 import { FaChevronLeft } from 'react-icons/fa6';
 import { RiAddLargeLine } from 'react-icons/ri';
+import Link from 'next/link';
 
 
 export default function Tenant() {
   return (
      <div className='sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]'>
             <div className='flex sm:block items-center justify-between'>
-               <div className='flex items-center sm:hidden gap-x-[1px]'>
+            <Link href="/dashboard/" className='flex items-center sm:hidden gap-x-[1px]'>
                <FaChevronLeft className='text-[#007AFF] text-lg'/>
                <h1 className='font-[400] sm:text-base text-sm tracking-[-0.43px] text-[#007AFF]'>Home</h1>
-               </div>
+               </Link>
              
              
                <h1 className = "text-black font-semibold sm:tracking-normal tracking-[-0.43px] sm:text-sm text-base">Tenants</h1>

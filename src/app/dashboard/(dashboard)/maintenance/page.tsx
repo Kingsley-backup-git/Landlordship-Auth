@@ -2,6 +2,7 @@ import React from 'react'
 import Cards from './components/cards'
 import { FaChevronLeft } from "react-icons/fa6";
 import { BsThreeDots } from 'react-icons/bs'
+import Link from 'next/link';
 // import Details from './components/details';
 
 export default function Maintenance() {
@@ -9,10 +10,10 @@ export default function Maintenance() {
     <>
     <div className='sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]'>
       <div className='flex sm:block items-center justify-between'>
-        <div className='flex items-center sm:hidden gap-x-[1px]'>
+      <Link href="/dashboard/" className='flex items-center sm:hidden gap-x-[1px]'>
         <FaChevronLeft className='text-[#007AFF] text-lg'/>
         <h1 className='font-[400] sm:text-base text-sm tracking-[-0.43px] text-[#007AFF]'>Home</h1>
-        </div>
+        </Link>
         <h1 className = "text-black font-semibold sm:flex hidden sm:text-sm text-base">Requests</h1>
         <h1 className = "text-black font-semibold sm:hidden flex sm:text-sm text-base">Maintenance</h1>
 
