@@ -9,6 +9,7 @@ import FinancialReport from './components/financialReport'
 import { FaChevronLeft } from 'react-icons/fa6'
 import { BsThreeDots } from 'react-icons/bs'
 import ExpenseCategoryChart from './components/expenseCategory'
+import Link from 'next/link'
 
 export default function Finance() {
   return (
@@ -27,10 +28,10 @@ export default function Finance() {
 
 
         <div className='flex sm:hidden items-center justify-between'>
-          <div className='flex items-center sm:hidden gap-x-[1px]'>
+        <Link href="/dashboard/" className='flex items-center sm:hidden gap-x-[1px]'>
           <FaChevronLeft className='text-[#007AFF] text-lg'/>
           <h1 className='font-[400] sm:text-base text-sm tracking-[-0.43px] text-[#007AFF]'>Home</h1>
-          </div>
+          </Link>
         
         
           <h1 className = "text-black font-semibold sm:tracking-normal tracking-[-0.43px] sm:text-sm text-base">Finance</h1>

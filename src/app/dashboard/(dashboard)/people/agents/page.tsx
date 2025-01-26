@@ -15,6 +15,7 @@ import { PiFunnelSimple } from "react-icons/pi";
 import { FiSearch } from "react-icons/fi";
 import { PiArrowsDownUp } from "react-icons/pi";
 import { BsThreeDots } from 'react-icons/bs';
+import Link from 'next/link';
 export default function Agents() {
     const agents = [
         {
@@ -95,10 +96,10 @@ export default function Agents() {
     <div className='sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]'>
         <div className='flex justify-between items-center'>
 
-        <div className='flex items-center sm:hidden gap-x-[1px]'>
+        <Link href="/dashboard/" className='flex items-center sm:hidden gap-x-[1px]'>
           <FaChevronLeft className='text-[#007AFF] text-lg'/>
           <h1 className='font-[400] sm:text-base text-sm tracking-[-0.43px] text-[#007AFF]'>Home</h1>
-          </div>
+          </Link>
 
 
             <h1 className='font-semibold sm:text-sm text-base text-black'>Agents</h1>

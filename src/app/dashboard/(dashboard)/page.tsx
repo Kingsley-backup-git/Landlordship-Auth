@@ -1,13 +1,14 @@
-import Image from 'next/image'
+// import Image from 'next/image'
 import React from 'react'
-import DashboardImage from "../../../../public/Overview22 1.svg"
-import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-import { PiUserPlusDuotone } from "react-icons/pi";
-import { PiIdentificationCardDuotone } from "react-icons/pi";
+import MobileHome from '../components/Home/mobile/home'
+// import DashboardImage from "../../../../public/Overview22 1.svg"
+// import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
+// import { PiUserPlusDuotone } from "react-icons/pi";
+// import { PiIdentificationCardDuotone } from "react-icons/pi";
 export default function Dashboard() {
   return (
-    <div className='p-6'>
-<h1 className='font-semibold text-2xl text-[#1C1C1C]'>Welcome to YourLandlordship</h1>
+    <>
+{/* <h1 className='font-semibold text-2xl text-[#1C1C1C]'>Welcome to YourLandlordship</h1>
 <p className='font-[400] text-[15px] text-[#1C1C1C] pt-1'>Getting started is very easy</p>
 
 <div className='mt-8'>
@@ -69,7 +70,8 @@ export default function Dashboard() {
 
 </div>
 
-</div>
-    </div>
+</div> */}
+<MobileHome />
+    </>
   )
 }

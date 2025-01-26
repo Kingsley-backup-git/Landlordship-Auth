@@ -11,16 +11,17 @@ import TextInput from '../../components/inputs/TextInput'
 import { FaChevronLeft } from 'react-icons/fa6'
 import { BsThreeDots } from 'react-icons/bs'
 import TransactionHistory from './components/transactionHistory'
+import Link from 'next/link'
 
 export default function Buildings() {
   return (
      <div className='sm:p-6 py-2 px-4'>
     
                 <div className='flex sm:block items-center justify-between'>
-                      <div className='flex items-center sm:hidden gap-x-[1px]'>
+                <Link href="/dashboard/" className='flex items-center sm:hidden gap-x-[1px]'>
                       <FaChevronLeft className='text-[#007AFF] text-lg'/>
                       <h1 className='font-[400] sm:text-base text-sm tracking-[-0.43px] text-[#007AFF]'>Home</h1>
-                      </div>
+                      </Link>
                   
                       <h1 className = "text-black font-semibold sm:flex hidden text-sm">Buildings</h1>
                       <h1 className = "text-black font-semibold sm:hidden flex sm:tracking-normal tracking-[-0.43px] sm:text-sm text-base">Properties</h1>

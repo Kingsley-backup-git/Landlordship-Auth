@@ -12,13 +12,13 @@ import Image from "next/image";
 const BottomNav: React.FC = () => {
 //   const pathName = usePathname();
   return (
-    <div className="h-[60px] bg-[#FFFFFF0A] shadow-lg border-t-[5px] border-r-1 border-l-1 border-b-1 border-dark rounded-t-3xl w-[100%] fixed  bottom-0 left-0 sm:hidden z-[9999] flex justify-between items-center py-2  px-4">
+    <div className="h-[70px] bg-white/30 backdrop-blur-sm  shadow-lg px-10  rounded-full w-[100%] fixed  bottom-0 left-0 sm:hidden z-[9999] flex justify-between items-center py-1">
       <Link
-        href="/dashboard"
+        href="/dashboard/"
         className={`flex-1 cursor-pointer grow max-w-fit w-[100%]`}
       >
         <GrHomeRounded
-          className={`text-black text-2xl`}
+          className={`text-black text-xl xs:text-2xl`}
         />
       </Link>
       <Link
@@ -26,7 +26,7 @@ const BottomNav: React.FC = () => {
         className={`flex-1 grow max-w-fit w-[100%] `}
       >
         <PiCalendarDotsDuotone
-          className={`text-black text-2xl `}
+          className={`text-black text-xl xs:text-2xl`}
         />{" "}
       </Link>
 
@@ -35,18 +35,18 @@ const BottomNav: React.FC = () => {
         className={`flex-1 grow max-w-fit w-[100%] `}
       >
         <LuBell 
-          className={`text-black text-2xl`}
+          className={`text-black text-xl xs:text-2xl`}
         />{" "}
       </Link>
       <Link
-        href="/dashboard/"
+        href="/dashboard/messages"
         className={`flex-1 grow max-w-fit w-[100%] `}
-      > <PiChatsDuotone  className={`text-black text-2xl`}
+      > <PiChatsDuotone  className={`text-black text-xl xs:text-2xl`}
     /></Link> 
 
 
       <Link
-        href="/user"
+        href="/dashboard"
         className={` flex-1 grow max-w-fit w-[100%] `}
       >
         <Image src = {UserImg} className = "w-[26px] h-[26px] rounded-full" alt="user image" width={26} height = {26} />
