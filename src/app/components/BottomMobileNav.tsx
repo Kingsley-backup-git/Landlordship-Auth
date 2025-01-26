@@ -18,24 +18,24 @@ const BottomNav: React.FC = () => {
         className={`flex-1 cursor-pointer grow max-w-fit w-[100%]`}
       >
         <GrHomeRounded
-          className={`text-black text-xl xs:text-2xl`}
+          className={`text-black  text-xl xs:text-2xl`}
         />
       </Link>
       <Link
         href="/dashboard/"
-        className={`flex-1 grow max-w-fit w-[100%] `}
+        className={`flex-1 grow opacity-10 pointer-events-none max-w-fit w-[100%] `}
       >
         <PiCalendarDotsDuotone
-          className={`text-black text-xl xs:text-2xl`}
+          className={`text-black  text-xl xs:text-2xl`}
         />{" "}
       </Link>
 
       <Link
         href="/dashboard/"
-        className={`flex-1 grow max-w-fit w-[100%] `}
+        className={`flex-1 grow opacity-10 pointer-events-none max-w-fit w-[100%] `}
       >
         <LuBell 
-          className={`text-black text-xl xs:text-2xl`}
+          className={`text-black  text-xl xs:text-2xl`}
         />{" "}
       </Link>
       <Link
@@ -47,7 +47,7 @@ const BottomNav: React.FC = () => {
 
       <Link
         href="/dashboard"
-        className={` flex-1 grow max-w-fit w-[100%] `}
+        className={` flex-1 grow opacity-10 pointer-events-none max-w-fit w-[100%] `}
       >
         <Image src = {UserImg} className = "w-[26px] h-[26px] rounded-full" alt="user image" width={26} height = {26} />
       </Link>
