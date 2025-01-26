@@ -12,10 +12,11 @@ export default function ExpenseCategoryChart() {
 
 <h1 className='font-semibold text-black text-sm z-[99]'>Expense Category</h1>
 <div className='flex sm:flex-col flex-row items-center mt-1 overflow-auto flex-1  gap-x-4'>
-<div className="flex">
+<div className="flex  flex-1 justify-center">
         <DonutChart />
         </div>
-        <div className={`flex flex-col overflow-y-auto overflow-x-auto h-[105px] max-w-[200px] mx-auto w-[100%]  sm:mt-1 gap-x-2 gap-y-3   ${styles.overflow}`}>
+        <div className='flex-1  w-full'>
+        <div className={`flex flex-col overflow-y-auto overflow-x-auto h-[105px] max-w-[200px] sm:mx-auto w-[100%]  sm:mt-1 gap-x-2 gap-y-3   ${styles.overflow}`}>
 <div className='flex justify-between items-center gap-x-4'>
     <div className='flex gap-x-1 items-center'>
  <div className={`w-[5px] h-[5px] rounded-full bg-black`}></div>
@@ -85,6 +86,7 @@ export default function ExpenseCategoryChart() {
 
 
 
+        </div>
         </div>
         </div>
         </div>
