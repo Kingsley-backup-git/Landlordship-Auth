@@ -21,7 +21,7 @@ export default function Messages() {
             </div>
 <div className="flex items-center sm:hidden ">
   <div className="flex-1"></div>
-         <div className="flex-1">  <h1 className = "text-black text-center  font-semibold sm:hidden block  sm:tracking-normal tracking-[-0.43px] text-sm ">Message</h1></div>
+         <div className="flex-1">  <h1 className = "text-black text-center  font-semibold sm:hidden block  sm:tracking-normal tracking-[-0.43px] text-sm xs:text-base ">Message</h1></div>
              <div className="flex-1 flex justify-end"><BsThreeDots className='text-[#007AFF]  text-lg sm:hidden flex'/></div> 
 </div>
             <div className="flex-[30%] flex flex-col h-full">
