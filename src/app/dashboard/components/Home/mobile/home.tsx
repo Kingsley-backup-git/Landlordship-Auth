@@ -9,7 +9,7 @@ import { FaRegFolderOpen } from 'react-icons/fa'
 export default function MobileHome() {
   
   return (
-    <div className='p-3'>
+    <div className='p-3 sm:hidden block'>
         <h1 className="text-black text-3xl font-bold">Home</h1>
 
 <SearchInput />
