@@ -30,7 +30,7 @@ export default function Documents() {
   </div>
 
 
-   <div className='grid grid-cols-4 mt-5 sm:gap-5 gap-4'>
+   <div className='grid lg:grid-cols-4 1md:grid-cols-2 2sm:grid-cols-2 grid-cols-1 mt-5 sm:gap-5 gap-4'>
     <AllFiles />
 
     <AllDocuments />

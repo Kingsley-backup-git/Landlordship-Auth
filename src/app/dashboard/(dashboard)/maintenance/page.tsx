@@ -80,7 +80,7 @@ export default function Maintenance() {
 
 
 
-        <div className='grid sm:grid-cols-3 grid-cols-1 sm:mt-4 mt-6 gap-5'>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3  sm:grid-cols-1 2sm:grid-cols-2 grid-cols-1 sm:mt-4 mt-6 gap-x-5 sm:gap-y-8 gap-y-6'>
 <Cards />
         </div>
     </div>

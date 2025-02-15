@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React,{useState} from 'react'
 import Occupied from './components/occupied'
 import Rental from './components/rental'
 import Asset from './components/asset'
@@ -12,9 +13,31 @@ import { BsThreeDots } from 'react-icons/bs'
 import { FaChevronLeft } from 'react-icons/fa6'
 import { RiAddLargeLine } from 'react-icons/ri'
 import Link from 'next/link'
+import CreateProperty from '../../components/Modal/property/create/create'
+import StepOne from '../../components/Modal/property/MoveInTenant/stepOne'
+import StepTwo from '../../components/Modal/property/MoveInTenant/stepTwo'
+import StepSeven from '../../components/Modal/property/MoveInTenant/stepSeven'
+import StepEight from '../../components/Modal/property/MoveInTenant/stepEight'
+import StepNine from '../../components/Modal/property/MoveInTenant/stepNine'
+import StepSix from '../../components/Modal/property/MoveInTenant/stepSix'
 export default function Unit() {
+       
+        const [step, setStep] = useState(50)
+      
+        function stepHandler(num:number) {
+                setStep(num)
+        }
   return (
-    <div className='sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]'>
+        <>
+        {step === 0 ? 
+         <CreateProperty  stepHandler={stepHandler}/> :
+         step === 1 ? <StepOne header = {"Unit"} stepHandler ={stepHandler}/> :
+         step === 2 ? <StepTwo header = {"Unit"} stepHandler ={stepHandler}/> :
+        step === 6 ? <StepSix header = {"Unit"} stepHandler ={stepHandler}/>:
+         step === 7 ? <StepSeven header = {"Unit"} stepHandler ={stepHandler}/> :
+         step === 8 ? <StepEight header = {"Unit"} stepHandler ={stepHandler}/> :
+         step === 9 ? <StepNine header = {"Unit"} stepHandler ={stepHandler}/> :
+    <div className='sm:p-6 py-2 px-4  sm:max-w-[960px] mx-auto w-[100%]'>
 
             <div className='flex sm:block items-center justify-between'>
             <Link href="/dashboard/"  className='flex items-center sm:hidden gap-x-[1px]'>
@@ -56,7 +79,7 @@ export default function Unit() {
 
         <div className='sm:flex hidden justify-between items-center bg-[#F9F9FA] rounded-lg p-2 mt-6'>
 <div className='flex gap-x-5 items-center'>
-<div className='flex gap-x-1 items-center'>
+<div className='flex gap-x-1 items-center cursor-pointer' onClick={()=> setStep(0)}>
 
 
 <FiPlus className='text-black text-sm'/>
@@ -81,5 +104,7 @@ export default function Unit() {
         <TransactionHistory />
         </div>
     </div>
+     }
+    </>
   )
 }

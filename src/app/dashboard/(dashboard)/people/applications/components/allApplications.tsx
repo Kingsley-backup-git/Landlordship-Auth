@@ -95,7 +95,7 @@ export default function AllApplications() {
         }
     ]
   return (
-    <div className='grid sm:grid-cols-3 grid-cols-1 mt-5 gap-5'>
+    <div className='grid lg:grid-cols-3 1md:grid-cols-2 md:grid-cols-2 2sm:grid-cols-2 grid-cols-1 sm:grid-cols-1 mt-5 gap-x-5 gap-y-6 sm:gap-y-8'>
     {allApplications.map((application, index)=> {
     return <div className='sm:bg-[#F9F9FA] bg-white rounded-2xl p-5' key={index}>
         <div className='flex items-center justify-between gap-x-1'>

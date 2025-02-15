@@ -133,7 +133,8 @@ status : "Complete"
       },[allChecked])
   return (
     <>
-       <div className='w-full mt-4 sm:flex hidden flex-col h-[350px]  select-none'>
+    <div className='col-span-12 overflow-auto'>
+       <div className='w-full sm:min-w-[900px]  1/2md:min-w-[100%] md:min-w-[900px] 1md:min-w-[100%] min-w-[100%] lg:min-w-[100%] mt-4 sm:flex hidden flex-col h-[350px]  select-none'>
    <div className='flex items-center w-[100%] py-3 border-b-[1px] gap-x-4 border-[#0000000A]'>
    <div className='flex-[4%] ps-1'>
    <Checkbox  clicked = {()=> toggleAll()} checked ={allChecked}   classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] ${(allChecked) ? "bg-black" : ""} rounded`}/>
@@ -148,21 +149,21 @@ status : "Complete"
    
    
    
-   <div className='flex-[13%] text-[#00000066] font-[400] text-xs'>
+   <div className='flex-[10%] text-[#00000066] font-[400] text-xs'>
     Unit 
    </div>
    
    
    
    
-   <div className='flex-[30%] text-[#00000066] font-[400] text-xs'>
+   <div className='flex-[31%] text-[#00000066] font-[400] text-xs'>
        Description
    </div>
    
    
    
    
-   <div className='flex-[18%] text-[#00000066] font-[400] text-xs'>
+   <div className='flex-[20%] text-[#00000066] font-[400] text-xs'>
         Address
    </div>
    
@@ -188,18 +189,18 @@ status : "Complete"
    </div>
    
    
-   <div className='flex-[13%] text-black font-[400] text-xs flex items-center gap-x-2'>
+   <div className='flex-[10%] text-black font-[400] text-xs flex items-center gap-x-2'>
       
      {transaction.unit} 
    </div>
    
    
-   <div className='flex-[30%] text-black font-[400] text-xs'>
+   <div className='flex-[31%] text-black font-[400] text-xs'>
        {transaction.property}
    </div>
    
    
-   <div className='flex-[18%] text-black font-[400] text-xs'>
+   <div className='flex-[20%] text-black font-[400] text-xs'>
       {transaction.address}
    </div>
  
@@ -213,10 +214,11 @@ status : "Complete"
    </div>
        })}
    </div>
-   
+        
+   </div>
    </div>
    
-   <div className='sm:flex hidden items-center gap-x-2 mt-3'>
+   <div className='sm:flex col-span-12 hidden items-center gap-x-2 mt-3'>
    <div className='py-1 text-center cursor-pointer flex-1 rounded-lg border-[#0000001A] border-[0.5px] font-[400] text-sm text-black'>
    1
    </div>
@@ -256,8 +258,7 @@ status : "Complete"
    <IoIosArrowForward className='text-black mx-auto text-xl'/>
    </div>
    </div>
-      
-   
+ 
    
    <MobileDevice />
        </>

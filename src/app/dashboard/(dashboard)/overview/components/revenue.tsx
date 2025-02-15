@@ -2,7 +2,7 @@ import React from 'react'
 import { PiMoneyDuotone } from "react-icons/pi";
 export default function Revenue() {
   return (
-<div className='bg-[#EDEEFC] rounded-2xl sm:p-6 p-4 sm:col-span-1 col-span-4 1sm:col-span-2'>
+<div className='bg-[#EDEEFC] rounded-2xl  sm:p-6 p-4'>
  <div className='flex items-center'>
      <h1 className='text-sm text-black font-[400] flex-1'>Revenue</h1>
  

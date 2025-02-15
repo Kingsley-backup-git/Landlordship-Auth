@@ -3,7 +3,7 @@ import { FaArrowTrendDown } from 'react-icons/fa6';
 import { PiHandArrowDown } from "react-icons/pi";
 export default function PaymentReceived() {
   return (
-     <div className='bg-[#EDEEFC] rounded-2xl sm:p-6 p-4 sm:col-span-2 1sm:col-span-3 col-span-6'>
+     <div className='bg-[#EDEEFC] rounded-2xl sm:p-6 p-4 col-span-6 lg:col-span-2 md:col-span-3 sm:col-span-6  1sm:col-span-3'>
           <div className='flex items-center'>
               <h1 className='xs:text-sm text-xs text-black font-[400] flex-1'>Payment Received</h1>
           

@@ -75,11 +75,11 @@ export default function Expensetracking() {
     ]
   return (
     <>
-    <div className='sm:bg-[#F9F9FA] sm:order-first order-last bg-white rounded-2xl p-5 sm:flex hidden flex-col col-span-12 sm:h-auto h-[270px]  sm:col-span-9 w-[100%]'>
+    <div className='sm:bg-[#F9F9FA] sm:order-first order-last bg-white rounded-2xl p-5 sm:flex hidden flex-col col-span-12 sm:h-auto h-[270px] sm:col-span-12 md:col-span-8 lg:col-span-9 w-[100%]'>
 
         <h1 className='font-semibold text-black text-sm'>Expense tracking</h1>
 
-        <div className='grid grid-cols-10 w-[100%] gap-x-1 border-b-[1px] border-[#00000033] py-3 mt-1'>
+        <div className='grid grid-cols-10 w-[100%] gap-x-2 border-b-[1px] border-[#00000033] py-3 mt-1'>
             <div className='text-[#00000066] font-[400] text-xs col-span-4'>
     Name
             </div>
@@ -105,7 +105,7 @@ export default function Expensetracking() {
         </div>
       <div className={`overflow-y-auto flex-1 ${styles.overflow}`}>
 {expenses.map((expense, index)=> {
-    return <div key={index} className='grid grid-cols-10 w-[100%] py-3  gap-x-1'>
+    return <div key={index} className='grid grid-cols-10 w-[100%] py-3  gap-x-2'>
 
             <div className='text-black font-[400] text-xs col-span-4'>
     {expense.name}

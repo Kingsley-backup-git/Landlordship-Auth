@@ -2,7 +2,7 @@ import React from 'react'
 import { FiTrash2 } from "react-icons/fi";
 import { PiImage } from "react-icons/pi";
 import { GoPaperclip } from "react-icons/go";
-import Button from '@/app/components/Button';
+import Button from '@/app/components/ui/Button';
 import TextInput from './inputs/TextInput';
 export default function SendMessage() {
   return (

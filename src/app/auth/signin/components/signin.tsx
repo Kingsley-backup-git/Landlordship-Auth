@@ -1,6 +1,6 @@
 'use client'
-import Button from '@/app/components/Button'
-import TextInput from '@/app/components/TextInput'
+import Button from '@/app/components/ui/Button'
+import TextInput from '@/app/components/ui/TextInput'
 import React, { useState } from 'react'
 import Link from "next/link"
 export default function SigninInputs() {

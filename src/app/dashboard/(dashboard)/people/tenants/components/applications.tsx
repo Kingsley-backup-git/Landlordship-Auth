@@ -2,7 +2,7 @@ import React from 'react'
 import { PiUserListDuotone } from "react-icons/pi";
 export default function Applications() {
   return (
-   <div className='bg-[#EDEEFC] rounded-2xl sm:p-6 p-4 sm:col-span-1 xs:col-span-2 col-span-4'>
+   <div className='bg-[#EDEEFC] rounded-2xl sm:p-6 p-4 '>
          <div className='flex items-center'>
              <h1 className='text-sm text-black font-[400] flex-1'>Applications</h1>
          

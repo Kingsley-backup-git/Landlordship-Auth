@@ -50,7 +50,7 @@ export default function Finance() {
         </div>
 
         <div className='sm:bg-[#F9F9FA] bg-white rounded-2xl p-4 mt-5 flex  gap-x-2'>
-        <FiPlus className='text-black sm:min-w-[23px] sm:min-h-[23px] sm:max-w-[23px] max-w-[20px] min-w-[20px] min-h-[20px] w-[100%] h-[100%]'/>
+        <FiPlus className='text-black sm:min-w-[24px] sm:min-h-[24px] sm:max-w-[24px] max-w-[26px] min-w-[26px] min-h-[26px] w-[100%] h-[100%]'/>
 
         <div>
             <h1 className='text-black font-semibold text-sm'>Auto fee calculation</h1>

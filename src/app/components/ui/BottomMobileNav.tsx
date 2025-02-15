@@ -6,7 +6,7 @@ import { LuBell } from "react-icons/lu";
 import { PiChatsDuotone } from "react-icons/pi";
 // import { usePathname } from "next/navigation";
 import { GrHomeRounded } from "react-icons/gr";
-import UserImg from "../../../public/user.png"
+import UserImg from "../../../../public/user.png"
 import Link from "next/link";
 import Image from "next/image";
 const BottomNav: React.FC = () => {

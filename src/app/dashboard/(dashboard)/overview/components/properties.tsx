@@ -3,7 +3,7 @@ import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { FaArrowTrendUp } from "react-icons/fa6";
 export default function Properties() {
   return (
-    <div className='bg-[#E6F1FD] rounded-2xl sm:p-6 p-4 sm:col-span-1 col-span-4 1sm:col-span-2'>
+    <div className='bg-[#E6F1FD] rounded-2xl sm:p-6 p-4 '>
 <div className='flex items-center'>
     <h1 className='text-sm text-black font-[400] flex-1'>Properties</h1>
 

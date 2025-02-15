@@ -122,14 +122,14 @@ export default function Cards() {
   return (
     <>
     {cards.map((card, index)=> {
-        return   <div key = {index} className='sm:bg-[#F9F9FA] bg-white rounded-2xl sm:p-6 xs:p-5 p-4'>
+        return   <div key = {index} className='sm:bg-[#F9F9FA] flex flex-col bg-white rounded-2xl sm:p-6 xs:p-5 p-4'>
       <div className='flex items-center justify-between'>
       <h1 className='font-[400] text-xs text-[#00000066] bg-[#EDEEFC] max-w-fit w-full rounded-lg py-[2px] px-2'>{card.propertyName}</h1>
       <div className={`w-[9px] h-[9px] rounded-full ${card.status === "In Progress" ? "bg-[#8A8CD9]" : card.status === "Complete" ? "bg-[#94E9B8]" : card.status === "Pending" ? "bg-[#92BFFF]" : card.status === "Approved" ? "bg-[#FFDB56]" : card.status === "Rejected" ? "bg-[#00000066]" : null}`}></div>
         </div>  
-        <h1 className='sm:text-sm  text-base font-semibold text-black mt-2'>{card.issue}</h1>
+       <div className='mt-2 flex-1'> <h1 className='sm:text-sm  text-base font-semibold text-black'>{card.issue}</h1>
         <p className='text-xs font-[400] text-[#00000066] mt-1'>{card.content}</p>
-
+        </div>
         <div className='mt-[9px] flex items-center gap-x-4'>
 <div className='flex items-center flex-1'>
         {card.img.map((images, index)=> {

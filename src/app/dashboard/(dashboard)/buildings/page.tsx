@@ -43,7 +43,7 @@ export default function Buildings() {
             </div>
     
     
-      <div className='sm:hidden flex gap-x-6 ps-4 pe-2 items-center my-7'>
+      <div className='sm:hidden flex gap-x-6 ps-4 pe-4 py-3 bg-white rounded-full items-center my-7'>
             <RiAddLargeLine className='text-black  text-xl'/>
             
             <PiFunnelSimple className='text-black  text-xl' />
@@ -78,8 +78,9 @@ export default function Buildings() {
     </div>
             </div>
 
-
+<div className='grid-cols-12 grid'>
             <TransactionHistory />
+            </div>
             </div>
   )
 }

@@ -20,7 +20,7 @@ export default function Agents() {
     const agents = [
         {
             name : "Andre Cage",
-            email : "andrewcage19547@gmail.com",
+            email : "andrewcage@gmail.com",
             location : "Meadow Lane Oakland",
             img : Img1,
             no : 4100922932903,
@@ -129,20 +129,20 @@ export default function Agents() {
 
 
 
-        <div className={`grid grid-cols-11 sm:mt-10 mt-2 gap-y-6 gap-x-4 w-full`}>
-<div className='flex flex-col sm:gap-y-6 gap-y-4 sm:col-span-5 col-span-11'>
+        <div className={`grid grid-cols-12 sm:mt-10 mt-2 gap-y-6 gap-x-4 w-full`}>
+<div className='sm:flex grid 2sm:grid-cols-2 grid-cols-1 flex-col sm:gap-y-6 gap-y-4 sm:col-span-6 col-span-12'>
 {agents.map((agent,index)=> {
-    return <div className={`sm:bg-[#F9F9FA] break-words w-[100%] text-wrap whitespace-normal xs:flex-row flex-col items-center relative bg-white hover:border-[2px] cursor-pointer transition-[border] ease-in-out duration-100 border-black p-3 xs:p-4 rounded-2xl flex gap-x-4 ${agent.isSelected && "border-[2px]"}`} key={index}>
+    return <div className={`sm:bg-[#F9F9FA] break-words w-[100%] text-wrap whitespace-normal xs:flex-row  1/2md:flex-row 1md:flex-col lg:flex-row items-center relative bg-white hover:border-[2px] cursor-pointer transition-[border] ease-in-out duration-100 border-black p-3 xs:p-3 rounded-2xl flex gap-x-4 ${agent.isSelected && "border-[2px]"}`} key={index}>
         {/* <div className="flex xs:flex-row justify-center flex-col items-center xs:gap-x-4"> */}
 <Image src={agent.img} className='xs:max-w-[70px] max-w-[60px] self-center w-full xs:h-[70px] h-[60px] rounded-2xl' width={70} height={70} alt='agent-picture' />
        
 
 
         <div>
-            <h1 className="text-black xs:text-start text-center font-semibold xs:text-base text-sm">{agent.name}</h1>
-            <p className="text-[#00000066] text-xs xs:text-start text-center font-[400] mt-[2px] text-break"><PiEnvelopeSimple className='inline-block align-middle'/> <span className='break-words'>{agent.email}</span></p>
-            <p className="text-[#00000066] text-xs xs:text-start text-center font-[400] mt-1"><PiMapPin className='inline-block align-middle'/> {agent.location}</p>
-            <p className="text-[#00000066] text-xs xs:text-start text-center font-[400] mt-1"><PiPhone className='inline-block align-middle'/> +{agent.no}</p>
+            <h1 className="text-black xs:text-start 1md:text-center lg:text-start font-semibold xs:text-base text-sm">{agent.name}</h1>
+            <p className="text-[#00000066] text-xs lg:text-start 1md:text-center font-[400] mt-[2px] text-break flex items-center lg:justify-start 1md:justify-center gap-x-1"><PiEnvelopeSimple className=''/> <div className='break-all'>{agent.email}</div></p>
+            <p className="text-[#00000066] text-xs lg:text-start 1md:text-center font-[400] mt-1"><PiMapPin className='inline-block align-middle'/> {agent.location}</p>
+            <p className="text-[#00000066] text-xs lg:text-start 1md:text-center font-[400] mt-1"><PiPhone className='inline-block align-middle'/> +{agent.no}</p>
             </div>
 {/* </div> */}
 

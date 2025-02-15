@@ -23,7 +23,7 @@ export default function Tools() {
 
 
 
- <div className = "mt-6 grid sm:grid-cols-2 grid-cols-1 w-[100%] sm:gap-6 gap-6">
+ <div className = "mt-6 grid 2sm:grid-cols-2 grid-cols-1 w-[100%] sm:gap-6 gap-6">
 <Card />
 
 <Card />

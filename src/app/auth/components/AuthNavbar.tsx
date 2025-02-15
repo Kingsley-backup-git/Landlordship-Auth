@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import React from 'react'
 import Logo from "../../../../public/Logo.png"
-import Button from '@/app/components/Button'
+import Button from '@/app/components/ui/Button'
 import Link from 'next/link'
 
 export default function AuthNavbar() {

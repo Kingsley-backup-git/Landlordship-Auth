@@ -34,3 +34,45 @@ select:-webkit-autofill:focus {
   -webkit-background-clip: text;
 
 }
+
+div::-webkit-scrollbar {
+  display: none;
+
+}
+div{
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.toggleWrapper {
+  width:30px;
+  height:16px;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 1px solid gray;
+  position: relative; 
+  transition: all .4s ease-in-out;
+}
+
+.toggleWrapper::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  top:1px;
+  left: 1px;
+  position: absolute;
+  background-color: black;
+  transition: all .4s ease-in-out;
+  
+}
+
+.slidercheckbox:checked + .toggleWrapper::after{
+left: 14px;
+background-color: white;
+}
+
+.slidercheckbox:checked + .toggleWrapper{
+ 
+  background-color: black;
+  }

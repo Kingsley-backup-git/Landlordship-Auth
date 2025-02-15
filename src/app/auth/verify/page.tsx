@@ -1,5 +1,5 @@
-import Button from '@/app/components/Button';
-import PinTextInput from '@/app/components/PinTextInput';
+import Button from '@/app/components/ui/Button';
+import PinTextInput from '@/app/components/ui/PinTextInput';
 import Link from 'next/link';
 import React from 'react'
 import { MdSmartphone } from "react-icons/md";
