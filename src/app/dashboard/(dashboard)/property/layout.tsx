@@ -1,8 +1,8 @@
 'use client'
 import React, { ReactNode } from "react";
-import LeftNav from "../../LeftSideNav/LeftNav";
+import LeftNav from "../../components/LeftSideNav/LeftNav";
 
-import TopNavbar from "../../TopNavbar/topnavbar";
+import TopNavbar from "../../components/TopNavbar/topnavbar";
 import styles from "../../(dashboard)/dashboard.module.css"
 import BottomNav from "@/app/components/ui/BottomMobileNav";
 import { useMyContext } from "@/context/NavProvider";
