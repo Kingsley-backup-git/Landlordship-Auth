@@ -2,7 +2,7 @@ import React from 'react'
 import { PiUserMinusDuotone } from "react-icons/pi";
 export default function Rejected() {
   return (
-    <div className='bg-[#E6F1FD] rounded-2xl sm:p-6 p-4 sm:col-span-1 xs:col-span-2 col-span-4'>
+    <div className='bg-[#E6F1FD] rounded-2xl sm:p-6 p-4 '>
             <div className='flex items-center'>
                 <h1 className='text-sm text-black font-[400] flex-1'>Rejected</h1>
             

@@ -32,7 +32,7 @@ export default function Tenant() {
              </div>
     
     
-            <div className='grid grid-cols-4 mt-5 sm:gap-5 gap-4'>
+            <div className='grid lg:grid-cols-4 1md:grid-cols-2 sm:grid-cols-1 1sm:grid-cols-2 grid-cols-1 md:grid-cols-2 mt-5 sm:gap-5 gap-4'>
                 <TotalTenants />
     
                 <Applications />
@@ -80,8 +80,9 @@ export default function Tenant() {
     </div>
             </div>
     
-    
+            <div className='grid grid-cols-12'>
             <TransactionHistory />
+            </div>
         </div>
   )
 }

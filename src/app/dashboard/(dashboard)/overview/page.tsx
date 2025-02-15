@@ -29,7 +29,7 @@ export default function Overview() {
   <BsThreeDots className='text-[#007AFF] text-lg sm:hidden flex'/>
 </div>
 
-<div className='grid grid-cols-4  mt-5 sm:gap-5 gap-3'>
+<div className='grid lg:grid-cols-4 1md:grid-cols-2 1/2md:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 1sm:grid-cols-2 grid-cols-1  mt-5 sm:gap-5 gap-3'>
 <Properties />
 
 
@@ -44,13 +44,13 @@ export default function Overview() {
     </div>
 
 
-    <div className='grid lg:grid-cols-2 grid-cols-1 sm:gap-4 gap-y-6 mt-6'>
+    <div className='grid grid-cols-12 sm:gap-4 gap-y-6 mt-6'>
 <Timeline />
 
 <RecentlyViewed />
-    </div>
+  
 
-    <div className='grid grid-cols-12 sm:gap-4 gap-y-6 mt-6'>
+   
 <Maintenance />
 
 <RevenueChart />

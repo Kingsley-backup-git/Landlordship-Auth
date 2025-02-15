@@ -3,7 +3,7 @@ import { FaArrowTrendUp } from 'react-icons/fa6';
 import { PiUserRectangleDuotone } from "react-icons/pi";
 export default function Occupied() {
   return (
-      <div className='bg-[#E6F1FD] rounded-2xl xs:p-6 p-4 col-span-6 lg:col-span-2  1sm:col-span-6 sm:col-span-3 '>
+      <div className='bg-[#E6F1FD] rounded-2xl xs:p-6 p-4 col-span-6 lg:col-span-2  md:col-span-3 sm:col-span-6  1sm:col-span-3 '>
     <div className='flex items-center'>
         <h1 className='text-sm text-black font-[400] flex-1'>Occupied</h1>
     

@@ -63,10 +63,10 @@ time : "Just now"
         
     ]
   return (
-    <div className='sm:bg-[#F9F9FA] bg-white rounded-2xl pt-6 sm:px-6 px-[15px] flex flex-col sm:h-[272px] xs:h-[286px] h-[350px]'>
+    <div className='sm:bg-[#F9F9FA] bg-white rounded-2xl pt-6 lg:col-span-6 order-[1] md:col-span-7 col-span-12 sm:px-6 px-[15px] flex flex-col sm:h-[272px] xs:h-[286px] h-[350px]'>
 <h1 className='text-black font-semibold text-sm'>What&apos;s on the road?</h1>
 
-<div className={`grid grid-flow-col auto-cols-max py-4 justify-between overflow-x-auto white mt-0 ${styles.overflow}  gap-x-3 overflow-y-hidden`}>
+<div className={`grid grid-flow-col  pt-4 justify-between overflow-x-auto  ${styles.overflow}  gap-x-3 `}>
 {dates.map((date, index)=> {
     return <div key={index} className={`py-1 col-span-4 cursor-pointer px-2 max-w-fit w-[100%] rounded-lg ${date.active && "bg-black"}`}>
         <h1 className={`text-[#00000066] text-xs font-[400] ${date.active && "text-white"}`}>{date.day}</h1>
@@ -75,7 +75,7 @@ time : "Just now"
 })}
 </div>
 
-<div className={`overflow-y-auto flex flex-col ${styles.overflow}`}>
+<div className={`overflow-y-auto flex-1  flex flex-col ${styles.overflow}`}>
 {timeline.map((singletimeline, index)=> {
     return <div key = {index} className='pt-2 flex gap-x-2 ps-2'>
     <div className='flex gap-y-1 flex-col items-center'>

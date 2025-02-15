@@ -2,7 +2,7 @@ import React from 'react'
 import { PiFileVideoFill } from "react-icons/pi";
 export default function Videos() {
   return (
-    <div className='bg-[#E6F1FD] rounded-2xl xs:p-6 p-4 sm:col-span-1 1sm:col-span-2 col-span-4'>
+    <div className='bg-[#E6F1FD] rounded-2xl xs:p-6 p-4'>
               <div className='flex items-center'>
                   <h1 className='text-sm text-black font-[400] flex-1'>Videos</h1>
               

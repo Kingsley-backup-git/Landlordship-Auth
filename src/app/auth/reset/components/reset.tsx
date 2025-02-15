@@ -1,7 +1,7 @@
 'use client'
-import Button from '@/app/components/Button'
-import CheckBox from '@/app/components/checkBox'
-import TextInput from '@/app/components/TextInput'
+import Button from '@/app/components/ui/Button'
+import CheckBox from '@/app/components/ui/checkBox'
+import TextInput from '@/app/components/ui/TextInput'
 import React,{useState} from 'react'
 
 export default function ResetInputs() {

@@ -119,7 +119,8 @@ status : "In Progress"
       },[allChecked])
   return (
     <>
-    <div className='w-full mt-4 sm:flex hidden flex-col h-[350px] select-none'>
+     <div className='col-span-12 overflow-auto'>
+    <div className='w-full 1/2md:min-w-[100%] sm:min-w-[800px] 1md:min-w-[900px] mt-4 sm:flex hidden flex-col h-[350px] select-none'>
 <div className='flex items-center w-[100%] py-3 px-1 border-b-[1px]  border-[#0000000A]'>
 <div className='flex-[4%] ps-1'>
 <Checkbox clicked = {()=> toggleAll()} checked ={allChecked}   classname={`w-[14px] h-[14px] border-[#00000033] flex justify-center items-center cursor-pointer border-[1px] ${(allChecked) ? "bg-black" : ""} rounded`}/>
@@ -141,14 +142,14 @@ status : "In Progress"
 
 
 
-<div className='flex-[17%] text-[#00000066] font-[400] text-xs'>
+<div className='1md:flex-[17%] flex-[20%] text-[#00000066] font-[400] text-xs'>
    Property
 </div>
 
 
 
 
-<div className='flex-[17%] text-[#00000066] font-[400] text-xs'>
+<div className='flex-[17%] text-[#00000066] font-[400] 1md:flex hidden text-xs'>
     Email
 </div>
 
@@ -186,12 +187,12 @@ return <div key={index} onClick = {()=> null} className={`flex cursor-pointer ho
 </div>
 
 
-<div className='flex-[17%] text-black font-[400] text-xs'>
+<div className='1md:flex-[17%] flex-[20%] text-black font-[400] text-xs'>
     {transaction.property}
 </div>
 
 
-<div className='flex-[17%] text-black font-[400] text-xs'>
+<div className='flex-[17%] text-black font-[400] 1md:flex hidden text-xs'>
    {transaction.email}
 </div>
 <div className='flex-[10%] text-black font-[400] text-xs'>
@@ -210,8 +211,8 @@ return <div key={index} onClick = {()=> null} className={`flex cursor-pointer ho
 </div>
 
 </div>
-
-<div className='sm:flex hidden items-center gap-x-2 mt-3'>
+</div>
+<div className='sm:flex col-span-12 hidden items-center gap-x-2 mt-3'>
 <div className='py-1 text-center cursor-pointer flex-1 rounded-lg border-[#0000001A] border-[0.5px] font-[400] text-sm text-black'>
 1
 </div>

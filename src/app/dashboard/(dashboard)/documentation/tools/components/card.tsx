@@ -1,5 +1,5 @@
 'use client'
-import Button from '@/app/components/Button'
+import Button from '@/app/components/ui/Button'
 import React, { useState, useEffect } from 'react'
 import styles from "../tools.module.css"
 export default function Card() {

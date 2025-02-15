@@ -1,5 +1,5 @@
-import Button from '@/app/components/Button'
-import TextInput from '@/app/components/TextInput'
+import Button from '@/app/components/ui/Button'
+import TextInput from '@/app/components/ui/TextInput'
 import Link from 'next/link'
 import React from 'react'
 

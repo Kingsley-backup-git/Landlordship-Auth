@@ -4,7 +4,7 @@ import LeftNav from "../components/LeftSideNav/LeftNav";
 
 import TopNavbar from "../components/TopNavbar/topnavbar";
 import styles from "../../dashboard/(dashboard)/dashboard.module.css"
-import BottomNav from "@/app/components/BottomMobileNav";
+import BottomNav from "@/app/components/ui/BottomMobileNav";
 import { useMyContext } from "@/context/NavProvider";
 //import Logo from "../../../public/streamwallet.png";
 //import whiteStreamLogo from "../../../public/whiteKycLogo.png"

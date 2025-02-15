@@ -136,7 +136,7 @@ status : "Complete"
   return (
     <>
     <div className='col-span-12 overflow-auto'>
-    <div className='mt-4 sm:min-w-[700px] 2sm:min-w-[100%] 1/2md:min-w-[100%] md:min-w-[800px] 1md:min-w-[970px] min-w-[100%] lg:min-w-[100%]  w-[100%] sm:flex hidden flex-col h-[350px]  select-none'>
+    <div className='mt-4 sm:min-w-[900px]  1/2md:min-w-[100%] md:min-w-[900px] 1md:min-w-[970px] min-w-[100%] lg:min-w-[100%]  w-[100%] sm:flex hidden flex-col h-[350px]  select-none'>
 <div className='flex items-center w-[100%] py-3 border-b-[1px] gap-x-4 border-[#0000000A]'>
 <div className='flex-[4%] ps-1'>
 <Checkbox  clicked = {()=> toggleAll()} checked ={allChecked}   classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] ${(allChecked) ? "bg-black" : ""} rounded`}/>
