@@ -1,14 +1,17 @@
 // import Image from 'next/image'
 import React from 'react'
 import MobileHome from '../components/Home/mobile/home'
-// import DashboardImage from "../../../../public/Overview22 1.svg"
-// import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-// import { PiUserPlusDuotone } from "react-icons/pi";
-// import { PiIdentificationCardDuotone } from "react-icons/pi";
+import { PiIdentificationCardDuotone } from 'react-icons/pi'
+import DashboardImage from "../../../../public/Overview22 1.svg"
+import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
+import { PiUserPlusDuotone } from "react-icons/pi";
+import Image from 'next/image';
+
 export default function Dashboard() {
   return (
     <>
-{/* <h1 className='font-semibold text-2xl text-[#1C1C1C]'>Welcome to YourLandlordship</h1>
+    <div className='sm:p-6 py-2 px-4 sm:block hidden sm:max-w-[960px] mx-auto w-[100%]'>
+<h1 className='font-semibold text-2xl text-[#1C1C1C]'>Welcome to YourLandlordship</h1>
 <p className='font-[400] text-[15px] text-[#1C1C1C] pt-1'>Getting started is very easy</p>
 
 <div className='mt-8'>
@@ -22,7 +25,7 @@ export default function Dashboard() {
 
 </div>
 
-<div className='mt-10 grid grid-cols-2 w-[100%] auto-cols-max'>
+<div className='mt-10 grid grid-cols-2 w-[100%] gap-4 items-stretch'>
   <div className='flex-col col-span-1 gap-y-3 flex'>
 <div className='bg-[#F7F9FB] p-4 flex gap-x-2 w-[100%] max-w-[278px] rounded-2xl'>
 
@@ -65,12 +68,13 @@ export default function Dashboard() {
   <div className='col-span-1'>
   
 
-  <Image src = {DashboardImage} className='w-full h-[100%]' width={800} height={400} alt="dashboard-img"/>
+  <Image src = {DashboardImage} className='w-full h-[100%]' width={800} height={800} alt="dashboard-img"/>
   
 
 </div>
 
-</div> */}
+</div>
+</div>
 <MobileHome />
     </>
   )

@@ -30,7 +30,7 @@ status : "In Progress"
                             ]
   return (
     
-      <div className=' sm:hidden gap-y-4 col-span-12 grid 2sm:grid-cols-2 gap-5 grid-cols-1'>
+      <div className=' sm:hidden gap-y-4 col-span-12 mt-2 grid 2sm:grid-cols-2 gap-5 grid-cols-1'>
         {transactions.map((property, index)=> {
           return    <div key={index} className="bg-white rounded-2xl p-4">
           <div className='flex justify-between items-center'>

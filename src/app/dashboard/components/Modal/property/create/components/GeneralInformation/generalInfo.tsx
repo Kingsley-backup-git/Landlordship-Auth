@@ -27,6 +27,11 @@ type='number'
 text='Unique ID #'
 placeholder='12345'/>
 
+<TextField className='col-span-2 col-start-1 col-end-3  bg-[#FFFFFFCC] border-[0.5px] border-[#0000001A] py-4 px-5 rounded-2xl'
+        type='text'
+        text='State Address'
+        placeholder='95A Gate 65,Leicester, LE4' />
+
 
 <TextField className='col-span-2 col-start-3 col-end-5  bg-[#FFFFFFCC] border-[0.5px] border-[#0000001A] py-4 px-5 rounded-2xl'
         type='text'

@@ -58,7 +58,7 @@ export default function MobileHome() {
 
 
 
-<Link href = "/dashboard/people/tenancies" className={`flex gap-x-2 opacity-30 pointer-events-none cursor-pointer  items-center`}>
+<Link href = "/dashboard/people/tenancies" className={`flex gap-x-2  cursor-pointer  items-center`}>
 <PiIdentificationCardDuotone className='min-w-[20px] min-h-[20px] max-w-[20px] w-[100%] h-[100%] text-black'/>
 <h1 className='text-[#1C1C1C] text-xs xs:text-sm flex-1 border-b-[1px] py-3  border-[#1C1C1C1A] font-[400]'>Tenancies</h1> 
 </Link>

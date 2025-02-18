@@ -65,7 +65,7 @@ export default function Unit() {
         </div>
 
 
-  <div className='sm:hidden flex gap-x-6 ps-4 pe-4 py-3 bg-white rounded-full items-center my-5'>
+  <div className='sm:hidden flex gap-x-6 ps-4 pe-4 py-6 bg-white rounded-full items-center my-5'>
         <RiAddLargeLine className='text-black  text-xl'/>
         
         <PiFunnelSimple className='text-black  text-xl' />
