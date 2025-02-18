@@ -3,7 +3,7 @@ import { FaArrowTrendDown } from 'react-icons/fa6';
 import { PiMoneyDuotone } from "react-icons/pi";
 export default function RentsPaid() {
   return (
-     <div className='bg-[#EDEEFC] rounded-2xl sm:p-6 p-4 sm:col-span-2 1sm:col-span-3 col-span-6'>
+     <div className='bg-[#EDEEFC] rounded-2xl sm:p-6 p-4 '>
           <div className='flex items-center'>
               <h1 className='xs:text-sm text-xs text-black font-[400] flex-1'>Rent Paid</h1>
           

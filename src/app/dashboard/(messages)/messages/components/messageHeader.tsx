@@ -14,7 +14,7 @@ import { PiArrowsOutSimple } from "react-icons/pi";
 import { PiArrowUUpRight } from "react-icons/pi";
 export default function MessageHeader() {
   return (
-    <div className='bg-[#F9F9FA] p-2 flex items-center'>
+    <div className='bg-[#F9F9FA] flex-wrap p-2 flex items-center'>
         <div className='flex items-center gap-x-4 pe-4'>
         <PiArrowUUpLeft className='text-black cursor-pointer text-lg'/>
         <PiArrowUUpRight className='text-black cursor-pointer text-lg'/>
@@ -49,13 +49,13 @@ export default function MessageHeader() {
         </div>
 
 
-        <div className="ps-4 items-center flex flex-1 gap-x-1">
+        <div className="ps-4 items-center  flex flex-1 gap-x-1">
             <div className='flex-1 flex items-center gap-x-4'>
             <IoIosLink className='text-black cursor-pointer text-lg'/>
             <BsThreeDots  className='text-black cursor-pointer text-lg'/>
             </div>
 
-            <PiArrowsOutSimple className='text-black cursor-pointer text-lg ms-auto'/>
+            <PiArrowsOutSimple className='text-black cursor-pointer text-lg '/>
             </div>
 
     </div>

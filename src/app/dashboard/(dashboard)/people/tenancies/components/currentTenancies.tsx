@@ -3,7 +3,7 @@ import { FaArrowTrendUp } from 'react-icons/fa6';
 import { PiUsersFourDuotone } from "react-icons/pi";
 export default function CurrentTenancies() {
   return (
-      <div className='bg-[#E6F1FD] rounded-2xl sm:p-6 p-4 sm:col-span-2 col-span-6'>
+      <div className='bg-[#E6F1FD] rounded-2xl sm:p-6 p-4 '>
        <div className='flex items-center'>
            <h1 className='xs:text-sm text-xs text-black font-[400] flex-1'>Current Tenancies</h1>
        

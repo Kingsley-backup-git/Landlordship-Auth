@@ -25,7 +25,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     </div>
      
 
-    <div className={`min-w-[260px] max-w-[212px]  w-[100%] 1md:flex hidden px-4 ${styles.overflow} overflow-y-auto h-screen sticky top-0 border-l-[1px] border-[#1C1C1C1A]`}>
+    <div className={`min-w-[260px] max-w-[212px]  w-[100%] 1md:flex  hidden px-4 ${styles.overflow} overflow-y-auto h-screen sticky top-0 border-l-[1px] border-[#1C1C1C1A]`}>
 <RightNav />
 </div>
  

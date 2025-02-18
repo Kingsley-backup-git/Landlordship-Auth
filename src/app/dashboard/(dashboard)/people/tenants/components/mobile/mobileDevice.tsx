@@ -39,7 +39,7 @@ balance : 200,
    
     } ]
   return (
-    <div className='grid sm:hidden 2sm:grid-cols-2 grid-cols-1 gap-x-4 gap-y-4 col-span-12'>
+    <div className='grid sm:hidden mt-2 2sm:grid-cols-2 grid-cols-1 gap-x-4 gap-y-4 col-span-12'>
     {transactions.map((property, index)=> {
       return    <div key={index} className="bg-white rounded-2xl p-4">
       <div className='flex gap-x-1 items-center border-b-[1px] border-[#0000001A] pb-2'>

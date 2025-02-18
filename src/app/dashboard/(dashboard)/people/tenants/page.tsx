@@ -45,15 +45,15 @@ export default function Tenant() {
 
 
 
-             <div className='sm:hidden flex gap-x-6 ps-4 pe-4 py-4 rounded-full bg-white items-center my-5'>
-                    <RiAddLargeLine className='text-black  text-lg'/>
+             <div className='sm:hidden flex gap-x-6 ps-4 pe-4 py-6 rounded-full bg-white items-center my-5'>
+                    <RiAddLargeLine className='text-black  text-xl'/>
                     
-                    <PiFunnelSimple className='text-black  text-lg' />
+                    <PiFunnelSimple className='text-black  text-xl' />
                     
-                    <PiArrowsDownUp className='text-black  text-lg'/>
+                    <PiArrowsDownUp className='text-black  text-xl'/>
                     
                     
-                    <FiSearch className='text-black text-lg ms-auto'/>
+                    <FiSearch className='text-black text-xl ms-auto'/>
                     </div>
     
     
@@ -64,7 +64,7 @@ export default function Tenant() {
     
     <FiPlus className='text-black text-sm'/>
     
-    <h1 className='text-sm font-[400] text-black'>New Property</h1>
+    <h1 className='text-sm font-[400] text-black'>New Tenant</h1>
     </div>
     
     <PiFunnelSimple className='w-[17px] h-[17px] text-black' />

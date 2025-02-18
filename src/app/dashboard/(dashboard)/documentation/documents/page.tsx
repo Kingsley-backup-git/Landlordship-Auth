@@ -44,15 +44,15 @@ export default function Documents() {
 
 
 
-<div className='sm:hidden flex gap-x-6 px-4 rounded-full bg-white items-center py-3 my-5'>
-<RiAddLargeLine className='text-black  text-lg'/>
+<div className='sm:hidden flex gap-x-6 px-4 rounded-full bg-white items-center py-6 my-5'>
+<RiAddLargeLine className='text-black  text-xl'/>
 
-<PiFunnelSimple className='text-black  text-lg' />
+<PiFunnelSimple className='text-black  text-xl' />
 
-<PiArrowsDownUp className='text-black  text-lg'/>
+<PiArrowsDownUp className='text-black  text-xl'/>
 
 
-<FiSearch className='text-black text-lg ms-auto'/>
+<FiSearch className='text-black text-xl ms-auto'/>
 </div>
 
 
@@ -80,8 +80,9 @@ export default function Documents() {
        
        </div>
                </div>
-
+               <div className='grid grid-cols-12'>
                <FileHistory />
+               </div>
     </div>
   )
 }

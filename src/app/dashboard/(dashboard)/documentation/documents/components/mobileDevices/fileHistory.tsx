@@ -44,7 +44,7 @@ type : "pdf"
                                     type: "pdf"
                                             }]
   return (
-    <div className='w-full mt-4 sm:hidden gap-y-4 flex flex-col '>
+    <div className='w-full mt-4 sm:hidden gap-y-4 col-span-12 flex flex-col '>
 {
     fileHistory.map((file, index) => {
         return <div className='bg-white rounded-2xl p-4' key={index}>

@@ -13,11 +13,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
    const {leftNav} = useMyContext()
   return (
     <div className="sm:bg-white bg-[#F9F9FA] min-h-screen h-[100%] flex">
-    <div className={`${leftNav ? "min-w-[212px] max-w-[212px] w-[100%]" : "w-[66px]"} transition-all duration-100 ease-in-out md:flex hidden px-3 overflow-y-auto h-screen ${styles.overflow} sticky top-0 border-r-[1px] border-[#1C1C1C1A]`}>
+    <div className={`${leftNav ? "min-w-[212px] max-w-[212px] w-[100%]" : "w-[66px]"} transition-all duration-100 ease-in-out sm:flex hidden px-3 overflow-y-auto h-screen ${styles.overflow} sticky top-0 border-r-[1px] border-[#1C1C1C1A]`}>
 <LeftNav />
     </div>
 
-    <div className="flex-[85%] flex flex-col h-screen py-4">
+    <div className="flex-[85%] flex flex-col sm:h-screen py-4">
         <TopNavbar />
     {children}
    

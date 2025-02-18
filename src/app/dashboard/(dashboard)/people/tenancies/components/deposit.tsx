@@ -4,7 +4,7 @@ import { PiHandDepositDuotone } from "react-icons/pi";
 
 export default function Deposits() {
   return (
-  <div className='bg-[#E6F1FD] rounded-2xl sm:p-6 p-4 sm:col-span-2 1sm:col-span-3 col-span-6'>
+  <div className='bg-[#E6F1FD] rounded-2xl sm:p-6 p-4 '>
          <div className='flex items-center'>
              <h1 className='xs:text-sm text-xs text-[#1D3639] font-[400] flex-1'>Deposits</h1>
          
