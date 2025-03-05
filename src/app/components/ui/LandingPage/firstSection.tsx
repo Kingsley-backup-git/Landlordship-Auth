@@ -48,7 +48,7 @@ myRef.current = node
 </div>
     <div className='secondSection  z-[-1] translate-y-[-630px]'>
         
-<motion.div className='translate-x-[50%] transform ' style={{perspective : "500px",  transformStyle: "preserve-3d"}} >
+<motion.div className='translate-x-[50%] transform ' style={{perspective : "600px",  transformStyle: "preserve-3d"}} >
     <motion.div className='' ref={setRef}  style={{rotateX}}>
     <MiniDashboard type = "finance"/>
     </motion.div>
