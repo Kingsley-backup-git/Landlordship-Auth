@@ -18,6 +18,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x:hidden
 }
 
 
@@ -75,4 +76,77 @@ background-color: white;
 .slidercheckbox:checked + .toggleWrapper{
  
   background-color: black;
+  }
+
+  .border-gradient {
+    border: 2px solid transparent;
+    border-radius: 0.375rem; 
+    background: linear-gradient(to bottom, red 10%, rgba(255, 255, 255, 0.07) 100%);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude; 
+    -webkit-mask-composite: destination-out;
+  }
+
+  
+
+  .section {
+    background-image : radial-gradient(#272b58  25%, transparent, transparent)
+  }
+  .firstSection {
+    background-image : radial-gradient(circle at 48% 44%, #093258 60px,transparent, transparent)
+  }
+  
+
+  .secondSection {
+    background-image : radial-gradient(ellipse at 54% 45%,#1b3249  23%,transparent,  transparent)
+  }
+  
+  .sticky-element {
+    position: sticky;
+    position: -webkit-sticky;
+    top : 150px
+  }
+
+  .step-text {
+    position: relative;
+    
+
+  }
+
+  .step-text::before {
+    content:"";
+    width: 2px;
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    height: 80%;
+    @apply animate-pulse;
+    background-image: linear-gradient(to top, rgba(255,255,255,0.7), transparent);
+  }
+
+  .line {
+    position: relative;
+
+  }
+
+  .line::before {
+    width: 90px;
+    content: "";
+    position: absolute;
+    height: 1px;
+    background-image: linear-gradient(to left, rgba(255,255,255,0.7), transparent);
+    left: -110px;
+    top:15px
+  }
+
+  .line::after {
+    width: 90px;
+    content: "";
+    position: absolute;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255,255,255,0.4), transparent);
+    right: -110px;
+    top:15px
   }
