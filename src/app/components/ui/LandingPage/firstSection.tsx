@@ -17,7 +17,7 @@ export default function FirstSection() {
 inViewRef(node)
 myRef.current = node
     }
-    const rotateX = useTransform(scrollYProgress, [0, .25], ["20deg", "0deg"]);
+    const rotateX = useTransform(scrollYProgress, [0, .1], ["10deg", "0deg"]);
    
     const steps = [
         {header:"Centralized",
