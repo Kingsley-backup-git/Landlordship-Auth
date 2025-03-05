@@ -18,27 +18,27 @@ export default function Home() {
    <div className="w-full">
 <div className="firstSection pt-[130px]">
   <motion.div 
-  initial = {{y:"30px", opacity: 0}} 
-  whileInView={{y:"0px", opacity:1}}
+  initial = {{y:50, opacity: 0}} 
+  whileInView={{y:0, opacity:1}}
   viewport={{ once: true }}
   className="max-w-fit px-4 block mx-auto w-full font-medium text-[60px] tracking-[-2px] bg-clip-text bg-gradient-to-r text-transparent from-white/100 to-white/5   text-center">Organize Your</motion.div>
   <motion.div
-   initial = {{y:"30px", opacity: 0}} 
-   whileInView={{y:"0px", opacity:1, transition:{delay:.3}}}
+   initial = {{y:50, opacity: 0}} 
+   whileInView={{y:0, opacity:1, transition:{delay:.3,duration: 2, ease: 'easeInOut'}}}
    viewport={{ once: true }}
    className="max-w-fit px-4 mx-auto relative top-[-15px] w-full font-medium text-[60px] tracking-[-2px] bg-clip-text bg-gradient-to-r text-transparent from-white/100 to-white/5  text-center">Entire Portfolio</motion.div>
 
   <motion.div
-   initial = {{y:"30px", opacity: 0}} 
-   whileInView={{y:"0px", opacity:1, transition:{delay:.5}}}
+   initial = {{y:50, opacity: 0}} 
+   whileInView={{y:0, opacity:1, transition:{delay:.4,duration: 2, ease: 'easeInOut'}}}
    viewport={{ once: true }}
   className="text-[#FFFFFFB2] leading-[24px] block mx-auto text-sm font-[400]  text-center max-w-[512px] w-full">
   Empowering property managers, landlords, and tenants — supercharging the speed of daily operations and unlocking insights to boost revenue. It&apos;s the future of property management.
   </motion.div>
 
 <motion.div
- initial = {{y:"30px", opacity: 0, scale:0}} 
- whileInView={{y:"0px", opacity:1, scale:1, transition:{delay:.3,  type:"spring"}}}
+ initial = {{y:50, opacity: 0, scale:0}} 
+ whileInView={{y:0, opacity:1, scale:1, transition:{delay:.5,  type:"spring",duration: 2, ease: 'easeInOut'}}}
  viewport={{ once: true }}
 >  <Button classname="bg-[#E3572B] flex mx-auto border-[1px]  gap-x-3 justify-center shadow-2xl shadow-[#F6F9FF33] py-3 text-white border-[#FFFFFF33] mt-6 w-full items-center max-w-[230px] rounded-lg"><h1>Add New Property</h1> <HiOutlineChevronRight className="text-xl"/></Button>
 
@@ -46,8 +46,8 @@ export default function Home() {
 </motion.div>
 
    <motion.div
-    initial = {{y:"50px", opacity: 0}} 
-    whileInView={{y:"0px", opacity:1, transition:{delay:.5}}}
+    initial = {{y:50, opacity: 0}} 
+    whileInView={{y:0, opacity:1, transition:{delay:.6,duration: 2, ease: 'easeInOut'}}}
     viewport={{ once: true }}
    >
 
