@@ -18,9 +18,9 @@ export default function Navbar() {
         </div>
 
         <div className='flex gap-x-6 items-center'>
-<Button classname='bg-transparent py-3 text-sm px-4 outline-none border-none text-white' text='Log in'/>
+<Link href = "/auth/signin" className='max-w-fit w-full'><Button classname='bg-transparent py-3 text-sm px-4 outline-none border-none text-white' text='Log in'/></Link>
 <div className='relative'>
-<Button classname='px-4 py-2 text-white font-medium text-sm rounded-lg bg-gradient-to-r from-white/10 to-white/0  hover:from-white/20 hover:to-white/5 backdrop-blur-md border-[1px] border-white/50 shadow-inner shadow-white/40  transition-all' text='Sign up'/>
+<Link href = "/auth/signup" className='max-w-fit w-full'><Button classname='px-4 py-2 text-white font-medium text-sm rounded-lg bg-gradient-to-r from-white/10 to-white/0  hover:from-white/20 hover:to-white/5 backdrop-blur-md border-[1px] border-white/50 shadow-inner shadow-white/40  transition-all' text='Sign up'/></Link>
 
 </div>
 
