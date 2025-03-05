@@ -24,7 +24,7 @@ const {toggleNav} = useMyContext()
 <PiSidebar className='text-black cursor-pointer text-xl' onClick={()=> toggleNav()}/>
 <PiChatsDuotone className='text-xl cursor-pointer text-black' onClick = {()=> push("/dashboard/messages")}/>
 
-<div className='1/2md:flex hidden gap-x-3 items-center'>
+<div className='1md:flex hidden gap-x-3 items-center'>
     <h1 className='text-[#00000066] font-[400] text-sm capitalize'>{path}</h1>
     <div className='text-sm font-[400] text-[#00000033]'>/</div>
     <h1 className='font-[400] text-sm text-black capitalize'>{lastPath}</h1>
