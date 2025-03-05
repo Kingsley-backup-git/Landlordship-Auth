@@ -11,13 +11,13 @@ export default function FirstSection() {
     const { ref: inViewRef, inView: myElementIsVisible } = useInView();
     const { ref: myRefTwo, inView: secondElementIsVisible } = useInView();
     const { ref: myRefThree, inView: ThirdElementIsVisible } = useInView();
-    const {scrollYProgress} = useScroll({target : myRef,offset: ["start end", "end end"]})
+    const {scrollYProgress} = useScroll({target : myRef,offset: ["start end", "end start"]})
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const setRef =(node: Element | null | undefined | any) => {
 inViewRef(node)
 myRef.current = node
     }
-    const rotateX = useTransform(scrollYProgress, [0, .27], ["20deg", "0deg"]);
+    const rotateX = useTransform(scrollYProgress, [0, .25], ["20deg", "0deg"]);
    
     const steps = [
         {header:"Centralized",
