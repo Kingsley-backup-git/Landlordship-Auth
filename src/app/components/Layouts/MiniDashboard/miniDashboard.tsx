@@ -15,7 +15,7 @@ import MiniFinance from './components/finance/finance'
 export default function MiniDashboard({type}:{type:string}) {
  
   return (
-    <div className={`  max-w-[1000px] transform scale-[.95] hover:scale-[1] transition-transform duration-500 ease-in-out border-[1px] rounded-[30px] border-white/10 w-full mx-auto backdrop-blur-2xl mt-16 bg-white/5 ${type=== "overview" ? "h-[711px]" : "h-[800px]"} border-r-[.5px] flex relative`}>
+    <div className={`  max-w-[1000px] transform scale-[.95] hover:scale-[1] transition-transform duration-500 ease-in-out border-[1px] rounded-[30px] border-white/10 w-full mx-auto backdrop-blur-2xl sm:mt-8 mt-5 bg-white/5 ${type=== "overview" ? "h-[711px]" : "h-[800px]"} border-r-[.5px] flex relative`}>
       <Image src={FiftyPercent} className='absolute bottom-3 left-[-88px] z-[99999]' alt='' width={160} height={160} />
       <Image src={NintyEightPercent} className='absolute top-0 right-[-88px] z-[99999]' alt='' width={160} height={160} />
         <div className="absolute inset-0 z-[0px]">

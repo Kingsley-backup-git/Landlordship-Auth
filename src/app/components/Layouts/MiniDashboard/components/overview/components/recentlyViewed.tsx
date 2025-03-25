@@ -18,7 +18,7 @@ location : "3 Noble crescent avenue, LE, 144"
                    
     ]
   return (
-    <div className='bg-[#212a2c6a]  col-span-6 shadow-lg rounded-lg pt-6 sm:px-6 px-3  flex flex-col h-[250px] '>
+    <div className='bg-[#212a2c6a]  2sm:col-span-6 col-span-12 shadow-lg rounded-lg pt-6 sm:px-6 px-3  flex flex-col h-[210px] xs:h-[250px] '>
      <h1 className='text-white font-semibold text-xs'>Recently Viewed</h1>
 
 
