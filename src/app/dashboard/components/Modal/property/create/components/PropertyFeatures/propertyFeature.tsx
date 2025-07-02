@@ -1,5 +1,5 @@
 'use client'
-import Checkbox from '@/app/dashboard/(dashboard)/unit/components/inputs/checkbox'
+import Checkbox from '@/app/dashboard/(dashboard)/properties/components/inputs/checkbox'
 import React,{useState} from 'react'
 import { IoMdAdd } from "react-icons/io";
 export default function PropertyFeature() {

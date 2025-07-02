@@ -1,5 +1,5 @@
 import RadioInput from '@/app/auth/setup/components/inputs/radioButton'
-import Checkbox from '@/app/dashboard/(dashboard)/unit/components/inputs/checkbox'
+import Checkbox from '@/app/dashboard/(dashboard)/properties/components/inputs/checkbox'
 import React from 'react'
 
 export default function PropertyType({propertyTypeHandler, propertyType} : {propertyTypeHandler : (val:string)=> void, propertyType : string}) {

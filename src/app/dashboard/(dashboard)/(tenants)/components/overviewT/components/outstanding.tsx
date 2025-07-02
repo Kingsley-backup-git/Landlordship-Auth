@@ -1,11 +1,11 @@
 import React from 'react'
-import Img1 from "../../../../../../public/Reg0215.png";
-import Img2 from "../../../../../../public/Req1015.png";
-import Img3 from "../../../../../../public/Req2805.png";
-import Img4 from "../../../../../../public/contact2.png";
+import Img1 from "../../../../../../../../public/Reg0215.png";
+import Img2 from "../../../../../../../../public/Req1015.png";
+import Img3 from "../../../../../../../../public/Req2805.png";
+import Img4 from "../../../../../../../../public/contact2.png";
 import Image from 'next/image';
-import styles from "../../dashboard.module.css"
-export default function Maintenance() {
+
+export default function Outstanding() {
     const maintenances = [
         {
             description : "Toilet leak when flushing",
@@ -60,14 +60,41 @@ Img3
 Img3
             ],
             status : "Rejected"
+        },
+        {
+            description : "AC Repair",
+            property : "Apartment 13 block avenue street",
+            date : "17hr 22min",
+            img : [
+Img3
+            ],
+            status : "Rejected"
+        },
+        {
+            description : "AC Repair",
+            property : "Apartment 13 block avenue street",
+            date : "17hr 22min",
+            img : [
+Img3
+            ],
+            status : "Rejected"
+        },
+        {
+            description : "AC Repair",
+            property : "Apartment 13 block avenue street",
+            date : "17hr 22min",
+            img : [
+Img3
+            ],
+            status : "Rejected"
         }
     ]
   return (
-    <div className='sm:bg-[#F9F9FA] bg-white rounded-2xl lg:order-3 sm:order-4 order-last py-6 sm:px-6 p-3 flex flex-col h-[280px] col-span-12 lg:col-span-9'>
+    <div className='sm:bg-[#F9F9FA] bg-white rounded-2xl lg:order-3 sm:order-4 order-last py-6 sm:px-6 p-3 flex flex-col  max-h-[350px]  col-span-12 lg:col-span-9'>
 <div className='flex justify-between items-center'>
-    <h1 className='font-semibold text-black text-sm'>Maintenance</h1>
+    <h1 className='font-semibold text-black text-sm'>Outstanding</h1>
 
-    <h1 className='font-semibold text-black text-xs'>View all</h1>
+   
 </div>
 
 
@@ -100,7 +127,7 @@ Img3
 </div>
 </div>
 
-<div className={`mt-1 overflow-y-auto flex flex-col  gap-y-4 ${styles.overflow}`}>
+<div className={`mt-1 overflow-y-auto flex flex-col  gap-y-4`}>
 {maintenances.map((maintenance, index)=> {
     return <div key = {index} className='grid grid-cols-12 gap-x-2 items-center'>
 

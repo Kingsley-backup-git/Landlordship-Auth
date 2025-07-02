@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState } from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
-import Checkbox from '../../unit/components/inputs/checkbox'
+import Checkbox from '../../properties/components/inputs/checkbox'
 import Img1 from "./../../../../../../public/contact1.png"
 import { BsThreeDots } from 'react-icons/bs'
-import MobileDevice from '../../unit/components/mobileDevices'
+import MobileDevice from '../../properties/components/mobileDevices'
 export default function TransactionHistory() {
     const [show, setShow] = useState<number | null>(null)
     const [indexes, setIndexes] = useState<number[]>([])

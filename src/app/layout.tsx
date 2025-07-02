@@ -3,6 +3,11 @@ import { Inter } from 'next/font/google'
 import "./globals.css";
 import ProgressProvider from "./components/Layouts/nProgressBar";
 import { MyContextProvider } from "@/context/NavProvider";
+ import { ToastContainer} from 'react-toastify';
+
+import ReactQueryProvider from "./components/Providers/QueryProvider";
+
+
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
 //   subsets: ["latin"],
@@ -30,13 +35,32 @@ export default function RootLayout({
       <body
         className={`${inter.className}`}
       >
-        <MyContextProvider>
-     <ProgressProvider> 
      
+        <MyContextProvider>
+
+     <ProgressProvider> 
+   
+           <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+       theme = "light"
+        
+        
+        />
+        <ReactQueryProvider>
       {children}
+   </ReactQueryProvider>
       </ProgressProvider>  
 
       </MyContextProvider>
+
       </body>
     </html>
   );

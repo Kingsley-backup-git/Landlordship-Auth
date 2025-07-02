@@ -3,9 +3,11 @@ import Cards from './components/cards'
 import { FaChevronLeft } from "react-icons/fa6";
 import { BsThreeDots } from 'react-icons/bs'
 import Link from 'next/link';
+import MaintenanceT from '../(tenants)/components/MaintenanceT/maintenanceT';
 // import Details from './components/details';
 
 export default function Maintenance() {
+    const type:string = "tenant"
   return (
     <>
     <div className='sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]'>
@@ -19,6 +21,9 @@ export default function Maintenance() {
 
          <BsThreeDots className='text-[#007AFF] text-lg sm:hidden flex'/>
 </div>
+
+{type !== "tenant" ?
+<>
         <div className="sm:grid grid-cols-12 hidden sm:gap-x-5 gap-x-3 mt-5 w-full">
 <div className='col-span-4 w-full '>
     <h1 className='font-semibold text-sm text-black'>Yet to Start <span className='text-[#00000066]'>6</span></h1>
@@ -83,6 +88,8 @@ export default function Maintenance() {
         <div className='grid md:grid-cols-2 lg:grid-cols-3  sm:grid-cols-1 2sm:grid-cols-2 grid-cols-1 sm:mt-4 mt-6 gap-x-5 sm:gap-y-8 gap-y-6'>
 <Cards />
         </div>
+        </> : 
+        <MaintenanceT />}
     </div>
 {/* <Details /> */}
     </>

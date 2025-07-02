@@ -8,7 +8,7 @@ export interface pinTextInpProps {
   handleFn?: (str: string) => void;
 
 }
-function PinTextInput({ numberOfDigits, }: pinTextInpProps) {
+function PinTextInput({ numberOfDigits, handleFn }: pinTextInpProps) {
   const [pin, setPin] = useState(new Array(numberOfDigits).fill(""));
   const [pinError, setPinError] = useState(false);
   const pinBoxReference = useRef<Array<HTMLInputElement | null>>([]);
@@ -17,9 +17,9 @@ function PinTextInput({ numberOfDigits, }: pinTextInpProps) {
     const newArr = [...pin];
     newArr[index] = value;
     setPin(newArr);
-    // if (handleFn) {
-    //   handleFn(newArr.join(""));
-    // }
+    if (handleFn) {
+      handleFn(newArr.join(""));
+    }
 
     if (value && index < numberOfDigits - 1) {
       pinBoxReference.current[index + 1]?.focus();

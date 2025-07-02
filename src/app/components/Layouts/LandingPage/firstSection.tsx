@@ -43,7 +43,7 @@ myRef.current = node
             </div>
     })}
 </div>
-<Button classname="bg-[#E3572B]  flex justify-center border-[1px]  gap-x-3  shadow-2xl shadow-[#F6F9FF33] py-2 text-white border-[#FFFFFF33] mt-8 w-full items-center max-w-[230px] rounded-lg"><h1 className="text-sm font-medium text-white">Add New Properrty</h1> 
+<Button classname="bg-[#E3572B]  flex justify-center border-[1px]  gap-x-3  shadow-2xl shadow-[#F6F9FF33] py-2 text-white border-[#FFFFFF33] mt-8 w-full items-center max-w-[230px] rounded-lg"><h1 className="text-sm font-medium text-white">Add New Property</h1> 
 <HiOutlineChevronRight className="text-xl"/></Button>
 </div>
     <div className='secondSection overflow-x-hidden z-[-1] translate-y-[-630px]'>

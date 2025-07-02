@@ -8,6 +8,7 @@ import DocList from './Documentation/documentation'
 import Logo from "../../../../../public/Logo.png"
 import { useMyContext } from '@/context/NavProvider'
 export default function LeftNav() {
+  const type:string = "landlord"
   const {leftNav} = useMyContext()
   return (
     <div className='w-[100%] py-5 flex flex-col h-screen gap-y-6 '>
@@ -20,9 +21,9 @@ export default function LeftNav() {
 
 <DashboardList leftNav = {leftNav}/>
 
-<PeopleList leftNav = {leftNav}/>
+{type !== "tenant" && <PeopleList leftNav = {leftNav}/> }
 
-<DocList leftNav = {leftNav}/>
+{type !== "tenant" &&  <DocList leftNav = {leftNav}/> }
 </div>
 <Image src = {Logo} alt = "logo" className='mt-auto mx-auto' width={130} height={130} />
     </div>
