@@ -8,6 +8,7 @@ interface InputProps {
     repeat : boolean;
     isShow : boolean;
     showHandler: ()=>void;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     error? : any;
     onBlur? : React.FocusEventHandler<HTMLInputElement> ;
     touched? : boolean;
