@@ -13,7 +13,7 @@ export const baseInstance: AxiosInstance = axios.create();
 
 
 // Request interceptor for the base instance
-baseInstance.interceptors.request.use((config: InternalAxiosRequestConfig<any>) => {
+baseInstance.interceptors.request.use((config: InternalAxiosRequestConfig<unknown>) => {
     // Check if authorization token is present and add it to the request headers
     const authToken = Cookies.get('resetToken');
     if (authToken) {
@@ -69,7 +69,7 @@ baseInstance.interceptors.response.use(
 export const userInstance: AxiosInstance = axios.create();
 
 // Request interceptor for the user instance
-userInstance.interceptors.request.use((config: InternalAxiosRequestConfig<any>) => {
+userInstance.interceptors.request.use((config: InternalAxiosRequestConfig<unknown>) => {
     // Check if authorization token is present and add it to the request headers
     const authToken = Cookies.get('token');
     if (authToken) {
