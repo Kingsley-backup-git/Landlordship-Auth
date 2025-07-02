@@ -7,7 +7,7 @@ import styles from "../../dashboard/(dashboard)/dashboard.module.css"
 //import Logo from "../../../public/streamwallet.png";
 //import whiteStreamLogo from "../../../public/whiteKycLogo.png"
 import { useMyContext } from "@/context/NavProvider";
-import BottomNav from "@/app/components/ui/BottomMobileNav";
+import BottomNav from "@/app/components/Layouts/BottomMobileNav";
 const Layout = ({ children }: { children: ReactNode }) => {
   const {leftNav} = useMyContext()
   return (

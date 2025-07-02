@@ -64,7 +64,7 @@ Img3
     ]
   return (
     <div className='sm:bg-[#F9F9FA] bg-white rounded-2xl lg:order-3 sm:order-4 order-last py-6 sm:px-6 p-3 flex flex-col h-[280px] col-span-12 lg:col-span-9'>
-<div className='flex justify-between itwems-center'>
+<div className='flex justify-between items-center'>
     <h1 className='font-semibold text-black text-sm'>Maintenance</h1>
 
     <h1 className='font-semibold text-black text-xs'>View all</h1>

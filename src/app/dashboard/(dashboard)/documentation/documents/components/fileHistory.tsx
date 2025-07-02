@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect,useState } from 'react'
-import Checkbox from '../../../unit/components/inputs/checkbox'
+import Checkbox from '../../../properties/components/inputs/checkbox'
 import Img1 from "../../../../../../../public/contact1.png"
 import Image from 'next/image'
 import { PiFilePdf } from "react-icons/pi";

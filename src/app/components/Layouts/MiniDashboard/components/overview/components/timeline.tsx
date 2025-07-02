@@ -63,7 +63,7 @@ time : "Just now"
         
     ]
   return (
-    <div className='bg-[#212a2c6a] shadow-lg  rounded-lg pt-6 col-span-6   p-3 flex flex-col h-[250px]'>
+    <div className='bg-[#212a2c6a] shadow-lg  rounded-lg pt-6 2sm:col-span-6 col-span-12  p-3 flex flex-col h-[210px] xs:h-[250px]'>
 <h1 className='text-white font-semibold text-xs'>What&apos;s on the road?</h1>
 
 <div className={`grid grid-flow-col  pt-4 justify-between overflow-x-auto  gap-x-3 `}>

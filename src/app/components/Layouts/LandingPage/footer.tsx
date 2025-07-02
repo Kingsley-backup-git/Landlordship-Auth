@@ -21,12 +21,12 @@ export default function Footer() {
     }
   return (
     <>
-    <div className="max-w-[1200px]  mx-auto w-full grid grid-cols-12 mt-[150px]">
-<div className='col-span-4'>
+    <div className="max-w-[1200px]  mx-auto w-full grid grid-cols-12 gap-y-12 mt-[30px] sm:mt-[120px] px-8">
+<div className='sm:col-span-4 col-span-12'>
 <Image src = {Logo} alt = "logo" className='' width={170} height={170} />
 </div>
 
-<div className='col-span-8 flex  flex-row'>
+<div className='sm:col-span-8 col-span-12 flex  flex-row'>
     <div className="flex flex-col gap-y-8 flex-1">
     <h1 className='text-sm font-medium text-white'>Products</h1> 
 <Link href = "#" className='text-[#FFFFFFB2] text-xs'>Courses</Link>
@@ -66,19 +66,19 @@ export default function Footer() {
 
 </div>
     </div>
-<div className="flex items-center max-w-[1200px] mt-[100px]  mx-auto w-full">
-    <div className='grid grid-cols-12 flex-1'>
-<div className="col-span-6">
-<h1 className="text-[13px] font-normal text-[#FFFFFFB2]">© 2024 Your Landlorship</h1>
+<div className="flex sm:flex-row flex-col gap-y-12 items-center gap-x-4 px-8 max-w-[1200px] mt-[100px]  mx-auto w-full">
+    <div className='flex sm:flex-row flex-col gap-y-12 flex-1 w-full'>
+<div className="flex-1">
+<h1 className="text-[13px] sm:text-start text-center font-normal text-[#FFFFFFB2]">© 2024 Your Landlorship</h1>
 </div>
 
-<div className="col-span-6 flex flex-row items-center">
-<Link href = "#" className='text-[#FFFFFFB2] text-xs flex-1'>Terms of Service</Link>
-<Link href = "#" className='text-[#FFFFFFB2] text-xs flex-1'>Privacy Policy</Link>
-<Link href = "#" className='text-[#FFFFFFB2] text-xs flex-1 flex gap-x-3 items-center'><h1>English</h1> <FaAngleDown className='text-white text-lg'/></Link>
+<div className=" divide-x-[1px] space-x-4 divide-white/30 justify-center flex flex-row items-center">
+<Link href = "#" className='text-[#FFFFFFB2] text-xs '>Terms of Service</Link>
+<Link href = "#" className='text-[#FFFFFFB2] text-xs ps-4'>Privacy Policy</Link>
+<Link href = "#" className='text-[#FFFFFFB2] text-xs s flex ps-4 gap-x-3 items-center'><h1>English</h1> <FaAngleDown className='text-white text-base'/></Link>
 </div>
     </div>
-    <LuArrowUp className="text-white text-2xl cursor-pointer" onClick={()=> scrollToTop()}/>
+    <LuArrowUp className="text-white border rounded-full border-white/30 p-2 text-4xl cursor-pointer" onClick={()=> scrollToTop()}/>
     </div>
 
     </>
