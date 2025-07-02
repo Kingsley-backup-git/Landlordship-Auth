@@ -36,9 +36,7 @@ const OTP = ({
       </div>
 
       <div className="my-12">
-        <PinTextInput handleFn={setOtp} numberOfDigits={6} status={""} changeHandler={function (): void {
-          throw new Error("Function not implemented.");
-        } } />
+        <PinTextInput handleFn={setOtp} numberOfDigits={6}  />
         <div className="flex justify-end mt-2">
           <h6
             // onClick={handleResendOTP}
