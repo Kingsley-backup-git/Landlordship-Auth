@@ -4,8 +4,8 @@ interface ButtonProps {
     text:string;
     classname :  string;
   onClick? : ()=> void;
-  type : "submit" | "reset" | "button" | undefined;
-  disabled : boolean
+  type? : "submit" | "reset" | "button" | undefined;
+  disabled? : boolean
 
 }
 export default function Button({text, classname, type, ...props} : ButtonProps) {

@@ -59,7 +59,7 @@ useEffect(()=> {
         <div className='flex justify-between items-center mt-4'>
           <h1 className='text-[#00000066] text-xs font-[400]'>{card.date}</h1>
 
-          <Button text='Setup' classname='bg-[#0000000A] rounded-lg px-2 py-1 text-xs font-[400] text-black'/>
+          <Button text='Setup' classname='bg-[#0000000A] rounded-lg px-2 py-1 text-xs font-[400] text-black' type={"button"} disabled={false}/>
           </div>
       </div>
   })
