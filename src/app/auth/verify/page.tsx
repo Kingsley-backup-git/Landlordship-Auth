@@ -18,7 +18,7 @@ export default function Verify() {
          
         />
 
-<Button classname='bg-[#1D3639] max-w-[384px] mx-auto block w-[100%] mt-6 p-2  text-white font-[400] text-base rounded-2xl' text='Submit'/>
+<Button classname='bg-[#1D3639] max-w-[384px] mx-auto block w-[100%] mt-6 p-2  text-white font-[400] text-base rounded-2xl' text='Submit' type={"button"} disabled={false}/>
 <p className='text-[#00000066] text-center mt-5  text-sm font-[400]'>Didn&apos;t get the code ? <Link href="/auth/signin" className='text-[#E3572B]'>Resend</Link> or <Link href="/auth/signin" className='text-[#E3572B]'>Call Us</Link></p>
     </div>
   )
