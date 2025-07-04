@@ -46,7 +46,7 @@ baseInstance.interceptors.response.use(
                             refreshToken: Cookies.get('refreshToken'),
                         });
                         // Update cookies with new tokens
-                        setTokens(response.data.accessToken, response.data.refreshToken, response.data.expiresIn);
+                        setTokens(response.data.accessToken);
                         // Retry the original request with the new access token
                         config.headers['Authorization'] = `Bearer ${refreshResponse.data.accessToken}`;
                         return baseInstance(config);
@@ -69,7 +69,8 @@ baseInstance.interceptors.response.use(
 export const userInstance: AxiosInstance = axios.create();
 
 // Request interceptor for the user instance
-userInstance.interceptors.request.use((config: InternalAxiosRequestConfig<unknown>) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+userInstance.interceptors.request.use((config: InternalAxiosRequestConfig<any>) => {
     // Check if authorization token is present and add it to the request headers
     const authToken = Cookies.get('token');
     if (authToken) {
@@ -86,7 +87,7 @@ userInstance.interceptors.response.use(
     },
     async (error) => {
         const { response, config } = await error;
-        console.log(error)
+        
         if (response) {
             // Transform error response to show error, message, and status code
             const { data, status } = await response;
@@ -103,7 +104,7 @@ userInstance.interceptors.response.use(
                             refreshToken: Cookies.get('refreshToken'),
                         });
                         // Update cookies with new tokens
-                        setTokens(refreshResponse.data.accessToken, refreshResponse.data.refreshToken, refreshResponse.data.expiresIn);
+                        setTokens(refreshResponse.data.accessToken);
                         // Retry the original request with the new access token
                         config.headers['Authorization'] = `Bearer ${refreshResponse.data.accessToken}`;
                         return userInstance(config);
@@ -113,7 +114,7 @@ userInstance.interceptors.response.use(
                         // Handle refresh token failure (e.g., log out the user)
                         Cookies.remove('token')
                         Cookies.remove('refreshToken')
-                        location.replace('/auth/login')
+                        location.replace('/auth/signin')
                         return Promise.reject({ error, message, statusCode });
                     }
                 }
@@ -121,7 +122,7 @@ userInstance.interceptors.response.use(
             if (response.status === 403 || response.status === 401) {
                 Cookies.remove('token')
                 Cookies.remove('refreshToken')
-                location.replace('/auth/login')
+                location.replace('/auth/signin')
 
             }
             // Handle failed refresh here
@@ -157,15 +158,8 @@ authInstance.interceptors.response.use(
 );
 
 // Example function to set cookies when the user logs in or refreshes tokens
-export function setTokens(accessToken: string, refreshToken: string, expiresIn: number) {
-    console.log({ accessToken, refreshToken, expiresIn })
-    // Convert expiresIn (seconds) to milliseconds for JavaScript Date
-    const expiresInMilliseconds = expiresIn * 1000;
-    const expiryDate = new Date(Date.now() + expiresInMilliseconds);
-
+export function setTokens(accessToken: string) {
     // Set access token cookie with expiration
     Cookies.set('token', accessToken, { expires: 7 });
 
-    // Set refresh token cookie with expiration
-    Cookies.set('refreshToken', refreshToken, { expires: expiryDate });
 }

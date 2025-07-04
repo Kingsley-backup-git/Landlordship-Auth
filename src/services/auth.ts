@@ -76,11 +76,7 @@ throw Error(error?.error)
         }
     }
 
-    /**
-     * 
-     * @param otp The OTP to validate
-     * @returns The data if the otp is successfully validated
-     */
+   
     validateOTP = async (values: {email:string; otp:string}) => {
         try {
             const res = await authInstance.post("/api/auth/validate-otp", {
@@ -95,4 +91,8 @@ throw Error(error?.error)
             throw Error(error?.error)
         }
     };
+
+
+      
+
 }

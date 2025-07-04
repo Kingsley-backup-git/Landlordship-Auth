@@ -28,7 +28,7 @@ Cookies.set("token", data?.accessToken, { expires: 7, secure: true })
 
 toast.success(`Welcome ${data?.user?.email}`, {autoClose: 3000})
 handleLoader(false)
-push("/dashboard/overview")
+push("/auth/setup")
 },
 onError:(error)=> {
     toast.dismiss("register")
