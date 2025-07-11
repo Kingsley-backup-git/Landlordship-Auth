@@ -1,21 +1,45 @@
 'use client'
 import Checkbox from '@/app/dashboard/(dashboard)/properties/components/inputs/checkbox'
+import { FormikProps } from 'formik';
 import React,{useState} from 'react'
 import { IoMdAdd } from "react-icons/io";
-export default function PropertyAmenities() {
+interface PropertyFormValues {
+  propertyName: string;
+  yearBuilt: number;
+  uniqueId: string;
+  stateAddress: string;
+  city: string;
+  region: string;
+  zip: string;
+  country: string;
+  propertyType?: "individual" | "multi-unit";
+  amenities?: string[];
+  features?: string[];
+  attachments?: File[];
+}
+
+export default function PropertyAmenities({formik} : {formik : FormikProps<PropertyFormValues>}) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [features, setFeatures] = useState(["Furnished", "Renovated", 
-        "Dishwashed", "Feature","Feature",
-        "Feature","Feature","Feature","Feature","Feature","Feature",
-        "Feature","Feature"])
+    const [allamenities, setAmenities] = useState(["Furnished", "Renovated", 
+        "Dishwashed"])
+            function handleChange (event:React.ChangeEvent<HTMLInputElement>) {
+        const {value,checked} = event.target
+        const amenities = formik.values.amenities ?? []
+        console.log(value, checked)
+        if(checked) {
+          formik.setFieldValue('amenities', [...amenities, value])
+        } else {
+          formik.setFieldValue('amenities', formik.values.amenities?.filter((v) => v !== value))
+        }
+            }
   return (
     <div className='bg-[#F9F9FA] rounded-2xl p-6 mt-6'>
 <h1 className='font-semibold text-sm text-black'>Property Amenities</h1>
 
 <div className='flex flex-wrap gap-4 items-center mt-5'>
-{features.map((feature, index)=> {
+{allamenities.map((feature, index)=> {
     return <div key={index} className='flex flex-nowrap items-center gap-x-2'>
-<Checkbox classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] rounded`} checked={false} clicked={()=> null}/>
+<Checkbox name = "amenities" value={feature} id = {`amenity-${index}`} classname={`w-[16px] h-[16px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] rounded`} checked={formik.values.amenities?.includes(feature) as boolean} clicked={(event)=> handleChange(event)}/>
 <h1 className='text-sm font-[400] text-black'>{feature}</h1>
     </div>
 })}

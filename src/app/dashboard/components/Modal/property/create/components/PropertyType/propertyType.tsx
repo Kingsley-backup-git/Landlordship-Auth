@@ -1,32 +1,46 @@
 import RadioInput from '@/app/auth/setup/components/inputs/radioButton'
 import Checkbox from '@/app/dashboard/(dashboard)/properties/components/inputs/checkbox'
 import React from 'react'
-
-export default function PropertyType({propertyTypeHandler, propertyType} : {propertyTypeHandler : (val:string)=> void, propertyType : string}) {
+import { FormikProps } from "formik";
+interface PropertyFormValues {
+  propertyName: string;
+  yearBuilt: number;
+  uniqueId: string;
+  stateAddress: string;
+  city: string;
+  region: string;
+  zip: string;
+  country: string;
+  propertyType?: "individual" | "multi-unit";
+  amenities?: string[];
+  features?: string[];
+ attachments?: File[];
+}
+export default function PropertyType({formik, propertyTypeHandler} : {formik : FormikProps<PropertyFormValues>, propertyTypeHandler : (val:string)=> void}) {
   return (
     <div className = "bg-[#F9F9FA] p-6 rounded-2xl mt-6">
 <h1 className="font-semibold text-sm text-black">Choose Your Property Type</h1>
 
 
 <div className='grid grid-cols-2 items-stretch gap-x-6  mt-4'>
-<div className={`bg-[#FFFFFFCC]  relative cursor-pointer flex-1 ${propertyType === "individual" ? "border-[#000000] border-[2px]" : "border-[.5px] #0000001A"} py-6 px-6 rounded-2xl`} onClick={()=> propertyTypeHandler("individual")}>
+<div className={`bg-[#FFFFFFCC]  relative cursor-pointer flex-1 ${formik.values.propertyType === "individual" ? "border-[#000000] border-[2px]" : "border-[.5px] #0000001A"} py-6 px-6 rounded-2xl`} onClick={()=> propertyTypeHandler("individual")}>
      <div className="">
         <h1 className='font-semibold text-sm text-black'>Individual Property</h1>
         <p className="text-[#00000066] font-[400] text-xs mt-2">Perfect for standalone homes, condos, or single rental units.</p>
             </div>
      
-       {propertyType === "individual" ? <RadioInput />  : <div className='h-[15px] w-[15px] top-4 right-5 absolute border-[#00000033] border-[1px] rounded-full'></div> }
+       <RadioInput id={"individual"} onChange = {formik.handleChange} checked = {formik.values.propertyType === "individual"}/> 
 </div>
 
 
 
-<div className={`bg-[#FFFFFFCC]  cursor-pointer ${propertyType === "multi" ? "border-[#000000] border-[2px]" : "border-[.5px] #0000001A"} relative flex-1 py-6  px-6 rounded-2xl`} onClick={()=> propertyTypeHandler("multi")}>
+<div className={`bg-[#FFFFFFCC]  cursor-pointer ${formik.values.propertyType === "multi-unit" ? "border-[#000000] border-[2px]" : "border-[.5px] #0000001A"} relative flex-1 py-6  px-6 rounded-2xl`} onClick={()=> propertyTypeHandler("multi-unit")}>
      <div className="">
         <h1 className='font-semibold text-sm text-black'>Multi-Unit Complex</h1>
         <p className="text-[#00000066] font-[400] text-xs mt-2">Ideal for managing apartments, duplexes, or buildings with multiple rental units.</p>
             </div>
      
-            {propertyType === "multi" ? <RadioInput />  : <div className='h-[15px] top-4 right-5 w-[15px] border-[#00000033] absolute border-[1px] rounded-full'></div> }
+          <RadioInput  id={"multi-unit"} onChange = {formik.handleChange} checked = {formik.values.propertyType === "multi-unit"}/>  
 </div>
 </div>
 
