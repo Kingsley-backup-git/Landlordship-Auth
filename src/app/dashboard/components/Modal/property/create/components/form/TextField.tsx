@@ -1,16 +1,16 @@
 import React from 'react'
 interface TextField extends React.InputHTMLAttributes<HTMLInputElement> {
     className : string,
-    text : string;
-    type : string 
+    text? : string;
+    type? : string 
     placeholder : string;
   maxlength? : number;
   pattern? : string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  touched : any;
+  touched? : any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  error : any;
-  onBlur : React.FocusEventHandler<HTMLInputElement>
+  error? : any;
+  onBlur? : React.FocusEventHandler<HTMLInputElement>
 
 }
 export default function TextField({className, text, type, placeholder, ...props} : TextField) {

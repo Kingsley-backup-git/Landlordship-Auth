@@ -1,10 +1,10 @@
 import React from 'react'
 import { FaCheck } from "react-icons/fa";
 interface CheckboxProps {
-    classname : string;
-    checked : boolean;
-    clicked : React.ChangeEventHandler<HTMLInputElement> ;
-    value:string;
+    classname? : string;
+    checked? : boolean;
+    clicked? : React.ChangeEventHandler<HTMLInputElement> ;
+    value?:string;
     id? : string;
     name ? :string
     

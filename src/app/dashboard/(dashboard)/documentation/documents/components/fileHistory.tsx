@@ -130,7 +130,7 @@ function toggleAll() {
 
         <div className='flex items-center w-[100%] py-3 border-b-[1px] border-[#0000000A]'>
         <div className='flex-[5%] ps-1'>
-        <Checkbox clicked = {()=> toggleAll()} checked ={allChecked} classname={`w-[14px] cursor-pointer h-[14px] border-[#00000033] flex justify-center items-center  border-[1px] ${(allChecked) ? "bg-black" : ""}`} />
+        <Checkbox clicked={() => toggleAll()} checked={allChecked} classname={`w-[14px] cursor-pointer h-[14px] border-[#00000033] flex justify-center items-center  border-[1px] ${(allChecked) ? "bg-black" : ""}`} value={''} />
         </div>
         
         
@@ -174,7 +174,7 @@ function toggleAll() {
             {fileHistory.map((history, index)=> {
         return <div key={index}  onClick = {()=> null}  className={`flex z-[-1px]  gap-x-5 items-center cursor-pointer py-3 w-full  hover:rounded-xl border-b-[1px] border-[#0000000A] hover:bg-[#0000000A]`} onMouseLeave={()=>  setShow(null)} onMouseEnter={()=> setShow(index)}>
             <div className='flex-[3%]  w-full ps-1'>
-        <Checkbox clicked={()=> addIndex(index)}  checked ={indexes.includes(index) }  classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] ${(indexes.includes(index)) ? "bg-black" : ""} rounded`}/>
+        <Checkbox clicked={() => addIndex(index)} checked={indexes.includes(index)} classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] ${(indexes.includes(index)) ? "bg-black" : ""} rounded`} value={''}/>
         </div>
         
         
