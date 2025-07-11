@@ -77,7 +77,11 @@ export default function Unit() {
         </div>
 
 
-        <div className='sm:flex hidden justify-between items-center bg-[#F9F9FA] rounded-lg p-2 mt-6'>
+        <div className='sm:flex hidden justify-between items-center bg-[#F9F9FA] rounded-lg p-3 mt-6'>
+
+<div className='flex items-center gap-x-4'>
+        <PiFunnelSimple className='w-[17px] h-[17px] text-black' />
+<PiArrowsDownUp className='w-[17px] h-[17px] text-black'/>
 
                 <div className='bg-[#FFFFFFCC] max-w-[160px] w-[100%] border-[.5px] rounded-lg px-2 py-[6px] gap-x-[6px] flex items-center'>
 <CiSearch className='text-lg text-[#00000033]'/>
@@ -85,20 +89,18 @@ export default function Unit() {
 
 </div>
 
-
+</div>
 
 
 <div className='flex gap-x-5 items-center'>
 <div className='flex gap-x-1 items-center cursor-pointer' onClick={()=> setStep(0)}>
 
 
-<FiPlus className='text-black text-sm'/>
+<FiPlus className='text-black text-xl font-bold'/>
 
-<h1 className='text-sm font-[400] text-black'>Add New Property</h1>
+<h1 className='text-base  text-black font-bold'>Add New Property</h1>
 </div>
 
-<PiFunnelSimple className='w-[17px] h-[17px] text-black' />
-<PiArrowsDownUp className='w-[17px] h-[17px] text-black'/>
 </div>
 
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import RadioInput from './inputs/radioButton'
 import { PiSuitcaseSimple } from "react-icons/pi";
@@ -11,7 +12,9 @@ export default function LandlordAcc({accountType, AccountTypeHandler} : {account
     <p className="text-[#00000066] font-[400] text-xs">Setup your landlord account</p>
         </div>
  
-     {accountType === "landlord" ?  <RadioInput /> : null}
+     {accountType === "landlord" ?  <RadioInput onChange={function (event: React.ChangeEvent<HTMLInputElement>): void {
+        throw new Error('Function not implemented.');
+      } } checked={false} /> : null}
         </div>
   )
 }

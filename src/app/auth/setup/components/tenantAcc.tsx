@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import { PiUserCircle } from 'react-icons/pi'
 import RadioInput from './inputs/radioButton'
@@ -13,7 +14,9 @@ export default function TenantAcc({accountType, AccountTypeHandler} : {accountTy
    <p className="text-[#00000066] font-[400] text-xs">Setup your tenant account</p>
        </div>
 
-     {accountType === "tenant" ?  <RadioInput /> : null}
+     {accountType === "tenant" ?  <RadioInput onChange={function (event: React.ChangeEvent<HTMLInputElement>): void {
+        throw new Error('Function not implemented.');
+      } } checked={false} /> : null}
        </div>
   )
 }

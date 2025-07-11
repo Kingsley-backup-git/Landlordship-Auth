@@ -1,12 +1,12 @@
 import React from 'react'
 import { FaCheck } from 'react-icons/fa';
 interface CheckboxProps {
-    text:string;
-    classname : string;
-    textStyle : string;
-    spanStyle : string;
-    spanText : string;
-    checked  : boolean;
+    text?:string;
+    classname? : string;
+    textStyle? : string;
+    spanStyle? : string;
+    spanText? : string;
+    checked?  : boolean;
 }
 export default function CheckBox({text, classname, textStyle, spanText, spanStyle, checked } : CheckboxProps) {
   return (

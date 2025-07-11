@@ -20,7 +20,7 @@ export class AuthService {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error:any) {
 
-            throw Error(error?.error)
+            throw Error(error)
         }
     }
      login = async(values:AuthInitialValues) => {
