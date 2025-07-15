@@ -10,9 +10,7 @@ import MobileDevice from './mobileDevices'
 import { BsThreeDots } from 'react-icons/bs'
 import { useQuery, keepPreviousData } from '@tanstack/react-query'
 import { PropertyService } from '@/services/property'
-
 export default function TransactionHistory() {
-
     const [page, setPage] = useState(1)
     const {data, isSuccess} = useQuery({
         queryKey : ['properties', page],
