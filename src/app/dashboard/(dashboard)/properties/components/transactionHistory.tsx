@@ -10,7 +10,9 @@ import MobileDevice from './mobileDevices'
 import { BsThreeDots } from 'react-icons/bs'
 import { useQuery, keepPreviousData } from '@tanstack/react-query'
 import { PropertyService } from '@/services/property'
+
 export default function TransactionHistory() {
+
     const [page, setPage] = useState(1)
     const {data, isSuccess} = useQuery({
         queryKey : ['properties', page],
@@ -159,7 +161,7 @@ return <div key = {property._id}  className='flex gap-x-4 items-center cursor-po
 
 </div>
 </div>
-{data?.data?.length > 0 &&
+{(data?.data?.length ?? 0) > 0 &&
 <div className='sm:flex sm:max-w-[300px] w-full col-span-12 sm:ms-auto hidden items-center gap-x-2 mt-3'>
 
 
