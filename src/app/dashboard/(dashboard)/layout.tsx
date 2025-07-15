@@ -8,9 +8,13 @@ import styles from "../../dashboard/(dashboard)/dashboard.module.css"
 //import whiteStreamLogo from "../../../public/whiteKycLogo.png"
 import { useMyContext } from "@/context/NavProvider";
 import BottomNav from "@/app/components/Layouts/BottomMobileNav";
+import UserProvider from "@/app/components/Providers/UserProvider";
+
 const Layout = ({ children }: { children: ReactNode }) => {
   const {leftNav} = useMyContext()
   return (
+<>
+<UserProvider>
     <div className="sm:bg-white w-full bg-[#F9F9FA] min-h-screen h-[100%] flex">
     <div className={`${leftNav ? "min-w-[212px] max-w-[212px] w-[100%]" : "w-[66px]"} transition-all duration-100 ease-in-out sm:flex  hidden  px-3 overflow-y-auto h-screen ${styles.overflow} sticky top-0 border-r-[1px] border-[#1C1C1C1A]`}>
 <LeftNav />
@@ -34,6 +38,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
       
     <BottomNav />
     </div>
+    </UserProvider>
+    </>
   );
 };
 
