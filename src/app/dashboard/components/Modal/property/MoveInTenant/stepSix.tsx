@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import Button from '@/app/components/ui/ButtonTwo'
 // import ToggleButton from '@/app/components/ui/ToggleButton'
@@ -25,7 +26,7 @@ export default function StepSix({header, stepHandler, sendInviteMutation}:{heade
 <div className='text-[#00000066] flex-[25%] font-normal  text-center text-xs'>Status</div>
 </div>
 
-{sendInviteMutation?.isSuccess && sendInviteMutation?.data?.data.map((tenant)=> {
+{sendInviteMutation?.isSuccess && sendInviteMutation?.data?.data.map((tenant:any)=> {
   return <div key = {tenant._id} className='flex gap-x-2 items-center  border-b-[.5px]  border-[#00000033] py-2'>
 <div className='flex-[25%] text-black  font-normal text-xs'>{tenant?.property?.propertyName}</div>
 <div className='flex-[25%] text-black font-normal text-xs text-center'>{tenant?.email}</div>

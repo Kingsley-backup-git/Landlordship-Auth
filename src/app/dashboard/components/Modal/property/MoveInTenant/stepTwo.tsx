@@ -15,7 +15,7 @@ interface TenantProps {
 }
 export default function StepTwo({header,stepHandler}:{header:string,stepHandler : (num:number)=> void;}) {
     const [addNew, setAddNew] = useState(false)
-    const [tenants, setTenants] = useState<TenantProps[]>([
+    const [tenants] = useState<TenantProps[]>([
        
     ])
  const [openForm, setOpenForm] = useState(false)
@@ -23,9 +23,9 @@ export default function StepTwo({header,stepHandler}:{header:string,stepHandler 
     function openFormHandler() {
         setOpenForm(true)
     }
-    function closeFormHandler() {
-        setOpenForm(false)
-    }
+    // function closeFormHandler() {
+    //     setOpenForm(false)
+    // }
 
     function openAddNew() {
         setAddNew(true)
@@ -34,19 +34,19 @@ export default function StepTwo({header,stepHandler}:{header:string,stepHandler 
     function closeAddNew() {
         setAddNew(false)
     }
-    function addNewTenants(payload:{ firstname: string; lastname:string; email: string }) {
-        setTenants([...tenants, payload])
-        closeFormHandler();
-        closeAddNew()
-    }
+    // function addNewTenants(payload:{ firstname: string; lastname:string; email: string }) {
+    //     setTenants([...tenants, payload])
+    //     closeFormHandler();
+    //     closeAddNew()
+    // }
   return (
 <>
 {addNew ? 
 <AddNew header = {header} 
 closeAddNew = {closeAddNew} 
-addNewTenants = {addNewTenants} 
+
 openFormHandler ={openFormHandler}
-closeFormHandler ={closeFormHandler}
+
 openForm ={openForm}/> : 
     <div className='sm:p-6 py-2 px-4  sm:max-w-[960px] mx-auto w-[100%]'>
        <h1 className = "text-black  font-semibold sm:flex hidden text-sm">{header}</h1>

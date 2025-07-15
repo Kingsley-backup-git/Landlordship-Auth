@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 // import Checkbox from './inputs/checkbox'
 import Img1 from "./../../../../../../public/contact1.png"
 import Image from 'next/image'

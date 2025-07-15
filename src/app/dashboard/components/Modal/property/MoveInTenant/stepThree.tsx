@@ -2,13 +2,13 @@
 import React from 'react'
 import { IoAddOutline } from "react-icons/io5";
 import { IoCloseSharp } from "react-icons/io5";
-import StepFour from './stepFour';
+// import StepFour from './stepFour';
 import SearchInput from './components/form/SearchInput';
-export default function AddNew({header, closeAddNew, addNewTenants, openFormHandler, closeFormHandler, openForm}:
+export default function AddNew({header, closeAddNew,  openFormHandler, openForm}:
     {header:string, closeAddNew : ()=>void, 
-        addNewTenants:(payload:{ firstname: string; lastname:string; email: string  })=>void;
+     
         openFormHandler : ()=> void;
-        closeFormHandler : ()=>void;
+      
     openForm : boolean}) {
    
   return (
