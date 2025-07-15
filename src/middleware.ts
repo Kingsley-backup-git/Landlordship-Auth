@@ -21,7 +21,7 @@ console.log(isAuthenticated)
 
 
 export function checkAuthentication(request: NextRequest): boolean {
-  const token = request.cookies.get('refreshToken')
+  const token = request.cookies.get('token')
 console.log(token)
   if (!token) {
     return false
