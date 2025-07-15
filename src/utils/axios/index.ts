@@ -5,7 +5,10 @@ import Cookies from 'js-cookie'
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.timeout = 45000
-
+interface RefreshTokenResponse {
+  accessToken: string;
+  refreshToken?: string;
+}
 // Create a base Axios instance with the given base URL
 export const baseInstance: AxiosInstance = axios.create();
 
@@ -100,14 +103,14 @@ userInstance.interceptors.response.use(
                
                     try {
                         // Call your API to refresh the token
-                        const refreshResponse = await authInstance.post('/api/auth/refresh-token',{}, {
+                        const refreshResponse = await authInstance.post<RefreshTokenResponse>('/api/auth/refresh-token',{}, {
                            withCredentials : true
                         });
                         // Update cookies with new tokens
                       
-                        setTokens(refreshResponse?.accessToken);
+                        setTokens(refreshResponse?.data?.accessToken);
                         // Retry the original request with the new access token
-                        config.headers['Authorization'] = `Bearer ${refreshResponse?.accessToken}`;
+                        config.headers['Authorization'] = `Bearer ${refreshResponse?.data?.accessToken}`;
                         return userInstance(config);
 
                     } catch (error) {

@@ -12,7 +12,7 @@ import { useQuery, keepPreviousData } from '@tanstack/react-query'
 import { PropertyService } from '@/services/property'
 export default function TransactionHistory() {
     const [page, setPage] = useState(1)
-    const getProperties = useQuery({
+    const {data, isSuccess} = useQuery({
         queryKey : ['properties', page],
         queryFn :  async()=> await new PropertyService().getPaginatedProperties(page),
          placeholderData: keepPreviousData
@@ -113,7 +113,7 @@ export default function TransactionHistory() {
 
 
 <div className='flex flex-col overflow-y-auto'>
-    {getProperties?.isSuccess &&  getProperties?.data?.data?.map((property:any)=> {
+    {isSuccess &&  data?.data?.map((property:any)=> {
 return <div key = {property._id}  className='flex gap-x-4 items-center cursor-pointer hover:bg-[#0000000A]  py-3 border-b-[1px] border-[#0000000A]' onMouseLeave={()=>  setShow(null)} onMouseEnter={()=> setShow(property._id)}>
     {/* <div className='flex-[4%] ps-1'>
 <Checkbox clicked={()=> addIndex(index)}  checked ={indexes.includes(index) }  classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] ${(indexes.includes(index)) ? "bg-black" : ""} rounded`}/>
@@ -159,7 +159,7 @@ return <div key = {property._id}  className='flex gap-x-4 items-center cursor-po
 
 </div>
 </div>
-{getProperties?.data?.data?.length > 0 &&
+{data?.data?.length > 0 &&
 <div className='sm:flex sm:max-w-[300px] w-full col-span-12 sm:ms-auto hidden items-center gap-x-2 mt-3'>
 
 
@@ -168,7 +168,7 @@ return <div key = {property._id}  className='flex gap-x-4 items-center cursor-po
 </div> 
 
 
-{getProperties?.data?.hasMore && <div onClick={()=> setPage(prev=> prev+1)} className='py-1 text-center  cursor-pointer rounded-lg border-[#0000001A] border-[0.5px]  sm:flex-[.5] flex-1'>
+{data?.data?.hasMore && <div onClick={()=> setPage(prev=> prev+1)} className='py-1 text-center  cursor-pointer rounded-lg border-[#0000001A] border-[0.5px]  sm:flex-[.5] flex-1'>
 <IoIosArrowForward className='text-black mx-auto text-xl'/>
 </div>  } 
 </div>
