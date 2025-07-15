@@ -98,7 +98,7 @@ const propertyValidationSchema = Yup.object().shape({
   const formik = useFormik<PropertyFormValues>({
     initialValues : propertydata,
     validationSchema : propertyValidationSchema,
-    onSubmit :async (values)=> {
+    onSubmit :async (values, {resetForm, setValues})=> {
     const formData = new FormData()
     if(formData) {
       formData.append("propertyName", values.propertyName);
@@ -129,14 +129,16 @@ if(values.attachments !== undefined) {
     }
 
 await doCreateProperty(formData)
-
+ resetForm({values : propertydata})
+   setValues({...propertydata})
     }
   })
 useEffect(()=> {
 if(createPropertyMutation.isSuccess) {
 
     setIsCompleted(true)
-    formik.resetForm()
+   formik.resetForm({values : propertydata})
+   formik.setValues({...propertydata})
   }
 }, [createPropertyMutation.isSuccess])
   
@@ -160,7 +162,7 @@ formik.handleSubmit()
     <form className='py-10 px-6'>
      
 <GeneralInfo formik = {formik}/>
-<PropertyType formik = {formik}propertyTypeHandler = {propertyTypeHandler}/>
+<PropertyType formik = {formik} propertyTypeHandler = {propertyTypeHandler}/>
 
 <PropertyDetails />
 

@@ -14,7 +14,9 @@ export default function AddNew({header, closeAddNew, addNewTenants, openFormHand
   return (
     <>
     {openForm ?
-    <StepFour header = {header} closeFormHandler = {closeFormHandler} addNewTenants = {addNewTenants}/> :
+    // <StepFour header = {header} closeFormHandler = {closeFormHandler} addNewTenants = {addNewTenants}/> 
+    // 
+    <></>:
     <div className='sm:p-6 py-2 px-4  sm:max-w-[960px] mx-auto w-[100%]'>
        <h1 className = "text-black  font-semibold sm:flex hidden text-sm">{header}</h1>
 

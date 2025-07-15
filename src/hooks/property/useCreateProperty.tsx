@@ -21,8 +21,7 @@ export default function useCreateProperty() {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onError (error:any) {
             toast.dismiss("createProp")
-            console.log(error)
-      toast.error(error?.error)
+          toast.error(error?.message)
         }
     })
 

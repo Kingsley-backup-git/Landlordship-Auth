@@ -20,21 +20,34 @@ import StepSeven from '../../components/Modal/property/MoveInTenant/stepSeven'
 import StepEight from '../../components/Modal/property/MoveInTenant/stepEight'
 import StepNine from '../../components/Modal/property/MoveInTenant/stepNine'
 import StepSix from '../../components/Modal/property/MoveInTenant/stepSix'
+import StepFour from '../../components/Modal/property/MoveInTenant/stepFour'
+import Validator from '@/utils/formik/tenant'
+import useSendInvite from '@/hooks/property/useSendInvite'
 export default function Unit() {
        
         const [step, setStep] = useState(50)
-      
+       const {doSendInvite, sendInviteMutation} = useSendInvite(stepHandler)
+        const [propertyId, setPropertyId] = useState<string>("")
         function stepHandler(num:number) {
                 setStep(num)
         }
+        function setPropertyIdHandler(id:string) {
+              
+setPropertyId(id)
+
+}
+
+ const {formik} = Validator(doSendInvite, propertyId)
+ const disabled = sendInviteMutation.isPending
   return (
         <>
         {step === 0 ? 
          <CreateProperty  stepHandler={stepHandler}/> :
-         step === 1 ? <StepOne header = {"Unit"} stepHandler ={stepHandler}/> :
+         step === 1 ? <StepOne  setPropertyIdHandler = {setPropertyIdHandler} header = {"Unit"} stepHandler ={stepHandler} propertyId = {propertyId}/> :
          step === 2 ? <StepTwo header = {"Unit"} stepHandler ={stepHandler}/> :
-        step === 6 ? <StepSix header = {"Unit"} stepHandler ={stepHandler}/>:
-         step === 7 ? <StepSeven header = {"Unit"} stepHandler ={stepHandler}/> :
+         step === 4 ? <StepFour formik = {formik}  header = {"Unit"} stepHandler ={stepHandler} disabled = {disabled}/> :
+        step === 6 ? <StepSix header = {"Unit"} stepHandler ={stepHandler} sendInviteMutation= {sendInviteMutation}/>:
+         step === 7 ? <StepSeven header = {"Unit"} stepHandler ={stepHandler} /> :
          step === 8 ? <StepEight header = {"Unit"} stepHandler ={stepHandler}/> :
          step === 9 ? <StepNine header = {"Unit"} stepHandler ={stepHandler}/> :
     <div className='sm:p-6 py-2 px-4  sm:max-w-[960px] mx-auto w-[100%]'>

@@ -16,6 +16,7 @@
     "axios": "^1.10.0",
     "formik": "^2.4.6",
     "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
     "motion": "^12.4.10",
     "next": "15.3.4",
     "next-nprogress-bar": "^2.4.3",

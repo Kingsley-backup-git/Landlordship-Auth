@@ -1,3 +1,4 @@
+import { InviteProps } from "@/types/tenant/props"
 import { userInstance } from "@/utils/axios"
 
 export class PropertyService {
@@ -8,7 +9,43 @@ const res = await userInstance.post("api/property/create",values, {headers : {'C
 console.log(res)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } catch (error:any) {
+    console.log(error?.error)
 throw Error(error?.error)
 }
+}
+
+getAllProperties = async()=> {
+    try {
+ const res = await userInstance.get("api/property/all")
+
+    return res?.data
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error:any) {
+        throw Error(error?.error)
+    }
+   
+}
+
+getPaginatedProperties = async(page:number)=> {
+    try {
+ const res = await userInstance.get(`api/property/search?page=${page}&limit=${5}`)
+
+    return res
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error:any) {
+        throw Error(error?.error)
+    }
+   
+}
+
+sendInvite = async(values : InviteProps)=> {
+    try {
+ const res = await userInstance.post(`api/tenant/invite/${values.id}`, {email : values.email})
+console.log(res)
+    return res
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error:any) {
+        throw Error(error?.error)
+    }
 }
 }

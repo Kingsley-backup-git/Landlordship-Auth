@@ -14,6 +14,8 @@ interface InputProps {
     touched? : boolean;
     name : string;
     onChange? : React.ChangeEventHandler<HTMLInputElement>
+    readOnly? : boolean;
+    value ? : string
     
 }
 export default function TextInput({type, classname, placeholder, repeat, isShow, showHandler, name, error, touched, ...props} : InputProps) {
