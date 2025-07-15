@@ -1,6 +1,10 @@
 import { InviteProps } from "@/types/tenant/props"
 import { userInstance } from "@/utils/axios"
-
+type PaginatedPropertyResponse = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any[]; 
+  hasMore: boolean;
+};
 export class PropertyService {
 
 createProperty = async (values:FormData)=> {
@@ -28,9 +32,9 @@ getAllProperties = async()=> {
 
 getPaginatedProperties = async(page:number)=> {
     try {
- const res = await userInstance.get(`api/property/search?page=${page}&limit=${5}`)
+ const res = await userInstance.get<PaginatedPropertyResponse>(`api/property/search?page=${page}&limit=${5}`)
 
-    return res
+    return res?.data
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error:any) {
         throw Error(error?.error)

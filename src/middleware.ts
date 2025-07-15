@@ -21,34 +21,30 @@ console.log(isAuthenticated)
 
 
 export function checkAuthentication(request: NextRequest): boolean {
-  const token = request.cookies.get('token')
-console.log(token)
-  if (!token) {
-    return false
-  }
-  /* Extract expiry time from token */
-  const tokenExpiry = getTokenExpiry(token.value) as string | number
-  const expiryDate = new Date(parseFloat(tokenExpiry as string) * 1000);
+  const token = request.cookies.get('token')?.value;
+  const refreshToken = request.cookies.get('refreshToken')?.value;
+
+  
+  if (!token && !refreshToken) return false;
 
 
+  if (token && isTokenValid(token)) return true;
 
-  if (!tokenExpiry) {
-    return false
-  }
-  if (new Date() > expiryDate) {
-    // Token has expired, log out the user
-    return false
-  }
-  return true;
+ 
+  if (!isTokenValid(token) && refreshToken && isTokenValid(refreshToken)) return true;
+
+
+  return false;
 }
 
-function getTokenExpiry(token: string) {
+function isTokenValid(token?: string): boolean {
+  if (!token) return false;
   try {
-    const decodedToken = jwtDecode(token);
-    return decodedToken?.exp;
+    const decoded: { exp: number } = jwtDecode(token);
+    return Date.now() < decoded.exp * 1000;
   } catch (err) {
-    console.error('Error decoding token:', err);
-    return null;
+    console.error('Invalid token:', err);
+    return false;
   }
 }
 
