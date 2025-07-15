@@ -5,7 +5,10 @@ import Cookies from 'js-cookie'
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.timeout = 45000
-
+interface RefreshTokenResponse {
+  accessToken: string;
+  refreshToken?: string;
+}
 // Create a base Axios instance with the given base URL
 export const baseInstance: AxiosInstance = axios.create();
 
@@ -96,33 +99,34 @@ userInstance.interceptors.response.use(
             const statusCode = status || 500;
             if (response.status === 401 && !config._retry) {
                 config._retry = true;
-                const refreshToken = Cookies.get('refreshToken');
-                if (refreshToken) {
+               
+               
                     try {
                         // Call your API to refresh the token
-                        const refreshResponse = await authInstance.post('/api/v1/auth/refresh-token', {
-                            refreshToken: Cookies.get('refreshToken'),
+                        const refreshResponse = await authInstance.post<RefreshTokenResponse>('/api/auth/refresh-token',{}, {
+                           withCredentials : true
                         });
                         // Update cookies with new tokens
-                        setTokens(refreshResponse.data.accessToken);
+                      
+                        setTokens(refreshResponse?.data?.accessToken);
                         // Retry the original request with the new access token
-                        config.headers['Authorization'] = `Bearer ${refreshResponse.data.accessToken}`;
+                        config.headers['Authorization'] = `Bearer ${refreshResponse?.data?.accessToken}`;
                         return userInstance(config);
 
                     } catch (error) {
                         console.log('response error:', error)
                         // Handle refresh token failure (e.g., log out the user)
                         Cookies.remove('token')
-                        Cookies.remove('refreshToken')
-                        location.replace('/auth/signin')
+               location.replace("/auth/signin")
+                     
                         return Promise.reject({ error, message, statusCode });
                     }
-                }
+            
             }
             if (response.status === 403 || response.status === 401) {
                 Cookies.remove('token')
-                Cookies.remove('refreshToken')
-                location.replace('/auth/signin')
+                   location.replace("/auth/signin")
+      
 
             }
             // Handle failed refresh here
@@ -134,7 +138,9 @@ userInstance.interceptors.response.use(
 );
 
 // Create an authentication-specific Axios instance
-export const authInstance: AxiosInstance = axios.create();
+export const authInstance: AxiosInstance = axios.create({ 
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
+  withCredentials: true});
 
 // Response interceptor for the auth instance
 authInstance.interceptors.response.use(
@@ -160,6 +166,7 @@ authInstance.interceptors.response.use(
 // Example function to set cookies when the user logs in or refreshes tokens
 export function setTokens(accessToken: string) {
     // Set access token cookie with expiration
-    Cookies.set('token', accessToken, { expires: 7 });
+    console.log(accessToken)
+    Cookies.set('token', accessToken);
 
 }

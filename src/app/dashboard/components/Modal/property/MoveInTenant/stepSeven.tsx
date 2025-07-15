@@ -4,6 +4,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import { PiThumbsUpDuotone } from "react-icons/pi";
 import { PiThumbsDownDuotone } from "react-icons/pi";
 export default function StepSeven({header, stepHandler}:{header:string, stepHandler : (num:number)=> void;}) {
+  
   return (
     <div className='sm:p-6 py-2 px-4  sm:max-w-[960px] mx-auto w-[100%]'>
        <h1 className = "text-black  font-semibold sm:flex hidden text-sm">{header}</h1>

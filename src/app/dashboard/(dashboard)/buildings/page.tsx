@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 import React,{useState}  from 'react'
 import { CiSearch } from 'react-icons/ci'
@@ -29,9 +30,11 @@ export default function Buildings() {
         <>
               {step === 0 ? 
                <CreateProperty  stepHandler={stepHandler}/> :
-               step === 1 ? <StepOne header = {"Unit"} stepHandler ={stepHandler}/> :
+               step === 1 ? <StepOne header={"Unit"} stepHandler={stepHandler} setPropertyIdHandler={function (id: string): void {
+                          throw new Error('Function not implemented.')
+                    } } propertyId={''}/> :
                step === 2 ? <StepTwo header = {"Unit"} stepHandler ={stepHandler}/> :
-              step === 6 ? <StepSix header = {"Unit"} stepHandler ={stepHandler}/>:
+              step === 6 ? <StepSix header={"Unit"} stepHandler={stepHandler} sendInviteMutation={undefined}/>:
                step === 7 ? <StepSeven header = {"Unit"} stepHandler ={stepHandler}/> :
                step === 8 ? <StepEight header = {"Unit"} stepHandler ={stepHandler}/> :
                step === 9 ? <StepNine header = {"Unit"} stepHandler ={stepHandler}/> :
