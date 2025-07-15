@@ -168,7 +168,7 @@ return <div key = {property._id}  className='flex gap-x-4 items-center cursor-po
 </div> 
 
 
-{data?.data?.hasMore && <div onClick={()=> setPage(prev=> prev+1)} className='py-1 text-center  cursor-pointer rounded-lg border-[#0000001A] border-[0.5px]  sm:flex-[.5] flex-1'>
+{data?.hasMore && <div onClick={()=> setPage(prev=> prev+1)} className='py-1 text-center  cursor-pointer rounded-lg border-[#0000001A] border-[0.5px]  sm:flex-[.5] flex-1'>
 <IoIosArrowForward className='text-black mx-auto text-xl'/>
 </div>  } 
 </div>
