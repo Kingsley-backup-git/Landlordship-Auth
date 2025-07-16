@@ -103,6 +103,7 @@ userInstance.interceptors.response.use(
                
                     try {
                         // Call your API to refresh the token
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         const refreshResponse = await authInstance.post<RefreshTokenResponse>('/api/auth/refresh-token',{}, {
                            withCredentials : true
                         });
