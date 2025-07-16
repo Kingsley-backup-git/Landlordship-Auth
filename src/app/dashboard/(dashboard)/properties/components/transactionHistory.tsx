@@ -159,7 +159,7 @@ return <div key = {property._id}  className='flex gap-x-4 items-center cursor-po
 
 </div>
 </div>
-{(data?.data?.length ?? 0) > 0 &&
+{((data?.data?.length ?? 0) > 0) && (page > 1) &&
 <div className='sm:flex sm:max-w-[300px] w-full col-span-12 sm:ms-auto hidden items-center gap-x-2 mt-3'>
 
 
