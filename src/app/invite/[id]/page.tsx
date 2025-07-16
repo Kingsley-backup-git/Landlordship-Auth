@@ -38,9 +38,9 @@ if(CheckInviteQuery?.isLoading) {
         {
   return (
     <div className='bg-[#FFFFFF] rounded-2xl  p-6  w-[100%]'>
-      {AcceptInviteMutation?.isPending ? <RiLoader5Line className="block mx-auto text-3xl text-black"/> :
+      {AcceptInviteMutation?.isPending ? <RiLoader5Line className="block animate-spin mx-auto text-3xl text-black"/> :
       <>
-   <h1 className='font-bold text-2xl text-center mb-4 text-black'>{CheckInviteQuery?.data?.status ==="success" ? "Invite Accepted" : "Accept Invite"}</h1>
+   <h1 className='font-bold text-2xl text-center mb-4 text-black'>{CheckInviteQuery?.data?.status ==="success" || AcceptInviteMutation?.isSuccess ? "Invite Accepted" : "Accept Invite"}</h1>
 <div className="flex items-center justify-center">
   <FaUserGroup className="text-4xl text-black"/>
 
@@ -53,9 +53,8 @@ if(CheckInviteQuery?.isLoading) {
 
 
       
-        
-     {CheckInviteQuery?.data?.status ==="pending"   &&   <Button onClick={()=> doAcceptInvite(id)} disabled = {AcceptInviteMutation?.isPending}  type="button"classname={`${AcceptInviteMutation?.isPending || CheckInviteQuery?.data?.status ==="success"  ? "bg-gray-300 cursor-not-allowed pointer-events-none" : "bg-[#1D3639] cursor-pointer"}  mt-6 p-2 w-[100%] text-white font-[400] text-base rounded-2xl`} text={"Accept"}/> }
-           {CheckInviteQuery?.data?.status ==="success"   &&   <Button onClick={()=> push("/dashboard/overview")}   type="button"classname={` bg-[#1D3639] cursor-pointer mt-6 p-2 w-[100%] text-white font-[400] text-base rounded-2xl`} text={"Proceed to Dashboard"}/> }
+   
+           {CheckInviteQuery?.data?.status ==="success" || AcceptInviteMutation?.isSuccess  ?   <Button onClick={()=> push("/dashboard/overview")}   type="button"classname={` bg-[#1D3639] cursor-pointer mt-6 p-2 w-[100%] text-white font-[400] text-base rounded-2xl`} text={"Proceed to Dashboard"}/> : <Button onClick={()=> doAcceptInvite(id)} disabled = {AcceptInviteMutation?.isPending}  type="button"classname={`${AcceptInviteMutation?.isPending || CheckInviteQuery?.data?.status ==="success"  ? "bg-gray-300 cursor-not-allowed pointer-events-none" : "bg-[#1D3639] cursor-pointer"}  mt-6 p-2 w-[100%] text-white font-[400] text-base rounded-2xl`} text={"Accept"}/>}
     </>
         }
     </div>
