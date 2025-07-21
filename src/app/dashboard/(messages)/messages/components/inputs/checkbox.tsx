@@ -1,16 +1,15 @@
-import React from 'react'
+import React from "react";
 import { FaCheck } from "react-icons/fa";
 interface CheckboxProps {
-    classname : string;
-  
+  classname: string;
 }
-export default function Checkbox({classname}: CheckboxProps) {
+export default function Checkbox({ classname }: CheckboxProps) {
   return (
-   <label htmlFor='checkbox'>
-    <input type = "checkbox" name='checkbox'  className={"hidden"} />
-    <div className={classname} >
-    <FaCheck className='text-white text-[6.9px]'/> 
-    </div>
-   </label>
-  )
+    <label htmlFor="checkbox">
+      <input type="checkbox" name="checkbox" className={"hidden"} />
+      <div className={classname}>
+        <FaCheck className="text-white text-[6.9px]" />
+      </div>
+    </label>
+  );
 }

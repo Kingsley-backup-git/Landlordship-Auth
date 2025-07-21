@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { isNumber } from "@/utils/functions";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -6,7 +6,6 @@ import React, { useEffect, useRef, useState } from "react";
 export interface pinTextInpProps {
   numberOfDigits: number;
   handleFn?: (str: string) => void;
-
 }
 function PinTextInput({ numberOfDigits, handleFn }: pinTextInpProps) {
   const [pin, setPin] = useState(new Array(numberOfDigits).fill(""));
@@ -27,7 +26,7 @@ function PinTextInput({ numberOfDigits, handleFn }: pinTextInpProps) {
   }
   function handleBackspaceAndEnter(
     e: React.KeyboardEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) {
     if (
       e.key === "Backspace" &&
@@ -62,15 +61,12 @@ function PinTextInput({ numberOfDigits, handleFn }: pinTextInpProps) {
             value={digit}
             maxLength={1}
             onChange={(e) => {
-              handleChange(e.target.value, index)
-             
+              handleChange(e.target.value, index);
             }}
             onKeyUp={(e) => handleBackspaceAndEnter(e, index)}
             ref={(reference) => {
-                
-                pinBoxReference.current[index] = reference;
-              }}
-             
+              pinBoxReference.current[index] = reference;
+            }}
             className={`border ${
               isNumber(pin[index])
                 ? "bg-lightgreen border-streamgreen"

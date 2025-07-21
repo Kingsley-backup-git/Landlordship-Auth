@@ -1,5 +1,5 @@
-'use client'
-import React from "react"
+"use client";
+import React from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { Sphere, MeshDistortMaterial, OrbitControls } from "@react-three/drei";
@@ -12,7 +12,7 @@ const Globe = () => {
     >
       <ambientLight intensity={0.3} />
       <pointLight position={[2, 2, 2]} intensity={1} />
-      
+
       <Sphere args={[1, 64, 64]}>
         <MeshDistortMaterial
           color="#28014d"

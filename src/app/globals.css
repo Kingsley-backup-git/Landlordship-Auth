@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #F9F9FA;
+  --background: #f9f9fa;
   --foreground: #171717;
 }
 
@@ -18,10 +18,8 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  overflow-x:hidden
+  overflow-x: hidden;
 }
-
-
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -32,28 +30,25 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
- 
   -webkit-background-clip: text;
-
 }
 
 div::-webkit-scrollbar {
   display: none;
-
 }
-div{
+div {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
 .toggleWrapper {
-  width:30px;
-  height:16px;
+  width: 30px;
+  height: 16px;
   border-radius: 20px;
   background-color: transparent;
   border: 1px solid gray;
-  position: relative; 
-  transition: all .4s ease-in-out;
+  position: relative;
+  transition: all 0.4s ease-in-out;
 }
 
 .toggleWrapper::after {
@@ -61,102 +56,119 @@ div{
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  top:1px;
+  top: 1px;
   left: 1px;
   position: absolute;
   background-color: black;
-  transition: all .4s ease-in-out;
-  
+  transition: all 0.4s ease-in-out;
 }
 
-.slidercheckbox:checked + .toggleWrapper::after{
-left: 14px;
-background-color: white;
+.slidercheckbox:checked + .toggleWrapper::after {
+  left: 14px;
+  background-color: white;
 }
 
-.slidercheckbox:checked + .toggleWrapper{
- 
+.slidercheckbox:checked + .toggleWrapper {
   background-color: black;
-  }
+}
 
-  .border-gradient {
-    border: 2px solid transparent;
-    border-radius: 0.375rem; 
-    background: linear-gradient(to bottom, red 10%, rgba(255, 255, 255, 0.07) 100%);
-    mask: 
-      linear-gradient(#fff 0 0) content-box, 
-      linear-gradient(#fff 0 0);
-    mask-composite: exclude; 
-    -webkit-mask-composite: destination-out;
-  }
+.border-gradient {
+  border: 2px solid transparent;
+  border-radius: 0.375rem;
+  background: linear-gradient(
+    to bottom,
+    red 10%,
+    rgba(255, 255, 255, 0.07) 100%
+  );
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+}
 
-  
+.section {
+  background-image: radial-gradient(#272b58 25%, transparent, transparent);
+}
+.firstSection {
+  background-image: radial-gradient(
+    circle at 48% 40%,
+    #093258 50px,
+    transparent,
+    transparent
+  );
+}
 
-  .section {
-    background-image : radial-gradient(#272b58  25%, transparent, transparent)
-  }
-  .firstSection {
-    background-image : radial-gradient(circle at 48% 40%, #093258 50px,transparent, transparent)
-  }
-  
+.secondSection {
+  background-image: radial-gradient(
+    ellipse at 54% 45%,
+    #1b3249 23%,
+    transparent,
+    transparent
+  );
+}
 
-  .secondSection {
-    background-image : radial-gradient(ellipse at 54% 45%,#1b3249  23%,transparent,  transparent)
-  }
-  
-  @media screen and (min-width:767px) {
-    .sticky-element {
-      position: sticky;
-      position: -webkit-sticky;
-      top : 150px
-    }
-  }
-
+@media screen and (min-width: 767px) {
   .sticky-element {
     position: sticky;
     position: -webkit-sticky;
-    top : 90px
+    top: 150px;
   }
- 
+}
 
-  .step-text {
-    position: relative;
-    
+.sticky-element {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 90px;
+}
 
-  }
+.step-text {
+  position: relative;
+}
 
-  .step-text::before {
-    content:"";
-    width: 2px;
-    position: absolute;
-    left: 0px;
-    top: 10px;
-    height: 80%;
-    @apply animate-pulse;
-    background-image: linear-gradient(to top, rgba(255,255,255,0.7), transparent);
-  }
+.step-text::before {
+  content: "";
+  width: 2px;
+  position: absolute;
+  left: 0px;
+  top: 10px;
+  height: 80%;
+  @apply animate-pulse;
+  background-image: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
+}
 
-  .line {
-    position: relative;
+.line {
+  position: relative;
+}
 
-  }
+.line::before {
+  width: 90px;
+  content: "";
+  position: absolute;
+  height: 1px;
+  background-image: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
+  left: -110px;
+  top: 15px;
+}
 
-  .line::before {
-    width: 90px;
-    content: "";
-    position: absolute;
-    height: 1px;
-    background-image: linear-gradient(to left, rgba(255,255,255,0.7), transparent);
-    left: -110px;
-    top:15px
-  }
-
-  .line::after {
-    width: 90px;
-    content: "";
-    position: absolute;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(255,255,255,0.4), transparent);
-    right: -110px;
-    top:15px
-  }
+.line::after {
+  width: 90px;
+  content: "";
+  position: absolute;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  right: -110px;
+  top: 15px;
+}
