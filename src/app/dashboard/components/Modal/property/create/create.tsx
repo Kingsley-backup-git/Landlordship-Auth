@@ -82,11 +82,7 @@ export default function CreateProperty({
 
     features: Yup.array()
       .of(Yup.string())
-      .min(1, "Select at least one feature"),
-
-    attachments: Yup.array()
-
-      .min(1, "At least one attachment is required"),
+      .min(1, "Select at least one feature")
   });
 
   const formik = useFormik<PropertyFormValues>({

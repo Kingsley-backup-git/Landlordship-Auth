@@ -75,6 +75,7 @@ export const userInstance: AxiosInstance = axios.create();
 // Request interceptor for the user instance
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 userInstance.interceptors.request.use(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (config: InternalAxiosRequestConfig<any>) => {
     // Check if authorization token is present and add it to the request headers
     const authToken = Cookies.get("token");
