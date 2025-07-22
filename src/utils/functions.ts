@@ -1,12 +1,11 @@
 export function isNumber(str: string | undefined) {
-    if (typeof str !== "string") return false; // we only process strings!
-    const isNum = !isNaN(Number(str))
-    console.log({ isNum, str })
-    return isNum;
-  }
+  if (typeof str !== "string") return false; // we only process strings!
+  const isNum = !isNaN(Number(str));
+  console.log({ isNum, str });
+  return isNum;
+}
 
-
-  export function findPasswordIndexes(inputString: string) {
+export function findPasswordIndexes(inputString: string) {
   const items = [
     "Uppercase letter",
     "Digit",
@@ -37,4 +36,3 @@ export function isNumber(str: string | undefined) {
 
   return matched;
 }
-  

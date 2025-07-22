@@ -1,13 +1,13 @@
-import React, { ReactNode } from 'react'
-interface ButtonProps { 
-    children:ReactNode;
-    classname :  string;
-  onClick? : ()=> void;
-
+import React, { ReactNode } from "react";
+interface ButtonProps {
+  children: ReactNode;
+  classname: string;
+  onClick?: () => void;
 }
-export default function Button({children, classname, ...props} : ButtonProps) {
-
+export default function Button({ children, classname, ...props }: ButtonProps) {
   return (
-    <button {...props} type='button'  className={classname}>{children}</button>
-  )
+    <button {...props} type="button" className={classname}>
+      {children}
+    </button>
+  );
 }

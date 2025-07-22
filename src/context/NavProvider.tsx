@@ -1,9 +1,9 @@
-'use client'
+"use client";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface MyContextProps {
   leftNav: boolean;
-  toggleNav: ()=> void;
+  toggleNav: () => void;
 }
 
 const MyContext = createContext<MyContextProps | undefined>(undefined);
@@ -12,7 +12,7 @@ export const MyContextProvider = ({ children }: { children: ReactNode }) => {
   const [leftNav, setLeftNav] = useState(true);
 
   function toggleNav() {
-    setLeftNav((nav)=> !nav)
+    setLeftNav((nav) => !nav);
   }
   return (
     <MyContext.Provider value={{ leftNav, toggleNav }}>

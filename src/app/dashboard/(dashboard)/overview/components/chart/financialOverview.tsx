@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
@@ -10,11 +10,11 @@ const LineChart = () => {
     },
   ];
 
-  const options: ApexOptions  = {
+  const options: ApexOptions = {
     chart: {
       type: "line" as const,
       toolbar: {
-        show: false, 
+        show: false,
       },
     },
     stroke: {
@@ -22,8 +22,8 @@ const LineChart = () => {
       width: 2,
     },
     markers: {
-      size: 6, 
-      colors: ["#000"], 
+      size: 6,
+      colors: ["#000"],
       strokeColors: "#fff",
       strokeWidth: 2,
       hover: {
@@ -58,7 +58,6 @@ const LineChart = () => {
     },
     legend: {
       show: false,
-     
     },
     colors: ["#00AEEF"], // Color for the single line
   };

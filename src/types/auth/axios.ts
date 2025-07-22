@@ -1,14 +1,14 @@
 interface User {
-    _id: string;
-    email: string;
-    createdAt: string;
+  _id: string;
+  email: string;
+  createdAt: string;
 }
 
 export interface RegisterResponse {
-    data: {
-        user: User;
-        accessToken: string;
-    };
+  data: {
+    user: User;
+    accessToken: string;
+  };
 }
 
 export interface AuthUser {
