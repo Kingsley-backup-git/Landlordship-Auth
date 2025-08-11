@@ -1,26 +1,21 @@
 import { UserActionsTypes, UserStateTypes } from "../types/store";
-
 import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
+import { devtools } from "zustand/middleware";
+
 const initialState: UserStateTypes = {
   type: "landlord",
 };
 
 export const useUserStore = create<UserStateTypes & UserActionsTypes>()(
   devtools(
-    persist(
-      (set) => ({
-        ...initialState,
+    (set) => ({
+      ...initialState,
 
-        setType: (val) => set(() => ({ type: val })),
-      }),
-      {
-        name: "user",
-      },
-    ),
+      setType: (val) => set(() => ({ type: val })),
+    }),
     {
       enabled: true,
       name: "user",
     },
-  ),
+  )
 );
