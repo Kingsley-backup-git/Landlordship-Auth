@@ -2,8 +2,8 @@
 "use client";
 import React, { useState } from "react";
 // import Checkbox from './inputs/checkbox'
-import Img1 from "./../../../../../../public/contact1.png";
-import Image from "next/image";
+// import Img1 from "./../../../../../../public/contact1.png";
+// import Image from "next/image";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import MobileDevice from "./mobileDevices";
@@ -77,10 +77,10 @@ export default function TransactionHistory() {
             <div className="flex-[26%] text-[#00000066] font-[400] text-xs">
               Property
             </div>
-
+{/* 
             <div className="flex-[23%] text-[#00000066] font-[400] text-xs">
               Tenant
-            </div>
+            </div> */}
 
             <div className="flex-[20%] text-[#00000066] font-[400] text-xs">
               Address
@@ -113,7 +113,7 @@ export default function TransactionHistory() {
                     <div className="flex-[26%] text-black font-[400] text-xs">
                       {property.propertyName}
                     </div>
-
+{/* 
                     <div className="flex-[23%] text-black font-[400] text-xs flex items-center gap-x-2">
                       {property.tenantId?.email && (
                         <Image
@@ -126,7 +126,7 @@ export default function TransactionHistory() {
                       )}
                       {property.tenantId?.email && property.tenantId?.email}
                       {!property.tenantId?.email && "No Tenant"}
-                    </div>
+                    </div> */}
 
                     <div className="flex-[20%] text-black font-[400] text-xs">
                       {property?.stateAddress}, {property?.city}

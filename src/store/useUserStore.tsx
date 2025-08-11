@@ -3,7 +3,7 @@ import { UserActionsTypes, UserStateTypes } from "../types/store";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 const initialState: UserStateTypes = {
-  type: "tenant",
+  type: "landlord",
 };
 
 export const useUserStore = create<UserStateTypes & UserActionsTypes>()(

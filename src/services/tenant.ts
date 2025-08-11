@@ -34,4 +34,15 @@ export class TenantService {
       throw Error(error?.error);
     }
   };
+
+
+   getAllTenant = async () => {
+    try {
+      const res = await userInstance.get("api/tenant/alltenants");
+      return res?.data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw Error(error?.error);
+    }
+  };
 }

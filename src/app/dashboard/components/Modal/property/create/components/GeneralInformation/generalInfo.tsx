@@ -59,7 +59,7 @@ export default function GeneralInfo({
 
         <TextField
           className="col-span-1 bg-[#FFFFFFCC] border-[0.5px] border-[#0000001A] py-4 px-5 rounded-2xl"
-          type="string"
+          type="text"
           name="uniqueId"
           onChange={formik.handleChange}
           touched={formik.touched.uniqueId}

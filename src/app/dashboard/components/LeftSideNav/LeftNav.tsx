@@ -11,8 +11,10 @@ import { useQuery } from "@tanstack/react-query";
 import { UserService } from "@/services/user";
 import { useUserStore } from "@/store/useUserStore";
 import { FaCheck } from "react-icons/fa6";
+
 export default function LeftNav() {
   const [toggle, setToggle] = useState(false);
+  
   const userQuery = useQuery({
     queryKey: ["user"],
     queryFn: async () => await new UserService().getUser(),
@@ -52,8 +54,8 @@ export default function LeftNav() {
                 {type === "landlord" && <FaCheck className="text-green-300" />}
               </div>
 
-              <div
-                className="text-white flex justify-between items-center text-sm cursor-pointer"
+             <div
+                className={`text-white ${userQuery?.data?.data?.isTenant ? "" : "pointer-events-none opacity-20" } flex justify-between items-center text-sm cursor-pointer`}
                 onClick={() => setType("tenant")}
               >
                 <div>Tenant</div>{" "}

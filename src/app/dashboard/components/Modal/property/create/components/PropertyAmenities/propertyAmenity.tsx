@@ -32,7 +32,7 @@ export default function PropertyAmenities({
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value, checked } = event.target;
     const amenities = formik.values.amenities ?? [];
-    console.log(value, checked);
+
     if (checked) {
       formik.setFieldValue("amenities", [...amenities, value]);
     } else {
