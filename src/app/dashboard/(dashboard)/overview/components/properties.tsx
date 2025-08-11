@@ -1,7 +1,14 @@
+'use client'
 import React from "react";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { FaArrowTrendUp } from "react-icons/fa6";
+import { useQuery } from "@tanstack/react-query";
+import { PropertyService } from "@/services/property";
 export default function Properties() {
+    const propertyQuery = useQuery({
+      queryKey: ["allProperties"],
+      queryFn: async () => await new PropertyService().getAllProperties(),
+    });
   return (
     <div className="bg-[#E6F1FD] rounded-2xl sm:p-6 p-4 ">
       <div className="flex items-center">
@@ -11,7 +18,7 @@ export default function Properties() {
       </div>
 
       <div className="mt-4 flex gap-x-2 items-center">
-        <h1 className="sm:text-xl text-base font-semibold text-black">29</h1>
+        <h1 className="sm:text-xl text-base font-semibold text-black">{propertyQuery?.data?.length}</h1>
 
         <h1 className="text-xs font-[400] ms-auto text-black">+11.02%</h1>
 

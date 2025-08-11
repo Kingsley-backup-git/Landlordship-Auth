@@ -20,7 +20,7 @@ export default function SignUpInputs() {
   useEffect(() => {
     const res = findPasswordIndexes(authFormik?.values.password as string);
     setvalidEntries(res);
-    console.log(res);
+
   }, [authFormik.values.password]);
 
   const showHandler = () => {

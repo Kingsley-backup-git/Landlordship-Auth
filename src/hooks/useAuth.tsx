@@ -28,7 +28,7 @@ export function useAuth(
 
       toast.success(`Welcome ${data?.user?.email}`, { autoClose: 3000 });
       handleLoader(false);
-      push("/auth/setup");
+      push("/dashboard/overview");
     },
     onError: (error) => {
       toast.dismiss("register");

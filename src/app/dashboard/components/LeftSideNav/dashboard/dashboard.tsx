@@ -43,7 +43,7 @@ export default function DashboardList({ leftNav }: { leftNav: boolean }) {
           ) : null}
         </Link>
 
-        {type !== "tenant" ? (
+        {type !== "tenant" && (
           <div className="w-full py-1">
             <Link
               href="/dashboard/properties"
@@ -64,10 +64,9 @@ export default function DashboardList({ leftNav }: { leftNav: boolean }) {
 <Link onClick = {()=> setOpen(true)}  href = "/dashboard/buildings" className={`text-[#1C1C1C] hover:bg-[#1C1C1C0D] rounded-xl text-xs font-[400] py-3 px-6 ${pathname.includes("/buildings") ? "bg-[#1C1C1C0D]": null}`}>Buildings</Link>
 
 </div> } */}
-          </div>
-        ) : (
-          <>
-            <Link
+          </div>)}
+
+           <Link
               href="/dashboard/maintenance"
               className={`flex rounded-xl  hover:bg-[#1C1C1C0D] gap-x-2 p-2 items-center ${pathname.includes("/maintenance") ? "bg-[#1C1C1C0D]" : null}`}
             >
@@ -81,6 +80,9 @@ export default function DashboardList({ leftNav }: { leftNav: boolean }) {
                 <MdKeyboardArrowRight className="min-w-[20px] min-h-[20px] max-w-[20px] w-[100%] h-[100%] text-[#1C1C1C33]" />
               ) : null}
             </Link>
+     {type === "tenant" && (
+          <>
+            
 
             <Link
               href="/dashboard/documentation/finance"
@@ -103,6 +105,8 @@ export default function DashboardList({ leftNav }: { leftNav: boolean }) {
             </Link>
           </>
         )}
+
+     
       </div>
     </div>
   );
