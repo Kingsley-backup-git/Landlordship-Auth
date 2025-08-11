@@ -58,7 +58,7 @@ export default function LeftNav() {
               </div>
 
              <div
-                className={`text-white ${tenantQuery?.data?.tenant !== null ? "" :  "pinter-events-none opacity-20"} flex justify-between items-center text-sm cursor-pointer`}
+                className={`text-white ${tenantQuery?.data?.tenant !== null ? "" :  "pointer-events-none opacity-20"} flex justify-between items-center text-sm cursor-pointer`}
                 onClick={() => setType("tenant")}
               >
                 <div>Tenant</div>{" "}
