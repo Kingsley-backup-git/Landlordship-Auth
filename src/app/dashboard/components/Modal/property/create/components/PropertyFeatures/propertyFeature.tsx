@@ -23,7 +23,7 @@ export default function PropertyFeature({
 }: {
   formik: FormikProps<PropertyFormValues>;
 }) {
-  const [allfeatures, setFeatures] = useState([
+  const [allfeatures, setFeatures] = useState<string[]>([
  
   ]);
   const [showInput, setShowInput] = useState(false);
