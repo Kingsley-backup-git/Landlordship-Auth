@@ -1,8 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Occupied from "./components/occupied";
-import Rental from "./components/rental";
-import Asset from "./components/asset";
+import Occupancy from "./components/occupancy";
+import PendingApplications from "./components/applications";
 import { CiSearch } from "react-icons/ci";
 import TextInput from "../../components/inputs/TextInput";
 import { PiArrowsDownUp } from "react-icons/pi";
@@ -25,6 +24,8 @@ import Validator from "@/utils/formik/tenant";
 import useSendInvite from "@/hooks/property/useSendInvite";
 import { useUserStore } from "@/store/useUserStore";
 import { useRouter } from "next/navigation";
+import Properties from "./components/properties";
+import Income from "./components/income";
 export default function Unit() {
   const type = useUserStore(state=> state.type)
   const {push} = useRouter()
@@ -102,11 +103,13 @@ export default function Unit() {
           </div>
 
           <div className="grid grid-cols-6 mt-5 gap-5">
-            <Occupied />
+            <Properties />
 
-            <Rental />
+            <Income />
 
-            <Asset />
+                            <Occupancy />
+                            
+                            <PendingApplications />
           </div>
 
           <div className="sm:hidden flex gap-x-6 ps-4 pe-4 py-6 bg-white rounded-full items-center my-5">

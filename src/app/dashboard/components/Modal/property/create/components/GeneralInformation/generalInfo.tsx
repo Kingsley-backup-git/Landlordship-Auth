@@ -57,18 +57,7 @@ export default function GeneralInfo({
           placeholder="1990"
         />
 
-        <TextField
-          className="col-span-1 bg-[#FFFFFFCC] border-[0.5px] border-[#0000001A] py-4 px-5 rounded-2xl"
-          type="text"
-          name="uniqueId"
-          onChange={formik.handleChange}
-          touched={formik.touched.uniqueId}
-          value={formik.values.uniqueId}
-          error={formik.errors.uniqueId}
-          onBlur={formik.handleBlur}
-          text="Unique ID #"
-          placeholder="12345"
-        />
+      
 
         <TextField
           className="col-span-2 col-start-1 col-end-3  bg-[#FFFFFFCC] border-[0.5px] border-[#0000001A] py-4 px-5 rounded-2xl"

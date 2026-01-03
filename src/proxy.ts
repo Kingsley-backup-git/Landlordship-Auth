@@ -1,10 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { jwtDecode } from "jwt-decode";
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isAuthenticated = checkAuthentication(request);
   const isProtectedRoutes = path.startsWith("/dashboard");
-  console.log(isAuthenticated);
+  
   if (!isAuthenticated && isProtectedRoutes) {
     // Redirect unauthenticated users to the login page
     return NextResponse.redirect(new URL("/auth/signin", request.nextUrl));

@@ -1,16 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import GeneralInfo from "./components/GeneralInformation/generalInfo";
-import PropertyType from "./components/PropertyType/propertyType";
-import PropertyDetails from "./components/PropertyDetails/propertyDetails";
-import PropertyFeature from "./components/PropertyFeatures/propertyFeature";
-import PropertyAmenities from "./components/PropertyAmenities/propertyAmenity";
-import UploadAttachment from "./components/UploadAttachments/uploadAttachment";
+import React, { useState } from "react";
+import { use } from "react";
+import GeneralInfo from "@/app/dashboard/components/Modal/property/create/components/GeneralInformation/generalInfo";
+import PropertyType from "@/app/dashboard/components/Modal/property/create/components/PropertyType/propertyType";
+import PropertyDetails from "@/app/dashboard/components/Modal/property/create/components/PropertyDetails/propertyDetails";
+import UploadAttachment from "@/app/dashboard/components/Modal/property/create/components/UploadAttachments/uploadAttachment";
 import Button from "@/app/components/ui/Button";
-import Completed from "./components/completed";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import useCreateProperty from "@/hooks/property/useCreateProperty";
+import { useRouter } from "next/navigation";
+
 interface PropertyFormValues {
   propertyName: string;
   yearBuilt: number;
@@ -26,13 +25,14 @@ interface PropertyFormValues {
   attachments?: File[];
   description?: string;
 }
-export default function CreateProperty({
-  stepHandler,
+
+export default function PropertyDetailsPage({
+  params,
 }: {
-  stepHandler: (num: number) => void;
+  params: Promise<{ id: string }>;
 }) {
-  const [isCompleted, setIsCompleted] = useState<boolean>(false);
-  const { doCreateProperty, createPropertyMutation } = useCreateProperty();
+  const { id } = use(params);
+  const { push } = useRouter();
   const [propertydata] = useState<PropertyFormValues>({
     propertyName: "",
     yearBuilt: 0,
@@ -90,7 +90,7 @@ export default function CreateProperty({
   const formik = useFormik<PropertyFormValues>({
     initialValues: propertydata,
     validationSchema: propertyValidationSchema,
-    onSubmit: async (values, { resetForm, setValues }) => {
+    onSubmit: async (values) => {
       const formData = new FormData();
       if (formData) {
         formData.append("propertyName", values.propertyName);
@@ -126,41 +126,80 @@ export default function CreateProperty({
         }
       }
 
-      await doCreateProperty(formData);
-      resetForm({ values: propertydata });
-      setValues({ ...propertydata });
+      // TODO: Implement update property API call
+      // await doUpdateProperty(id, formData);
+      console.log("Updating property with id:", id, formData);
     },
   });
-  useEffect(() => {
-    if (createPropertyMutation.isSuccess) {
-      setIsCompleted(true);
-      formik.resetForm({ values: propertydata });
-      formik.setValues({ ...propertydata });
-    }
-  }, [createPropertyMutation.isSuccess]);
 
   function propertyTypeHandler(val: string) {
     formik.setFieldValue("propertyType", val);
   }
-  function createPropertyHandler(e: React.MouseEvent<HTMLButtonElement>) {
+
+  function editPropertyHandler(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     formik.handleSubmit();
   }
-  function closeMoodal() {
-    setIsCompleted(false);
+
+  function cancelHandler() {
+    push("/dashboard/properties");
   }
 
-  const disabled = createPropertyMutation.isPending;
+  const disabled = false; // TODO: Set based on update mutation pending state
 
   return (
     <form className="py-10 px-6">
+        <h1 className="font-semibold text-sm text-black mb-4">Property Details</h1>
       <GeneralInfo formik={formik} />
       <PropertyType formik={formik} propertyTypeHandler={propertyTypeHandler} />
 
       <PropertyDetails formik={formik} />
 
-      <PropertyFeature formik={formik} />
+      {/* Applications Section */}
+      <div className="bg-[#F9F9FA] p-6 rounded-2xl mt-6">
+        <h1 className="font-semibold text-sm text-black mb-6">Applications</h1>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {/* Total Applications */}
+          <div className="bg-[#E6F1FD] rounded-2xl p-4">
+            <div className="flex items-center">
+              <h1 className="text-xs text-black font-[400] flex-1">Total Applications</h1>
+        
+            </div>
+            <h1 className="sm:text-xl text-base mt-4 font-semibold text-black">12</h1>
+          </div>
+
+          {/* Pending Review */}
+          <div className="bg-[#E6F1FD] rounded-2xl p-4">
+            <div className="flex items-center">
+              <h1 className="text-xs text-black font-[400] flex-1">Pending Review</h1>
+              <div className="w-[10px] h-[10px] rounded-full bg-[#FFDB56]"></div>
+            </div>
+            <h1 className="sm:text-xl text-base mt-4 font-semibold text-black">4</h1>
+          </div>
+
+          {/* Approved */}
+          <div className="bg-[#E6F1FD] rounded-2xl p-4">
+            <div className="flex items-center">
+              <h1 className="text-xs text-black font-[400] flex-1">Approved</h1>
+              <div className="w-[10px] h-[10px]  rounded-full bg-green-500"></div>
+            </div>
+            <h1 className="sm:text-xl text-base mt-4 font-semibold text-black">6</h1>
+          </div>
+
+          {/* Rejected */}
+          <div className="bg-[#E6F1FD] rounded-2xl p-4">
+            <div className="flex items-center">
+              <h1 className="text-xs text-black font-[400] flex-1">Rejected</h1>
+              <div className="w-[10px] h-[10px] rounded-full bg-red-600"></div>
+            </div>
+            <h1 className="sm:text-xl text-base mt-4 font-semibold text-black">2</h1>
+          </div>
+        </div>
+      </div>
+
 {/* 
+      <PropertyFeature formik={formik} />
+
       <PropertyAmenities formik={formik} /> */}
 
       <UploadAttachment formik={formik} />
@@ -168,7 +207,7 @@ export default function CreateProperty({
       <div className="p-4 rounded-2xl bg-[#F9F9FA] flex justify-end mt-6 gap-x-4">
         <Button
           type="button"
-          onClick={() => stepHandler(-1)}
+          onClick={cancelHandler}
           classname=" bg-transparent border-[.5px] border-[#0000001A] text-sm text-black font-[400] rounded-lg py-2 px-4 mt-4"
           text="Cancel"
         />
@@ -177,15 +216,12 @@ export default function CreateProperty({
           disabled={disabled}
           type="submit"
           onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-            createPropertyHandler(e)
+            editPropertyHandler(e)
           }
           classname={` ${disabled || Object.keys(formik.errors).length > 0 ? "bg-gray-400 cursor-not-allowed" : "bg-black cursor-pointer"}text-white  text-sm font-[400]  rounded-lg py-1 px-2 mt-4`}
-          text="Create"
+          text="Edit"
         />
       </div>
-      {isCompleted ? (
-        <Completed closeMoodal={closeMoodal} stepHandler={stepHandler} />
-      ) : null}
     </form>
   );
 }

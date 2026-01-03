@@ -10,7 +10,9 @@ import MobileDevice from "./mobileDevices";
 import { BsThreeDots } from "react-icons/bs";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { PropertyService } from "@/services/property";
+import { useRouter } from "next/navigation";
 export default function TransactionHistory() {
+  const router = useRouter()
   const [page, setPage] = useState(1);
   const { data, isSuccess } = useQuery({
     queryKey: ["properties", page],
@@ -69,39 +71,52 @@ export default function TransactionHistory() {
     <>
       <div className="col-span-12 overflow-auto">
         <div className="mt-4 w-full  sm:flex hidden flex-col max-h-[350px]  select-none">
-          <div className="flex items-center w-[100%] py-3 border-b-[1px] gap-x-4 border-[#0000000A]">
+          <div className="flex items-center min-w-[1000px] py-3 border-b-[1px] gap-x-4 border-[#0000000A]">
             {/* <div className='flex-[4%] ps-1'>
 <Checkbox  clicked = {()=> toggleAll()} checked ={allChecked}   classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] ${(allChecked) ? "bg-black" : ""} rounded`}/>
 </div> */}
 
-            <div className="flex-[26%] text-[#00000066] font-[400] text-xs">
+            <div className="flex-[21%] text-center text-balance text-[#00000066] font-[400] text-xs">
               Property
             </div>
-{/* 
-            <div className="flex-[23%] text-[#00000066] font-[400] text-xs">
-              Tenant
-            </div> */}
 
-            <div className="flex-[20%] text-[#00000066] font-[400] text-xs">
+            <div className="flex-[20%] text-center text-balance text-[#00000066] font-[400] text-xs">
               Address
             </div>
 
-            {/* <div className='flex-[13%] text-[#00000066] font-[400] text-xs'>
-    Rent
-</div> */}
+            <div className="flex-[10%] text-center text-balance text-[#00000066] font-[400] text-xs">
+              SQFT
+            </div>
 
-            {/* <div className='flex-[11%] text-[#00000066] font-[400] text-xs'>
-    Status
-</div> */}
+            <div className="flex-[16%] text-center text-balance text-[#00000066] font-[400] text-xs">
+              Type
+            </div>
+
+            <div className="flex-[11%] text-center text-balance text-[#00000066] font-[400] text-xs">
+              Active Units
+            </div>
+
+            <div className="flex-[12%] text-center text-balance text-[#00000066] font-[400] text-xs">
+              Listing Status
+            </div>
+
+            <div className="flex-[14%] text-balance text-center  text-[#00000066] font-[400] text-xs">
+              Occupancy Status
+            </div>
+
+            <div className="flex-[13%] text-center text-balance text-[#00000066] font-[400] text-xs">
+              Rent Value (£)
+            </div>
             <div className="flex-[2%]"></div>
           </div>
 
-          <div className="flex flex-col overflow-y-auto">
+          <div className="flex flex-col min-w-[1000px] overflow-y-auto">
             {isSuccess &&
               data?.data?.map((property: any) => {
                 return (
                   <div
                     key={property._id}
+                    onClick = {()=> router.push(`/dashboard/properties/${property._id}`)}
                     className="flex gap-x-4 items-center cursor-pointer hover:bg-[#0000000A]  py-3 border-b-[1px] border-[#0000000A]"
                     onMouseLeave={() => setShow(null)}
                     onMouseEnter={() => setShow(property._id)}
@@ -110,10 +125,10 @@ export default function TransactionHistory() {
 <Checkbox clicked={()=> addIndex(index)}  checked ={indexes.includes(index) }  classname={`w-[14px] h-[14px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] ${(indexes.includes(index)) ? "bg-black" : ""} rounded`}/>
 </div> */}
 
-                    <div className="flex-[26%] text-black font-[400] text-xs">
+                    <div className="flex-[21%] text-center  break-all text-black font-[400] text-xs">
                       {property.propertyName}
                     </div>
-{/* 
+                    {/* 
                     <div className="flex-[23%] text-black font-[400] text-xs flex items-center gap-x-2">
                       {property.tenantId?.email && (
                         <Image
@@ -128,11 +143,34 @@ export default function TransactionHistory() {
                       {!property.tenantId?.email && "No Tenant"}
                     </div> */}
 
-                    <div className="flex-[20%] text-black font-[400] text-xs">
+                    <div className="flex-[20%] text-center text-black font-[400] text-xs">
                       {property?.stateAddress}, {property?.city}
                     </div>
 
-                    {/* <div className='flex-[13%] text-black font-[400] text-xs'>
+                    <div className="flex-[10%] text-center break-all text-black font-[400] text-xs">
+                      3500
+                    </div>
+
+                    <div className="flex-[16%] text-center  break-all text-black font-[400] text-xs">
+              Multi Family
+                    </div>
+
+                    <div className="flex-[11%] text-center break-all text-black font-[400] text-xs">
+                      8
+                    </div>
+
+                    <div className="flex-[12%] text-center break-all text-black font-[400] text-xs">
+                      Listed
+                    </div>
+
+                    <div className="flex-[14%] text-center break-all text-black font-[400] text-xs">
+                      80%
+                    </div>
+
+                    <div className="flex-[13%] text-center break-all text-black font-[400] text-xs">
+                      £1200/mo
+                    </div>
+                    {/* <div className='flex-[13%]  text-black font-[400] text-xs'>
    ${transaction.rent}
 </div> */}
 

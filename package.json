@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@react-three/drei": "^10.0.2",
@@ -18,12 +18,12 @@
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "motion": "^12.4.10",
-    "next": "15.3.4",
+    "next": "16.1.1",
     "next-nprogress-bar": "^2.4.3",
-    "react": "19.1.0",
+    "react": "19.2.3",
     "react-apexcharts": "^1.7.0",
     "react-datepicker": "^8.0.0",
-    "react-dom": "19.1.0",
+    "react-dom": "19.2.3",
     "react-globe": "^5.0.2",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.15.1",
@@ -32,20 +32,19 @@
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
-    "@types/react": "19.1.8",
-    "@types/react-dom": "19.1.6",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
     "eslint": "^9",
-    "eslint-config-next": "15.3.4",
+    "eslint-config-next": "16.1.1",
     "postcss": "^8",
     "prettier": "^3.6.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
   "overrides": {
-    "@types/react": "19.1.8",
-    "@types/react-dom": "19.1.6"
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3"
   }
 }
