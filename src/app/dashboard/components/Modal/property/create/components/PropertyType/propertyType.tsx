@@ -29,14 +29,14 @@ export default function PropertyType({
         Choose Your Property Type
       </h1>
 
-      <div className="grid grid-cols-2 items-stretch gap-x-6  mt-4">
+      <div className="grid grid-cols-2 items-stretch gap-4  mt-4">
         <div
-          className={`bg-[#FFFFFFCC]  relative cursor-pointer flex-1 ${formik.values.propertyType === "individual" ? "border-[#000000] border-[2px]" : "border-[.5px] #0000001A"} py-6 px-6 rounded-2xl`}
+          className={`bg-[#FFFFFFCC]  relative cursor-pointer flex-1  py-6 px-6 rounded-2xl`}
           onClick={() => propertyTypeHandler("individual")}
         >
           <div className="">
             <h1 className="font-semibold text-sm text-black">
-              Individual Property
+             Self Contain
             </h1>
             <p className="text-[#00000066] font-[400] text-xs mt-2">
               Perfect for standalone homes, condos, or single rental units.
@@ -46,17 +46,20 @@ export default function PropertyType({
           <RadioInput
             id={"individual"}
             onChange={formik.handleChange}
-            checked={formik.values.propertyType === "individual"}
+            checked={false}
           />
         </div>
 
-        <div
-          className={`bg-[#FFFFFFCC]  cursor-pointer ${formik.values.propertyType === "multi-unit" ? "border-[#000000] border-[2px]" : "border-[.5px] #0000001A"} relative flex-1 py-6  px-6 rounded-2xl`}
+       
+
+
+         <div
+          className={`bg-[#FFFFFFCC]  cursor-pointer  relative flex-1 py-6  px-6 rounded-2xl`}
           onClick={() => propertyTypeHandler("multi-unit")}
-        >
+         >
           <div className="">
             <h1 className="font-semibold text-sm text-black">
-              Multi-Unit Complex
+             Single Family
             </h1>
             <p className="text-[#00000066] font-[400] text-xs mt-2">
               Ideal for managing apartments, duplexes, or buildings with
@@ -67,12 +70,57 @@ export default function PropertyType({
           <RadioInput
             id={"multi-unit"}
             onChange={formik.handleChange}
-            checked={formik.values.propertyType === "multi-unit"}
+            checked={false}
+          />
+         </div>
+
+
+
+         <div
+          className={`bg-[#FFFFFFCC]  cursor-pointer ${formik.values.propertyType === "multi-unit" ? "border-[#000000] border-[2px]" : "border-[.5px] #0000001A"} relative flex-1 py-6  px-6 rounded-2xl`}
+          onClick={() => propertyTypeHandler("multi-unit")}
+         >
+          <div className="">
+            <h1 className="font-semibold text-sm text-black">
+              Multi Family 
+            </h1>
+            <p className="text-[#00000066] font-[400] text-xs mt-2">
+              Ideal for managing apartments, duplexes, or buildings with
+              multiple rental units.
+            </p>
+          </div>
+
+          <RadioInput
+            id={"multi-unit"}
+            onChange={formik.handleChange}
+            checked={false}
+          />
+         </div>
+      
+
+
+         <div
+          className={`bg-[#FFFFFFCC]  relative cursor-pointer flex-1 ${formik.values.propertyType === "individual" ? "border-[#000000] border-[2px]" : "border-[.5px] #0000001A"} py-6 px-6 rounded-2xl`}
+          onClick={() => propertyTypeHandler("individual")}
+        >
+          <div className="">
+            <h1 className="font-semibold text-sm text-black">
+           Apartment
+            </h1>
+            <p className="text-[#00000066] font-[400] text-xs mt-2">
+              Perfect for standalone homes, condos, or single rental units.
+            </p>
+          </div>
+
+          <RadioInput
+            id={"individual"}
+            onChange={formik.handleChange}
+            checked={true}
           />
         </div>
       </div>
 
-      <div className="bg-[#FFFFFFCC] py-4 px-5 border-[.5px] border-[#0000001A] mt-4 rounded-2xl">
+      {/* <div className="bg-[#FFFFFFCC] py-4 px-5 border-[.5px] border-[#0000001A] mt-4 rounded-2xl">
         <h1 className="text-[#00000066] text-xs font-[400]">
           Does this property have special requirements?
         </h1>
@@ -97,7 +145,7 @@ export default function PropertyType({
             <h1 className="text-black font-[400] text-sm">No</h1>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
