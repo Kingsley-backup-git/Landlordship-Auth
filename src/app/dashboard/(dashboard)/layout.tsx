@@ -22,7 +22,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
             <LeftNav />
           </div>
 
-          <div className="flex-1 w-[100%] py-4 relative">
+          <div className="flex-1 w-[100%] overflow-x-hidden py-4 relative">
             <TopNavbar />
             {children}
             <div className="h-[70px] sm:hidden flex"></div>
