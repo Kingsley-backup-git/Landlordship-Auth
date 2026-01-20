@@ -20,7 +20,6 @@ export default function SignUpInputs() {
   useEffect(() => {
     const res = findPasswordIndexes(authFormik?.values.password as string);
     setvalidEntries(res);
-
   }, [authFormik.values.password]);
 
   const showHandler = () => {
@@ -33,6 +32,21 @@ export default function SignUpInputs() {
   const disabled = loading;
   return (
     <form className={`max-w-[404px] w-[100%] mt-6 `}>
+      <div className="mb-4 w-[100%]">
+        <TextInput
+          error={authFormik.errors.userName}
+          touched={authFormik.touched.userName}
+          onBlur={authFormik.handleBlur}
+          onChange={authFormik.handleChange}
+          isShow={isShow}
+          showHandler={() => null}
+          repeat={false}
+          type="text"
+          placeholder="Username"
+          name="userName"
+          classname="p-2 bg-transparent text-sm  font-[400] flex-1 placeholder:text-[#00000033] text-black outline-none w-[100%]"
+        />
+      </div>
       <TextInput
         error={authFormik.errors.email}
         touched={authFormik.touched.email}

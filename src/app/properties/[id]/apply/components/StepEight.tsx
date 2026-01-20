@@ -41,7 +41,7 @@ export default function StepEight({
 
         {/* Consent Checkboxes */}
         <div className="space-y-4">
-          <div className="flex items-start gap-x-3">
+          {/* <div className="flex items-start gap-x-3">
             <input
               type="checkbox"
               name="consentToCreditReferenceChecks"
@@ -60,7 +60,7 @@ export default function StepEight({
               <div className="text-red-500 text-xs mt-1 ml-7">
                 {formik.errors.consentToCreditReferenceChecks}
               </div>
-            )}
+            )} */}
 
           <div className="flex items-start gap-x-3">
             <input
@@ -150,7 +150,7 @@ export default function StepEight({
             )}
           </div>
 
-          <div>
+          {/* <div>
             <label className="text-[#00000066] text-xs font-normal block mb-2">
               Date <span className="text-red-500">*</span>
             </label>
@@ -168,12 +168,14 @@ export default function StepEight({
             {formik.touched.signatureDate && formik.errors.signatureDate && (
               <div className="text-red-500 text-xs mt-1">{formik.errors.signatureDate}</div>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
   );
 }
+
+
 
 
 

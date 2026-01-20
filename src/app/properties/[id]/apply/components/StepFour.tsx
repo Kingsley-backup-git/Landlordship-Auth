@@ -6,8 +6,14 @@ import { LuChevronsUpDown } from "react-icons/lu";
 
 export default function StepFour({
   formik,
+  data
 }: {
-  formik: FormikProps<ApplicationFormValues>;
+    formik: FormikProps<ApplicationFormValues>;
+    data: {
+      Properties: {
+        property_value : string
+    }
+  }
 }) {
   // Dummy property list
   const properties = [
@@ -76,7 +82,7 @@ export default function StepFour({
         </div>
 
         {/* Property Address */}
-        <div>
+        {/* <div>
           <label className="text-black/80 text-sm sm:text-base font-medium block mb-3">
             Property Address <span className="text-red-500">*</span>
           </label>
@@ -100,17 +106,18 @@ export default function StepFour({
           {formik.touched.propertyAddress && formik.errors.propertyAddress && (
             <div className="text-red-500 text-sm mt-2 font-medium">{formik.errors.propertyAddress}</div>
           )}
-        </div>
+        </div> */}
 
         {/* Monthly Rent */}
         <div>
           <label className="text-black/80 text-sm sm:text-base font-medium block mb-3">Monthly Rent</label>
           <div className="bg-[#FFFFFFCC] border-[.5px] border-[#0000001A] rounded-2xl py-4 sm:py-5 px-5 sm:px-6 hover:border-black/20 transition-colors">
             <input
-              type="number"
+              type="text"
               name="monthlyRent"
-              value={formik.values.monthlyRent}
-              onChange={formik.handleChange}
+              readOnly
+              value={data.Properties.property_value}
+          
               placeholder="Enter monthly rent"
               className="w-full py-1 text-black text-sm sm:text-base placeholder:text-black/40 rounded-lg outline-none border-0"
             />
@@ -151,11 +158,15 @@ export default function StepFour({
                 name="coTenantsNames"
                 value={formik.values.coTenantsNames}
                 onChange={formik.handleChange}
+                 onBlur={formik.handleBlur}
                 placeholder="Full names and relationship"
                 rows={3}
                 className="w-full py-1 text-black text-sm sm:text-base placeholder:text-black/40 rounded-lg outline-none border-0 resize-none"
               />
             </div>
+             {formik.touched.coTenantsNames && formik.errors.coTenantsNames && (
+            <div className="text-red-500 text-sm mt-2 font-medium">{formik.errors.coTenantsNames}</div>
+          )}
           </div>
         )}
 

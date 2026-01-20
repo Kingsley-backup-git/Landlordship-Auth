@@ -4,7 +4,7 @@ import Occupancy from "./components/occupancy";
 import PendingApplications from "./components/applications";
 import { CiSearch } from "react-icons/ci";
 import TextInput from "../../components/inputs/TextInput";
-import { PiArrowsDownUp } from "react-icons/pi";
+import { PiArrowsDownUp, PiCheckCircle } from "react-icons/pi";
 import { PiFunnelSimple } from "react-icons/pi";
 import { FiPlus, FiSearch } from "react-icons/fi";
 import TransactionHistory from "./components/transactionHistory";
@@ -26,15 +26,22 @@ import { useUserStore } from "@/store/useUserStore";
 import { useRouter } from "next/navigation";
 import Properties from "./components/properties";
 import Income from "./components/income";
+import { IoCopyOutline } from "react-icons/io5";
+import { useQuery } from "@tanstack/react-query";
+import { UserService } from "@/services/user";
 export default function Unit() {
-  const type = useUserStore(state=> state.type)
+  const type = useUserStore(state => state.type)
+  const userQuery = useQuery({
+      queryKey: ["user"],
+      queryFn: async () => await new UserService().getUser(),
+    });
   const {push} = useRouter()
   useEffect(() => {
     if (type === "tenant") {
     push("/dashboard/overview")
   }
   },[type])
-  
+    const [copied, setCopied] = useState(false);
   const [step, setStep] = useState(50);
   const { doSendInvite, sendInviteMutation } = useSendInvite(stepHandler);
   const [propertyId, setPropertyId] = useState<string>("");
@@ -44,6 +51,11 @@ export default function Unit() {
   function setPropertyIdHandler(id: string) {
     setPropertyId(id);
   }
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(`http://localhost:3000/public/properties/${userQuery?.data?.data?.slug}`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const { formik } = Validator(doSendInvite, propertyId);
   const disabled = sendInviteMutation.isPending;
@@ -112,6 +124,38 @@ export default function Unit() {
                             <PendingApplications />
           </div>
 
+                        {/* Application Link Card */}
+                          {userQuery.isSuccess &&
+                            <div className="bg-[#F9F9FA] w-full sm:p-6 p-4 rounded-2xl">
+                              <h1 className="font-semibold text-sm text-black mb-4">
+                                Application Link
+                              </h1>
+                              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                                <input
+                                  type="text"
+                                  value={`http://localhost:3000/public/properties/${userQuery?.data?.data?.slug}`}
+                                  readOnly
+                                  className="flex-1 bg-white border-[.5px] border-[#0000001A] rounded-lg py-2 px-4 text-sm text-black font-[400] focus:outline-none focus:ring-2 focus:ring-[#007AFF] focus:ring-opacity-20 truncate"
+                                />
+                                <button
+                                  onClick={copyToClipboard}
+                                  className="flex items-center justify-center gap-x-2 bg-white border-[.5px] border-[#0000001A] rounded-lg py-2 px-4 text-sm text-black font-[400] hover:bg-[#F9F9FA] transition-colors whitespace-nowrap"
+                                >
+                                  {copied ? (
+                                    <>
+                                      <PiCheckCircle className="text-green-500 text-lg" />
+                                      <span>Copied!</span>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <IoCopyOutline className="text-lg" />
+                                      <span>Copy</span>
+                                    </>
+                                  )}
+                                </button>
+                              </div>
+                            </div>
+                          }
           <div className="sm:hidden flex gap-x-6 ps-4 pe-4 py-6 bg-white rounded-full items-center my-5">
             <RiAddLargeLine className="text-black  text-xl" />
 

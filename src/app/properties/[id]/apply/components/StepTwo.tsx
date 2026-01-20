@@ -30,16 +30,22 @@ export default function StepTwo({
               onBlur={formik.handleBlur}
               className="w-full appearance-none text-sm sm:text-base py-1 outline-none border-0 text-black bg-transparent"
             >
-              <option value="">Select ID type</option>
+              <option value="" disabled>
+                Select ID type
+              </option>
               <option value="passport">Passport</option>
-              <option value="driving-license">UK Driving License</option>
-              <option value="biometric-residence">Biometric Residence Permit</option>
-              <option value="national-id">National ID Card</option>
+              <option value="driverlicense">UK Driving License</option>
+              <option value="biometricResidencePermit">
+                Biometric Residence Permit
+              </option>
+              <option value="nationalIdCard">National ID Card</option>
             </select>
             <LuChevronsUpDown className="absolute pointer-events-none top-[20px] sm:top-[24px] right-5 sm:right-6 text-black/50" />
           </div>
           {formik.touched.proofOfIdType && formik.errors.proofOfIdType && (
-            <div className="text-red-500 text-sm mt-2 font-medium">{formik.errors.proofOfIdType}</div>
+            <div className="text-red-500 text-sm mt-2 font-medium">
+              {formik.errors.proofOfIdType}
+            </div>
           )}
         </div>
 
@@ -60,7 +66,9 @@ export default function StepTwo({
             />
           </div>
           {formik.touched.idNumber && formik.errors.idNumber && (
-            <div className="text-red-500 text-sm mt-2 font-medium">{formik.errors.idNumber}</div>
+            <div className="text-red-500 text-sm mt-2 font-medium">
+              {formik.errors.idNumber}
+            </div>
           )}
         </div>
 
@@ -77,18 +85,23 @@ export default function StepTwo({
               onBlur={formik.handleBlur}
               className="w-full appearance-none text-sm sm:text-base py-1 outline-none border-0 text-black bg-transparent"
             >
-              <option value="">Select status</option>
-              <option value="uk-citizen">UK Citizen</option>
-              <option value="eu-settled">EU Settled Status</option>
-              <option value="visa">Visa Holder</option>
-              <option value="indefinite-leave">Indefinite Leave to Remain</option>
+              <option value="" disabled>
+                Select status
+              </option>
+              <option value="ukCitizen">UK Citizen</option>
+              <option value="eu">EU Settled Status</option>
+              <option value="visaHolder">Visa Holder</option>
+
               <option value="other">Other</option>
             </select>
             <LuChevronsUpDown className="absolute pointer-events-none top-[20px] sm:top-[24px] right-5 sm:right-6 text-black/50" />
           </div>
-          {formik.touched.visaResidencyStatus && formik.errors.visaResidencyStatus && (
-            <div className="text-red-500 text-sm mt-2 font-medium">{formik.errors.visaResidencyStatus}</div>
-          )}
+          {formik.touched.visaResidencyStatus &&
+            formik.errors.visaResidencyStatus && (
+              <div className="text-red-500 text-sm mt-2 font-medium">
+                {formik.errors.visaResidencyStatus}
+              </div>
+            )}
         </div>
 
         {/* Share Code */}
@@ -114,9 +127,9 @@ export default function StepTwo({
           label="Upload Proof of ID"
           required
           accept="image/*,.pdf"
-          files={formik.values.proofOfIdFile ? [formik.values.proofOfIdFile] : []}
+          files={formik.values.proofOfIdFile ? formik.values.proofOfIdFile : []}
           onChange={(files) => {
-            formik.setFieldValue("proofOfIdFile", files[0] || null);
+            formik.setFieldValue("proofOfIdFile", files || null);
             formik.setFieldTouched("proofOfIdFile", true);
           }}
           error={
@@ -132,13 +145,18 @@ export default function StepTwo({
           label="Upload Proof of Address"
           required
           accept="image/*,.pdf"
-          files={formik.values.proofOfAddressFile ? [formik.values.proofOfAddressFile] : []}
+          files={
+            formik.values.proofOfAddressFile
+              ? formik.values.proofOfAddressFile
+              : []
+          }
           onChange={(files) => {
-            formik.setFieldValue("proofOfAddressFile", files[0] || null);
+            formik.setFieldValue("proofOfAddressFile", files || null);
             formik.setFieldTouched("proofOfAddressFile", true);
           }}
           error={
-            formik.touched.proofOfAddressFile && formik.errors.proofOfAddressFile
+            formik.touched.proofOfAddressFile &&
+            formik.errors.proofOfAddressFile
               ? String(formik.errors.proofOfAddressFile)
               : undefined
           }
@@ -150,6 +168,7 @@ export default function StepTwo({
           <input
             type="checkbox"
             name="consentToRightToRent"
+            id = "consentToRightToRent"
             checked={formik.values.consentToRightToRent}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -160,13 +179,13 @@ export default function StepTwo({
             <span className="text-red-500">*</span>
           </label>
         </div>
-        {formik.touched.consentToRightToRent && formik.errors.consentToRightToRent && (
-          <div className="text-red-500 text-sm mt-2 ml-8 font-medium">
-            {formik.errors.consentToRightToRent}
-          </div>
-        )}
+        {formik.touched.consentToRightToRent &&
+          formik.errors.consentToRightToRent && (
+            <div className="text-red-500 text-sm mt-2 ml-8 font-medium">
+              {formik.errors.consentToRightToRent}
+            </div>
+          )}
       </div>
     </div>
   );
 }
-

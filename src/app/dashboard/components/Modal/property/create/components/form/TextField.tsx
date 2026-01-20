@@ -11,16 +11,18 @@ interface TextField extends React.InputHTMLAttributes<HTMLInputElement> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error?: any;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  parentClassName? :string
 }
 export default function TextField({
   className,
   text,
   type,
   placeholder,
+  parentClassName,
   ...props
 }: TextField) {
   return (
-    <div className="col-span-2">
+    <div className={`col-span-2 ${parentClassName}`}>
       <div className={className}>
         <label className="text-[#00000066] text-xs font-normal">{text}</label>
         <input

@@ -108,7 +108,7 @@ userInstance.interceptors.response.use(
           // Call your API to refresh the token
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const refreshResponse = await authInstance.post<RefreshTokenResponse>(
-            "/api/auth/refresh-token",
+            "/api/auth/refreshToken",
             {},
             {
               withCredentials: true,
@@ -124,15 +124,15 @@ userInstance.interceptors.response.use(
         } catch (error) {
           console.log("response error:", error);
           // Handle refresh token failure (e.g., log out the user)
-          Cookies.remove("token");
-          location.replace("/auth/signin");
+          // Cookies.remove("token");
+          // location.replace("/auth/signin");
 
           return Promise.reject({ error, message, statusCode });
         }
       }
       if (response.status === 403 || response.status === 401) {
-        Cookies.remove("token");
-        location.replace("/auth/signin");
+        // Cookies.remove("token");
+        // location.replace("/auth/signin");
       }
       // Handle failed refresh here
       return Promise.reject({ error, message, statusCode });

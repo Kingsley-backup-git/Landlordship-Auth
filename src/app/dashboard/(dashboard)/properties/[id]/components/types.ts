@@ -1,4 +1,5 @@
 export type TabType =
+  "interest" 
   | "applications"
   | "property-info"
   | "tenant-info"
@@ -6,15 +7,20 @@ export type TabType =
   | "rent-history";
 
 export interface PropertyData {
-  propertyName: string;
+  Properties: {
+    _id: string,
+      propertyName: string;
   propertyType: string;
-  squareFeet: number;
+  square_feet: number;
   bedrooms: number;
   bathrooms: number;
-  parkingSpaces: number;
-  description: string;
-  keyFeatures: string[];
-  applicationLink: string;
+  parkingspaces: number;
+  property_description: string;
+  additional_features: string[];
+    applicationLink: string;
+  
+  }
+
 }
 
 export interface TenantData {
@@ -34,10 +40,12 @@ export interface TenantData {
 }
 
 export interface Application {
-  id: string;
-  applicant: string;
-  appliedDate: string;
-  moveInDate: string;
+  _id: string;
+  firstName: string;
+   lastName: string;
+  createdAt: string;
+  move_in_date: string;
+  dob: string | Date;
   status: string;
   referenceCheck: string;
   creditCheck: string;
@@ -71,5 +79,8 @@ export interface DocumentFormData {
   expiryDate: string;
   file: File | null;
 }
+
+
+
 
 

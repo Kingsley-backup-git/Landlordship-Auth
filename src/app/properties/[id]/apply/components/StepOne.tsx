@@ -229,7 +229,7 @@ export default function StepOne({
           </div>
 
           {/* Time at Current Address */}
-          <div>
+          {/* <div>
             <label className="text-black/80 text-sm sm:text-base font-medium block mb-3">
               Time at Current Address
             </label>
@@ -244,7 +244,7 @@ export default function StepOne({
                 className="w-full py-1 text-black text-sm sm:text-base placeholder:text-black/40 rounded-lg outline-none border-0"
               />
             </div>
-          </div>
+          </div> */}
 
           {/* Reason for Leaving */}
           <div className="md:col-span-2">

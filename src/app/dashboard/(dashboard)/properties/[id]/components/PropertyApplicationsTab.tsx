@@ -1,17 +1,25 @@
-import React, { Dispatch, SetStateAction } from "react";
+"use client";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 import { PiCheckCircle } from "react-icons/pi";
 import { Application, PropertyData } from "./types";
 import { getStatusBadge } from "./utils";
+import PropertyApplicationDetails from "./PropertyApplicationDetails";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface PropertyApplicationsTabProps {
   propertyData: PropertyData;
-  applications: Application[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  applications: any;
   copied: boolean;
   onCopy: () => void;
   setApplicationStatus: Dispatch<SetStateAction<string>>;
   filteredStatus: Application[];
 }
+
+
+
+
 
 export default function PropertyApplicationsTab({
   propertyData,
@@ -21,6 +29,87 @@ export default function PropertyApplicationsTab({
   setApplicationStatus,
   filteredStatus,
 }: PropertyApplicationsTabProps) {
+  const queryClient = useQueryClient();
+  const [selectedApplication, setSelectedApplication] =
+    useState(null);
+  const [showDetails, setShowDetails] = useState(false);
+  const [isApproving, setIsApproving] = useState(false);
+  const [isRejecting, setIsRejecting] = useState(false);
+
+  // Approve mutation
+  const approveMutation = useMutation({
+    mutationFn: async (applicationId: string) => {
+      // Replace with your actual API call
+      // await new ApplicationService().approveApplication(applicationId);
+      return applicationId;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["applications", propertyData?.Properties?._id],
+      });
+      setIsApproving(false);
+      setShowDetails(false);
+      setSelectedApplication(null);
+    },
+  });
+
+  // Reject mutation
+  const rejectMutation = useMutation({
+    mutationFn: async (applicationId: string) => {
+      // Replace with your actual API call
+      // await new ApplicationService().rejectApplication(applicationId);
+      return applicationId;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["applications", propertyData?.Properties?._id],
+      });
+      setIsRejecting(false);
+      setShowDetails(false);
+      setSelectedApplication(null);
+    },
+  });
+
+  const handleViewApplication = () => {
+   
+    setShowDetails(true);
+  };
+
+  const handleCloseDetails = () => {
+    setShowDetails(false);
+    setSelectedApplication(null);
+  };
+
+  const handleApprove = async (applicationId: string) => {
+    setIsApproving(true);
+    approveMutation.mutate(applicationId);
+  };
+
+  const handleReject = async (applicationId: string) => {
+    setIsRejecting(true);
+    rejectMutation.mutate(applicationId);
+  };
+
+  // Show details component if selected
+  if (showDetails) {
+    return (
+      <PropertyApplicationDetails
+        applications={applications}
+        onClose={handleCloseDetails}
+        onApprove={handleApprove}
+        onReject={handleReject}
+        isApproving={isApproving}
+        isRejecting={isRejecting}
+      />
+    );
+  }
+
+  // Use filteredStatus if provided, otherwise use applications
+  const displayApplications = filteredStatus && filteredStatus.length > 0 
+    ? filteredStatus 
+    : (applications || []);
+
+  // Show main list view
   return (
     <div className="space-y-6 animate-fadeIn">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -68,7 +157,7 @@ export default function PropertyApplicationsTab({
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <input
             type="text"
-            value={propertyData.applicationLink}
+            value={`http://localhost:3000/properties/${propertyData?.Properties?._id}/apply`}
             readOnly
             className="flex-1 bg-white border-[.5px] border-[#0000001A] rounded-lg py-2 px-4 text-sm text-black font-[400] focus:outline-none focus:ring-2 focus:ring-[#007AFF] focus:ring-opacity-20 truncate"
           />
@@ -140,34 +229,39 @@ export default function PropertyApplicationsTab({
 
             {/* Table Rows */}
             <div className="space-y-4 w-full">
-              {filteredStatus?.map((app, index) => (
+           
+              {/*eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              {displayApplications?.map((app:any, index:number) => (
                 <div
                   key={index}
                   className="grid grid-cols-12 w-full gap-4 items-center py-3 border-b-[1px] border-[#0000000A] last:border-0"
                 >
                   <div className="col-span-1 text-black font-[400] text-sm truncate">
-                    {app.id}
+                    {app?._id}
                   </div>
                   <div className="col-span-2 text-black font-[400] text-sm truncate">
-                    {app.applicant}
+                    {app.firstName + " " + app.lastName}
                   </div>
                   <div className="col-span-2 text-black font-[400] text-sm">
-                    {new Date(app.appliedDate).toLocaleDateString()}
+                    {new Date(app?.createdAt).toLocaleDateString()}
                   </div>
                   <div className="col-span-2 text-black font-[400] text-sm">
-                    {new Date(app.moveInDate).toLocaleDateString()}
+                    {new Date(app.move_in_date).toLocaleDateString()}
                   </div>
                   <div className="col-span-1 justify-center flex">
-                    {getStatusBadge(app.status)}
+                    {getStatusBadge("pending")}
                   </div>
                   <div className="col-span-2 justify-center flex">
-                    {getStatusBadge(app.referenceCheck)}
+                    {getStatusBadge("pending")}
                   </div>
                   <div className="col-span-1 justify-center flex">
-                    {getStatusBadge(app.creditCheck)}
+                    {getStatusBadge("pending")}
                   </div>
                   <div className="col-span-1 justify-center flex">
-                    <button className="text-[#007AFF] hover:text-[#0056CC] text-sm font-[400] transition-colors whitespace-nowrap">
+                    <button
+                      onClick={() => handleViewApplication()}
+                      className="text-[#007AFF] hover:text-[#0056CC] text-sm font-[400] transition-colors whitespace-nowrap"
+                    >
                       View
                     </button>
                   </div>
@@ -179,14 +273,15 @@ export default function PropertyApplicationsTab({
 
         {/* Mobile Cards */}
         <div className="sm:hidden block space-y-4">
-          {applications.map((app, index) => (
+          {/*eslint-disable-next-line @typescript-eslint/no-explicit-any*/}
+          {displayApplications.map((app:any, index:number) => (
             <div
               key={index}
               className="bg-white p-4 rounded-xl border-[.5px] border-[#0000001A]"
             >
               <div className="flex items-center justify-between mb-3">
                 <h1 className="text-black font-semibold text-sm">
-                  {app.applicant}
+                     {app.firstName + " " + app.lastName}
                 </h1>
                 {getStatusBadge(app.status)}
               </div>
@@ -194,19 +289,19 @@ export default function PropertyApplicationsTab({
                 <div className="flex justify-between">
                   <span className="text-[#00000066] text-xs">ID:</span>
                   <span className="text-black text-xs font-[400]">
-                    {app.id}
+                    {app._id}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#00000066] text-xs">Applied:</span>
                   <span className="text-black text-xs font-[400]">
-                    {new Date(app.appliedDate).toLocaleDateString()}
+                    {new Date(app.createdAt).toLocaleDateString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#00000066] text-xs">Move-in:</span>
                   <span className="text-black text-xs font-[400]">
-                    {new Date(app.moveInDate).toLocaleDateString()}
+                    {new Date(app.move_in_date).toLocaleDateString()}
                   </span>
                 </div>
                 <div className="flex justify-between items-center pt-2 border-t-[1px] border-[#0000000A]">
@@ -215,14 +310,17 @@ export default function PropertyApplicationsTab({
                       <span className="text-[#00000066] text-xs">
                         Reference:
                       </span>
-                      {getStatusBadge(app.referenceCheck)}
+                      {getStatusBadge("pending")}
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-[#00000066] text-xs">Credit:</span>
-                      {getStatusBadge(app.creditCheck)}
+                      {getStatusBadge("pending")}
                     </div>
                   </div>
-                  <button className="text-[#007AFF] hover:text-[#0056CC] text-sm font-[400] transition-colors">
+                  <button
+                    onClick={() => handleViewApplication()}
+                    className="text-[#007AFF] hover:text-[#0056CC] text-sm font-[400] transition-colors"
+                  >
                     View
                   </button>
                 </div>
@@ -234,3 +332,6 @@ export default function PropertyApplicationsTab({
     </div>
   );
 }
+
+
+
