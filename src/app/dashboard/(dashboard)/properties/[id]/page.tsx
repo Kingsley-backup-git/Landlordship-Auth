@@ -127,7 +127,7 @@ const [applicationStatus, setApplicationStatus] = useState<string>("all")
   ];
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(`https://yourlandlordship.com/properties/${data?.Properties?._id}/apply`);
+    navigator.clipboard.writeText(`https://landlordship-auth.vercel.app/properties/${data?.Properties?._id}/apply`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
