@@ -1,12 +1,12 @@
 "use client";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 import { PiCheckCircle } from "react-icons/pi";
 import { Application, PropertyData } from "./types";
 import { getStatusBadge } from "./utils";
 import PropertyApplicationDetails from "./PropertyApplicationDetails";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
+import { FaRegFolderOpen } from "react-icons/fa";
 interface PropertyApplicationsTabProps {
   propertyData: PropertyData;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -89,7 +89,22 @@ export default function PropertyApplicationsTab({
     setIsRejecting(true);
     rejectMutation.mutate(applicationId);
   };
+  const pendingApplications = useCallback((val:string) => {
+    if (val === "pending") {
+      const pending = applications.filter((item: { status: string }) => (item.status === "pending"))
+      return pending
+    } else if (val === "approved") {
+      const approved = applications.filter((item: { status: string }) => (item.status === "approved"))
+      return approved
+      
+    } else {
+        const rejected = applications.filter((item: { status: string }) => (item.status === "rejected"))
+      return rejected
+    }
 
+    
+    
+  },[applications]) 
   // Show details component if selected
   if (showDetails) {
     return (
@@ -110,6 +125,8 @@ export default function PropertyApplicationsTab({
     : (applications || []);
 
   // Show main list view
+
+
   return (
     <div className="space-y-6 animate-fadeIn">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -117,7 +134,7 @@ export default function PropertyApplicationsTab({
           <h3 className="text-xs font-[400] text-[#00000066] mb-2">
             Total Applications
           </h3>
-          <h1 className="text-black font-semibold text-xl sm:text-xl">8</h1>
+          <h1 className="text-black font-semibold text-xl sm:text-xl">{applications?.length}</h1>
         </div>
         <div className="bg-[#EDEEFC] p-4 sm:p-5 rounded-xl border-[.5px] border-[#0000000A]">
           <div className="flex items-center">
@@ -126,7 +143,7 @@ export default function PropertyApplicationsTab({
             </h3>
             <div className="w-[8px] h-[8px] bg-yellow-500 rounded-full"></div>
           </div>
-          <h1 className="text-black font-semibold text-xl sm:text-xl">2</h1>
+          <h1 className="text-black font-semibold text-xl sm:text-xl">{pendingApplications("pending").length}</h1>
         </div>
 
         <div className=" bg-[#E6F1FD] p-4 sm:p-5 rounded-xl border-[.5px] border-[#0000000A]">
@@ -136,7 +153,7 @@ export default function PropertyApplicationsTab({
             </h3>
             <div className="w-[8px] h-[8px] bg-green-500 rounded-full"></div>
           </div>
-          <h1 className="text-black font-semibold text-xl sm:text-xl">4</h1>
+          <h1 className="text-black font-semibold text-xl sm:text-xl">{pendingApplications("approved").length}</h1>
         </div>
         <div className="bg-[#EDEEFC] p-4 sm:p-5 rounded-xl border-[.5px] border-[#0000000A]">
           <div className="flex items-center">
@@ -145,7 +162,7 @@ export default function PropertyApplicationsTab({
             </h3>
             <div className="w-[8px] h-[8px] bg-red-500 rounded-full"></div>
           </div>
-          <h1 className="text-black font-semibold text-xl sm:text-xl">2</h1>
+          <h1 className="text-black font-semibold text-xl sm:text-xl">{pendingApplications("rejected").length}</h1>
         </div>
       </div>
 
@@ -157,7 +174,7 @@ export default function PropertyApplicationsTab({
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <input
             type="text"
-            value={`http://localhost:3000/properties/${propertyData?.Properties?._id}/apply`}
+            value={`https://landlordship-auth.vercel.app/properties/${propertyData?.Properties?._id}/apply`}
             readOnly
             className="flex-1 bg-white border-[.5px] border-[#0000001A] rounded-lg py-2 px-4 text-sm text-black font-[400] focus:outline-none focus:ring-2 focus:ring-[#007AFF] focus:ring-opacity-20 truncate"
           />
@@ -197,79 +214,76 @@ export default function PropertyApplicationsTab({
           </select>
         </div>
         {/* Desktop Table */}
-        <div className="sm:block hidden overflow-x-auto w-full px-6">
-          <div className="w-full min-w-[1200px]">
-            {/* Table Header */}
-            <div className="grid grid-cols-12 w-full gap-4 pb-3 border-b-[1px] border-[#0000000A] mb-4">
-              <div className="col-span-1 text-[#00000066] font-[400] text-xs">
-                ID
-              </div>
-              <div className="col-span-2 text-[#00000066] font-[400] text-xs">
-                Applicant
-              </div>
-              <div className="col-span-2 text-[#00000066] font-[400] text-xs">
-                Applied Date
-              </div>
-              <div className="col-span-2 text-[#00000066] font-[400] text-xs">
-                Move-in Date
-              </div>
-              <div className="col-span-1 justify-center flex text-[#00000066] font-[400] text-xs">
-                Status
-              </div>
-              <div className="col-span-2 justify-center flex text-[#00000066] font-[400] text-xs">
-                Reference Check
-              </div>
-              <div className="col-span-1 justify-center flex text-[#00000066] font-[400] text-xs">
-                Credit
-              </div>
-              <div className="col-span-1 justify-center flex text-[#00000066] font-[400] text-xs">
-                Actions
-              </div>
-            </div>
-
-            {/* Table Rows */}
-            <div className="space-y-4 w-full">
-           
-              {/*eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {displayApplications?.map((app:any, index:number) => (
-                <div
-                  key={index}
-                  className="grid grid-cols-12 w-full gap-4 items-center py-3 border-b-[1px] border-[#0000000A] last:border-0"
-                >
-                  <div className="col-span-1 text-black font-[400] text-sm truncate">
-                    {app?._id}
+        {displayApplications.length > 0 ?
+          (
+            <div className="sm:block hidden overflow-x-auto w-full px-6">
+              <div className="w-full min-w-[1200px]">
+                {/* Table Header */}
+                <div className="grid grid-cols-11 w-full gap-4 pb-3 border-b-[1px] border-[#0000000A] mb-4">
+                  <div className="col-span-1 text-[#00000066] font-[400] text-xs">
+                    ID
                   </div>
-                  <div className="col-span-2 text-black font-[400] text-sm truncate">
-                    {app.firstName + " " + app.lastName}
+                  <div className="col-span-2 text-[#00000066] font-[400] text-xs">
+                    Applicant
                   </div>
-                  <div className="col-span-2 text-black font-[400] text-sm">
-                    {new Date(app?.createdAt).toLocaleDateString()}
+                  <div className="col-span-2 text-[#00000066] font-[400] text-xs">
+                    Applied Date
                   </div>
-                  <div className="col-span-2 text-black font-[400] text-sm">
-                    {new Date(app.move_in_date).toLocaleDateString()}
+                  <div className="col-span-2 text-[#00000066] font-[400] text-xs">
+                    Move-in Date
                   </div>
-                  <div className="col-span-1 justify-center flex">
-                    {getStatusBadge("pending")}
+                  <div className="col-span-1 justify-center flex text-[#00000066] font-[400] text-xs">
+                    Status
                   </div>
-                  <div className="col-span-2 justify-center flex">
-                    {getStatusBadge("pending")}
+                  <div className="col-span-2 justify-center flex text-[#00000066] font-[400] text-xs">
+                    Reference Check
                   </div>
-                  <div className="col-span-1 justify-center flex">
-                    {getStatusBadge("pending")}
+                  <div className="col-span-1 justify-center flex text-[#00000066] font-[400] text-xs">
+                    Credit
                   </div>
-                  <div className="col-span-1 justify-center flex">
-                    <button
-                      onClick={() => handleViewApplication()}
-                      className="text-[#007AFF] hover:text-[#0056CC] text-sm font-[400] transition-colors whitespace-nowrap"
-                    >
-                      View
-                    </button>
-                  </div>
+                 
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
+
+                {/* Table Rows */}
+                <div className="space-y-4 w-full">
+           
+                  {/*eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                  {displayApplications?.map((app: any, index: number) => (
+                    <div
+                         onClick={() => handleViewApplication()}
+                      key={index}
+                      className="grid grid-cols-11 w-full gap-4 items-center cursor-pointer hover:bg-[#0000000A]  py-3 border-b-[1px] border-[#0000000A] last:border-0"
+                    >
+                      <div className="col-span-1 text-black font-[400] text-sm truncate">
+                        {app?._id}
+                      </div>
+                      <div className="col-span-2 text-black font-[400] text-sm truncate">
+                        {app.firstName + " " + app.lastName}
+                      </div>
+                      <div className="col-span-2 text-black font-[400] text-sm">
+                        {new Date(app?.createdAt).toLocaleDateString()}
+                      </div>
+                      <div className="col-span-2 text-black font-[400] text-sm">
+                        {new Date(app.move_in_date).toLocaleDateString()}
+                      </div>
+                      <div className="col-span-1 justify-center flex">
+                        {getStatusBadge("pending")}
+                      </div>
+                      <div className="col-span-2 justify-center flex">
+                        {getStatusBadge("pending")}
+                      </div>
+                      <div className="col-span-1 justify-center flex">
+                        {getStatusBadge("pending")}
+                      </div>
+                    
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div> ) : <div className="py-4 w-full flex justify-center flex-col items-center">
+                       <FaRegFolderOpen className="text-5xl text-black"/>
+                      <h1 className="text-black font-bold">No Applications yet</h1>
+                      </div>}
 
         {/* Mobile Cards */}
         <div className="sm:hidden block space-y-4">
