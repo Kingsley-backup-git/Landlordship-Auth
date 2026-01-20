@@ -6,6 +6,10 @@ interface TextField extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
   maxlength?: number;
   pattern?: string;
+  touched?: boolean;
+ // eslint-disable-next-line @typescript-eslint/no-explicit-any
+ error?: any;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 export default function CurrencyInput({
   className,
@@ -15,6 +19,9 @@ export default function CurrencyInput({
   ...props
 }: TextField) {
   return (
+    <div className="col-span-2">
+
+ 
     <div className={className}>
       <label className="text-[#00000066] text-xs font-normal">{text}</label>
       <div className="flex items-center relative">
@@ -26,6 +33,11 @@ export default function CurrencyInput({
           placeholder={placeholder}
         />
       </div>
-    </div>
+       
+      </div>
+        {props?.touched && props?.error && (
+        <div className="text-red-500 text-xs">{props?.error}</div>
+      )}
+         </div>
   );
 }

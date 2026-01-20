@@ -13,6 +13,7 @@ export default function AuthValidation(handleLoader: (val: boolean) => void) {
   const { doLogin } = useAuth(handleLoader, push);
   const { doResetPassword } = useAuth(handleLoader, push);
   const validationSchema = Yup.object().shape({
+    userName : Yup.string().required("Username is required"),
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
@@ -46,7 +47,7 @@ export default function AuthValidation(handleLoader: (val: boolean) => void) {
   });
 
   const authFormik = useFormik({
-    initialValues: { email: "", password: "", confirmPassword: "" },
+    initialValues: { userName : "", email: "", password: "", confirmPassword: "" },
     validationSchema,
     onSubmit: (values: AuthInitialValues) => {
       doRegister(values);

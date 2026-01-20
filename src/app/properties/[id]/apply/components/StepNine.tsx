@@ -7,9 +7,14 @@ import Button from "@/app/components/ui/Button";
 export default function StepNine({
   formik,
   onSubmit,
+  propertyAddress,
+  ApplyPropertyMutation
 }: {
   formik: FormikProps<ApplicationFormValues>;
-  onSubmit: () => void;
+    onSubmit: () => void;
+    propertyAddress: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ApplyPropertyMutation : any
 }) {
   return (
     <div>
@@ -59,7 +64,7 @@ export default function StepNine({
             </div>
             <div>
               <span className="text-[#00000066]">Property: </span>
-              <span className="text-black">{formik.values.propertyAddress}</span>
+              <span className="text-black">{propertyAddress}</span>
             </div>
             <div>
               <span className="text-[#00000066]">Number of Tenants: </span>
@@ -106,13 +111,13 @@ export default function StepNine({
             {formik.values.proofOfIdFile && (
               <div>
                 <span className="text-[#00000066]">Proof of ID: </span>
-                <span className="text-black">{formik.values.proofOfIdFile.name}</span>
+                <span className="text-black">{formik.values.proofOfIdFile[0].name}</span>
               </div>
             )}
             {formik.values.proofOfAddressFile && (
               <div>
                 <span className="text-[#00000066]">Proof of Address: </span>
-                <span className="text-black">{formik.values.proofOfAddressFile.name}</span>
+                <span className="text-black">{formik.values.proofOfAddressFile[0].name}</span>
               </div>
             )}
             {formik.values.payslipsFiles.length > 0 && (
@@ -144,8 +149,9 @@ export default function StepNine({
         <div className="pt-6">
           <Button
             type="button"
+            disabled = {ApplyPropertyMutation?.isPending || Object.keys(formik.errors).length > 0}
             onClick={onSubmit}
-            classname="w-full bg-black text-white text-sm font-[400] rounded-lg py-3 px-4"
+            classname={`w-full bg-black text-white text-sm disabled:cursor-not-allowed disabled:bg-gray-300 font-[400] rounded-lg py-3 px-4`}
             text="Submit Application"
           />
         </div>
@@ -153,6 +159,8 @@ export default function StepNine({
     </div>
   );
 }
+
+
 
 
 

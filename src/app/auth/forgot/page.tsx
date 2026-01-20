@@ -56,7 +56,10 @@ export default function Forgot() {
             </div>
 
             <Button
-              onClick={() => doForgotPassword({ email })}
+              onClick={() => doForgotPassword({
+                email,
+            
+              })}
               disabled={disabled}
               type="button"
               classname={`max-w-[395px] w-full mx-auto block rounded-xl  ${disabled ? "bg-gray-400 cursor-not-allowed" : "bg-black cursor-pointer"} py-2 px-4 mt-6 text-white`}

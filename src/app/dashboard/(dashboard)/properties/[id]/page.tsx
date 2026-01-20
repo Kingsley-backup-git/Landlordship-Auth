@@ -17,6 +17,10 @@ import PropertyInfoTab from "./components/PropertyInfoTab";
 import TenantInformationTab from "./components/TenantInformationTab";
 import LegalComplianceTab from "./components/LegalComplianceTab";
 import RentHistoryTab from "./components/RentHistoryTab";
+import PropertyInterestTab from "./components/PropertyInterestTab";
+import { useQuery } from "@tanstack/react-query";
+import { PropertyService } from "@/services/property";
+import { ApplicationService } from "@/services/application";
 
 export default function PropertyDetailsPage({
   params,
@@ -24,86 +28,22 @@ export default function PropertyDetailsPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
-  const [activeTab, setActiveTab] = useState<TabType>("applications");
+  const { data, isSuccess, isPending, isError } = useQuery({
+    queryKey: ['eachProperty', id],
+    queryFn : async()=> await new PropertyService().getEachUserProperties(id)
+  })
+
+  const { data:applicationData, isSuccess:applicationSuccess, isPending:applicationPending, isError:applicationError } = useQuery({
+    queryKey: ['applications', id],
+    queryFn : async()=> await new ApplicationService().getApplications(id)
+  })
+  const [activeTab, setActiveTab] = useState<TabType>("interest");
   const [copied, setCopied] = useState(false);
 const [applicationStatus, setApplicationStatus] = useState<string>("all")
   // Dummy data
-  const propertyData: PropertyData = {
-    propertyName: "Sunset Apartments - Unit 4B",
-    propertyType: "Apartment",
-    squareFeet: 1200,
-    bedrooms: 2,
-    bathrooms: 2,
-    parkingSpaces: 1,
-    description:
-      "Beautiful modern apartment with stunning city views. Recently renovated with high-end finishes throughout.",
-    keyFeatures: [
-      "Hardwood floors",
-      "Granite countertops",
-      "Stainless steel appliances",
-      "In-unit laundry",
-      "Balcony with city view",
-      "Central air conditioning",
-      "Pet-friendly",
-    ],
-    applicationLink: "https://yourlandlordship.com/apply/property-12345",
-  };
-
-  const tenantData: TenantData = {
-    primaryTenant: "Sarah Johnson",
-    email: "sarah.johnson@email.com",
-    phoneNumber: "+1 (555) 123-4567",
-    monthlyRent: 2500,
-    leaseStatus: "Active",
-    moveInDate: "February 1, 2023",
-    leaseStartDate: "February 1, 2023",
-    leaseEndDate: "January 31, 2024",
-    emergencyContact: {
-      name: "Michael Johnson",
-      phoneNumber: "+1 (555) 987-6543",
-      relationship: "Spouse",
-    },
-  };
+  
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const applications: Application[] = [
-    {
-      id: "APP-001",
-      applicant: "John Smith",
-      appliedDate: "2024-01-15",
-      moveInDate: "2024-02-01",
-      status: "Pending",
-      referenceCheck: "Completed",
-      creditCheck: "Completed",
-    },
-    {
-      id: "APP-002",
-      applicant: "Emily Davis",
-      appliedDate: "2024-01-10",
-      moveInDate: "2024-02-15",
-      status: "Approved",
-      referenceCheck: "Completed",
-      creditCheck: "Completed",
-    },
-    {
-      id: "APP-003",
-      applicant: "Michael Brown",
-      appliedDate: "2024-01-08",
-      moveInDate: "2024-01-25",
-      status: "Rejected",
-      referenceCheck: "Failed",
-      creditCheck: "Completed",
-    },
-    {
-      id: "APP-004",
-      applicant: "Jessica Wilson",
-      appliedDate: "2024-01-20",
-      moveInDate: "2024-02-10",
-      status: "Pending",
-      referenceCheck: "In Progress",
-      creditCheck: "In Progress",
-    },
-  ];
 
   const complianceData: ComplianceData = {
     gasSafetyCertificateDate: "2023-12-15",
@@ -178,6 +118,7 @@ const [applicationStatus, setApplicationStatus] = useState<string>("all")
   ];
 
   const tabs = [
+    { id: "interest" as TabType, label: "Property Interest" },
     { id: "applications" as TabType, label: "Property Applications" },
     { id: "property-info" as TabType, label: "Property Info" },
     { id: "tenant-info" as TabType, label: "Tenant Information" },
@@ -186,7 +127,7 @@ const [applicationStatus, setApplicationStatus] = useState<string>("all")
   ];
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(propertyData.applicationLink);
+    navigator.clipboard.writeText(`https://yourlandlordship.com/properties/${data?.Properties?._id}/apply`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -210,15 +151,52 @@ const [applicationStatus, setApplicationStatus] = useState<string>("all")
     setLegalDocuments([...legalDocuments, newDocument]);
   };
 
-  const filteredStatus = useMemo(() => {
-    if(applicationStatus === "all") {
-      return applications
-    } else {
-const data = applications.filter((item) => item?.status === applicationStatus)
-return data
-    }
+//   const filteredStatus = useMemo(() => {
+//     if(applicationStatus === "all") {
+//       return applications
+//     } else {
+// const data = applications.filter((item) => item?.status === applicationStatus)
+// return data
+//     }
 
-},[applicationStatus, applications])
+// },[applicationStatus, applications])
+  // Show loading state
+  if (isPending) {
+    return (
+      <div className="sm:p-6 py-2 px-4 mx-auto w-[100%] pb-6 overflow-x-hidden">
+        <PropertyHeader />
+        <div className="flex items-center justify-center py-20">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
+            <p className="text-[#00000066] font-[400] text-sm">Loading property details...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (isError) {
+    return (
+      <div className="sm:p-6 py-2 px-4 mx-auto w-[100%] pb-6 overflow-x-hidden">
+        <PropertyHeader />
+        <div className="bg-[#FFE5E5] border border-red-200 rounded-xl p-8 text-center max-w-md mx-auto mt-8">
+          <div className="text-4xl mb-4">⚠️</div>
+          <h2 className="text-xl font-semibold text-black mb-2">Failed to Load Property</h2>
+          <p className="text-red-600 font-[400] text-sm mb-6">
+            We couldn&apos;t load the property details. Please try again later.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-6 py-2 bg-black text-white rounded-lg hover:bg-black/90 transition-colors text-sm font-[400]"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="sm:p-6 py-2 px-4 mx-auto w-[100%] pb-6 overflow-x-hidden">
       <PropertyHeader />
@@ -233,22 +211,28 @@ return data
       <div className="relative min-h-[400px]">
         {activeTab === "applications" && (
           <PropertyApplicationsTab
-            propertyData={propertyData}
-            applications={applications}
+            propertyData={data}
+            applications={applicationData}
             copied={copied}
             onCopy={copyToClipboard}
             setApplicationStatus={setApplicationStatus}
-            filteredStatus={filteredStatus}
+            filteredStatus={applicationData}
+          />
+        )}
+
+          {activeTab === "interest" && (
+          <PropertyInterestTab 
+             propertyData={data}
           />
         )}
 
         {activeTab === "property-info" && (
-          <PropertyInfoTab propertyData={propertyData} />
+          <PropertyInfoTab propertyData={data} />
         )}
 
-        {activeTab === "tenant-info" && (
+        {/* {activeTab === "tenant-info" && (
           <TenantInformationTab tenantData={tenantData} />
-        )}
+        )} */}
 
         {activeTab === "legal-compliance" && (
           <LegalComplianceTab

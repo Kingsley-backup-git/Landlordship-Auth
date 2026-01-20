@@ -12,17 +12,18 @@ export class AuthService {
   register = async (values: AuthInitialValues) => {
     try {
       const res = await authInstance.post("/api/auth/register", values);
-      console.log(res);
-      return res;
+      console.log(res?.data);
+      return res?.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      throw Error(error);
+      throw Error(error?.error);
     }
   };
   login = async (values: AuthInitialValues) => {
     try {
       const res = await authInstance.post("/api/auth/login", values);
-      return res;
+     
+      return res?.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw Error(error?.error);

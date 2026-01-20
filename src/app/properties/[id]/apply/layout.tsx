@@ -1,5 +1,6 @@
+import AuthNavbar from "@/app/auth/components/AuthNavbar";
 import React, { ReactNode } from "react";
-import AuthNavbar from "../../auth/components/AuthNavbar";
+
 //import Logo from "../../../public/streamwallet.png";
 //import whiteStreamLogo from "../../../public/whiteKycLogo.png"
 

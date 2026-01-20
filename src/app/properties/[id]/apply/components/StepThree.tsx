@@ -29,12 +29,13 @@ export default function StepThree({
               className="w-full appearance-none text-sm sm:text-base py-1 outline-none border-0 text-black bg-transparent"
             >
               <option value="">Select employment status</option>
-              <option value="employed">Employed</option>
+              <option value="employed_fulltime">Employed Fulltime</option>
+                 <option value="employed_partime">Employed Fulltime</option>
               <option value="self-employed">Self-Employed</option>
               <option value="unemployed">Unemployed</option>
               <option value="student">Student</option>
               <option value="retired">Retired</option>
-              <option value="other">Other</option>
+            
             </select>
             <LuChevronsUpDown className="absolute pointer-events-none top-[20px] sm:top-[24px] right-5 sm:right-6 text-black/50" />
           </div>
@@ -153,10 +154,16 @@ export default function StepThree({
               </label>
               <div className="bg-[#FFFFFFCC] border-[.5px] border-[#0000001A] rounded-2xl py-4 sm:py-5 px-5 sm:px-6 hover:border-black/20 transition-colors">
                 <input
-                  type="number"
+                     type="text"
+              
                   name="monthlyIncomeNet"
                   value={formik.values.monthlyIncomeNet}
-                  onChange={formik.handleChange}
+                  onChange={(e) => {
+                        const onlyNumbers = e.target.value.replace(/\D/g, "");
+    formik.setFieldValue("monthlyIncomeNet", onlyNumbers);
+                  }
+                 
+                  }
                   onBlur={formik.handleBlur}
                   placeholder="Enter monthly income"
                   className="w-full py-1 text-black text-sm sm:text-base placeholder:text-black/40 rounded-lg outline-none border-0"
@@ -177,15 +184,27 @@ export default function StepThree({
               </label>
               <div className="bg-[#FFFFFFCC] border-[.5px] border-[#0000001A] rounded-2xl py-4 sm:py-5 px-5 sm:px-6 hover:border-black/20 transition-colors">
                 <input
-                  type="number"
+                  type="text"
+                  pattern="[0-9]*"
+                  onBlur={formik.handleBlur}
                   name="annualIncomeGross"
                   value={formik.values.annualIncomeGross}
-                  onChange={formik.handleChange}
+                   onChange={(e) => {
+                        const onlyNumbers = e.target.value.replace(/\D/g, "");
+    formik.setFieldValue("annualIncomeGross", onlyNumbers);
+                  }
+                 
+                  }
                   placeholder="Enter annual income"
                   className="w-full py-1 text-black text-sm sm:text-base placeholder:text-black/40 rounded-lg outline-none border-0"
                 />
               </div>
               <p className="text-sm text-black/70 mt-2 font-[400]">Gross annual income</p>
+                {formik.touched.annualIncomeGross && formik.errors.annualIncomeGross && (
+                <div className="text-red-500 text-sm mt-2 font-medium">
+                  {formik.errors.annualIncomeGross}
+                </div>
+              )}
             </div>
           </div>
 
@@ -212,7 +231,7 @@ export default function StepThree({
           </div>
 
           {/* Accountant Contact (if self-employed) */}
-          {formik.values.employmentStatus === "self-employed" && (
+          {/* {formik.values.employmentStatus === "self-employed" && (
             <div className="mt-8 pt-6 border-t border-[#0000000A] space-y-4">
               <h3 className="text-base sm:text-lg font-semibold text-black">Accountant Contact</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
@@ -257,7 +276,7 @@ export default function StepThree({
                 </div>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

@@ -37,7 +37,7 @@ export default function StepSix({
 
             <div>
               <label className="text-gray-500 text-xs font-normal block mb-2">
-                Contact Email/Phone
+                Contact Email
               </label>
               <div className="bg-[#FFFFFFCC] border-[.5px] border-[#0000001A] rounded-2xl py-4 px-5">
                 <input
@@ -88,7 +88,7 @@ export default function StepSix({
         </div>
 
         {/* Previous Landlord */}
-        <div className="pt-4 border-t border-[#0000000A]">
+        {/* <div className="pt-4 border-t border-[#0000000A]">
           <h2 className="text-base font-semibold text-black mb-4">
             Previous Landlord (if applicable)
           </h2>
@@ -125,7 +125,7 @@ export default function StepSix({
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Personal/Character Reference */}
         <div className="pt-4 border-t border-[#0000000A]">
@@ -206,6 +206,8 @@ export default function StepSix({
     </div>
   );
 }
+
+
 
 
 

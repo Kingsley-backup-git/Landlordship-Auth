@@ -24,6 +24,41 @@ export default function Maintenance() {
       queryFn: async () => await new TenantService().getTenant(),
     });
 
+  // Show loading state
+  if (maintenanceQuery.isPending || tenantQuery.isPending) {
+    return (
+      <div className="sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]">
+        <div className="flex items-center justify-center py-20">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
+            <p className="text-[#00000066] font-[400] text-sm">Loading maintenance requests...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (maintenanceQuery.isError) {
+    return (
+      <div className="sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]">
+        <div className="bg-[#FFE5E5] border border-red-200 rounded-xl p-8 text-center max-w-md mx-auto mt-8">
+          <div className="text-4xl mb-4">⚠️</div>
+          <h2 className="text-xl font-semibold text-black mb-2">Failed to Load Requests</h2>
+          <p className="text-red-600 font-[400] text-sm mb-6">
+            We couldn't load maintenance requests. Please try again later.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-6 py-2 bg-black text-white rounded-lg hover:bg-black/90 transition-colors text-sm font-[400]"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   const pending = maintenanceQuery?.data?.filter((data:{status:string})=> data?.status === "pending").length
  const inprogress = maintenanceQuery?.data?.filter((data:{status:string})=> data?.status === "inprogress").length
  const complete = maintenanceQuery?.data?.filter((data:{status:string})=> data?.status === "complete").length

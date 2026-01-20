@@ -3,20 +3,8 @@ import TextField from "../form/TextField";
 import ZipCode from "../form/ZipCodeField";
 import Dropdown from "../form/Dropdown";
 import { FormikProps } from "formik";
-interface PropertyFormValues {
-  propertyName: string;
-  yearBuilt: number;
-  uniqueId: string;
-  stateAddress: string;
-  city: string;
-  region: string;
-  zip: string;
-  country: string;
-  propertyType?: "individual" | "multi-unit";
-  amenities?: string[];
-  features?: string[];
-  attachments?: File[];
-}
+import { PropertyFormValues } from "@/types/auth/formik";
+
 
 export default function GeneralInfo({
   formik,
@@ -45,11 +33,28 @@ export default function GeneralInfo({
           className="col-span-1 bg-[#FFFFFFCC] border-[0.5px] border-[#0000001A] py-4 px-5 rounded-2xl"
           text="Year built"
           type="number"
-          name="yearBuilt"
-          min="1700"
-          touched={formik.touched.yearBuilt}
-          value={formik.values.yearBuilt}
-          error={formik.errors.yearBuilt}
+          name="year_built"
+          min="1800"
+          touched={formik.touched. year_built}
+          value={formik.values. year_built}
+          error={formik.errors. year_built}
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          max={new Date().getFullYear()}
+          pattern="^\d*$"
+          placeholder="1990"
+        />
+
+        
+        <TextField
+          className="col-span-1 bg-[#FFFFFFCC] border-[0.5px] border-[#0000001A] py-4 px-5 rounded-2xl"
+          text="Renovation year"
+          type="number"
+          name="renovation_year"
+          min="1800"
+          touched={formik.touched.renovation_year}
+          value={formik.values.renovation_year}
+          error={formik.errors.renovation_year}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           max={new Date().getFullYear()}
@@ -62,11 +67,11 @@ export default function GeneralInfo({
         <TextField
           className="col-span-2 col-start-1 col-end-3  bg-[#FFFFFFCC] border-[0.5px] border-[#0000001A] py-4 px-5 rounded-2xl"
           type="text"
-          name="stateAddress"
+          name="address"
           onChange={formik.handleChange}
-          touched={formik.touched.stateAddress}
-          value={formik.values.stateAddress}
-          error={formik.errors.stateAddress}
+          touched={formik.touched.address}
+          value={formik.values.address}
+          error={formik.errors.address}
           onBlur={formik.handleBlur}
           text="State Address"
           placeholder="95A Gate 65,Leicester, LE4"
@@ -89,12 +94,12 @@ export default function GeneralInfo({
           className="col-span-1  bg-[#FFFFFFCC] border-[0.5px] border-[#0000001A] py-4 px-5 rounded-2xl"
           type="text"
           text="State/Region"
-          touched={formik.touched.region}
-          error={formik.errors.region}
+          touched={formik.touched.state}
+          error={formik.errors.state}
           onBlur={formik.handleBlur}
-          name="region"
+          name="state"
           onChange={formik.handleChange}
-          value={formik.values.region}
+          value={formik.values.state}
           placeholder="Enter city"
         />
 
@@ -102,11 +107,11 @@ export default function GeneralInfo({
           className="col-span-1  bg-[#FFFFFFCC] border-[0.5px] border-[#0000001A] py-4 px-5 rounded-2xl"
           type="text"
           onChange={formik.handleChange}
-          value={formik.values.zip}
-          touched={formik.touched.zip}
-          error={formik.errors.zip}
+          value={formik.values.postalcode}
+          touched={formik.touched.postalcode}
+          error={formik.errors.postalcode}
           onBlur={formik.handleBlur}
-          name="zip"
+          name="postalcode"
           text="Zip"
           placeholder="Enter Zip/Postal code"
         />
@@ -121,6 +126,24 @@ export default function GeneralInfo({
           name="country"
           className="col-span-2  bg-[#FFFFFFCC] border-[0.5px] border-[#0000001A] py-4 px-5 rounded-2xl"
         />
+
+
+         <TextField
+          className="col-span-1 bg-[#FFFFFFCC] border-[0.5px] border-[#0000001A] py-4 px-5 rounded-2xl"
+          text="Last Appraisal date"
+          type="date"
+          name="last_appraisal_date"
+          touched={formik.touched.last_appraisal_date}
+          value={formik.values.last_appraisal_date as unknown as string}
+          error={formik.errors.last_appraisal_date}
+          onBlur={formik.handleBlur}
+          placeholder=""
+          onChange={formik.handleChange}
+        
+        
+          
+        />
+
       </div>
     </div>
   );

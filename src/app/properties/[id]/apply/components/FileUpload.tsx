@@ -7,7 +7,8 @@ interface FileUploadProps {
   required?: boolean;
   accept?: string;
   multiple?: boolean;
-  files: File[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  files: any;
   onChange: (files: File[]) => void;
   error?: string;
   touched?: boolean;
@@ -36,6 +37,7 @@ export default function FileUpload({
       if (multiple) {
         onChange([...files, ...fileArray]);
       } else {
+      console.log([fileArray[0]])
         onChange([fileArray[0]]);
       }
     }
@@ -57,7 +59,8 @@ export default function FileUpload({
   };
 
   const removeFile = (index: number) => {
-    const newFiles = files.filter((_, i) => i !== index);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const newFiles = files.filter((_: any, i: number) => i !== index);
     onChange(newFiles);
   };
 
@@ -99,7 +102,10 @@ export default function FileUpload({
           </div>
         ) : (
           <div className="space-y-3">
-            {files.map((file, index) => (
+              {files.map((file: {
+                name: string;
+                size:number
+            }, index:number) => (
               <div
                 key={index}
                 className="flex items-center justify-between bg-[#F9F9FA] rounded-lg p-4 border border-[#0000000A]"

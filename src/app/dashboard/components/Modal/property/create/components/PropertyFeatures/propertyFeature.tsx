@@ -1,22 +1,10 @@
 "use client";
 import Checkbox from "@/app/dashboard/(dashboard)/properties/components/inputs/checkbox";
+import { PropertyFormValues } from "@/types/auth/formik";
 import { FormikProps } from "formik";
 import React, { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
-interface PropertyFormValues {
-  propertyName: string;
-  yearBuilt: number;
-  uniqueId: string;
-  stateAddress: string;
-  city: string;
-  region: string;
-  zip: string;
-  country: string;
-  propertyType?: "individual" | "multi-unit";
-  amenities?: string[];
-  features?: string[];
-  attachments?: File[];
-}
+
 
 export default function PropertyFeature({
   formik,
@@ -31,14 +19,14 @@ export default function PropertyFeature({
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value, checked } = event.target;
-    const features = formik.values.features ?? [];
+    const features = formik.values.additional_feature ?? [];
     console.log(value, checked);
     if (checked) {
-      formik.setFieldValue("features", [...features, value]);
+      formik.setFieldValue("additional_feature", [...features, value]);
     } else {
       formik.setFieldValue(
-        "features",
-        formik.values.features?.filter((v) => v !== value),
+        "additional_feature",
+        formik.values.additional_feature?.filter((v) => v !== value),
       );
     }
   }
@@ -69,10 +57,10 @@ export default function PropertyFeature({
             <div key={index} className="flex flex-nowrap items-center gap-x-2">
               <Checkbox
                 value={feature}
-                name="features"
+                name="additional_feature"
                 id={`feature-${index}`}
                 classname={`w-[16px] h-[16px] cursor-pointer border-[#00000033] flex justify-center items-center  border-[1px] rounded`}
-                checked={formik.values.features?.includes(feature) as boolean}
+                checked={formik.values.additional_feature?.includes(feature) as boolean}
                 clicked={(event) => handleChange(event)}
               />
               <h1 className="text-sm font-[400] text-black">{feature}</h1>

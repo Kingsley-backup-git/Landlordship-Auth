@@ -1,10 +1,6 @@
+import { InterestProps } from "@/types/auth/formik";
 import { InviteProps } from "@/types/tenant/props";
-import { userInstance } from "@/utils/axios";
-type PaginatedPropertyResponse = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: any[]; // or a more specific type like `Property[]` if you have one
-  hasMore: boolean;
-};
+import { authInstance, userInstance } from "@/utils/axios";
 
 export class PropertyService {
   createProperty = async (values: FormData) => {
@@ -31,20 +27,89 @@ export class PropertyService {
     }
   };
 
-  getPaginatedProperties = async (
-    page: number,
-  ): Promise<PaginatedPropertyResponse> => {
+    getPublicProperties = async (slug: string) => {
     try {
-      const res = await userInstance.get<PaginatedPropertyResponse>(
-        `api/property/search?page=${page}&limit=${5}`,
-      );
+      const res = await authInstance.get(`api/property/${slug}`);
 
-      return res as unknown as PaginatedPropertyResponse;
+      return res?.data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw Error(error?.error);
+    }
+    };
+  
+    getEachUserProperties = async (propertyId: string) => {
+    try {
+      const res = await userInstance.get(`api/property/user/id/${propertyId}`);
+
+      return res?.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw Error(error?.error);
     }
   };
+  
+     getEachProperties = async (propertyId: string) => {
+    try {
+      const res = await authInstance.get(`api/property/id/${propertyId}`);
+
+      return res?.data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw Error(error?.error);
+    }
+  };
+
+  getPaginatedProperties = async (
+    page: number,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ): Promise<any> => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const res = await userInstance.get<any>(
+        `api/property/search?page=${page}&limit=${5}`,
+      );
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return res?.data as unknown as any;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw Error(error?.error);
+    }
+  }
+
+  interstApplication = async(values:InterestProps) => {
+    try {
+      const res = await authInstance.post(`/api/interest/apply/${values.id}`,
+        {
+          email: values.email,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          moveInDate: values.moveInDate,
+          phone: values.phone
+        })
+      return res?.data
+    }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    catch (error: any) {
+      throw new Error(error?.error)
+    }
+  
+    
+  }
+  
+    getInterests = async(values : string) => {
+    try {
+      const res = await userInstance.get(`/api/interest/${values}`)
+      return res?.data
+    }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    catch (error: any) {
+      throw new Error(error?.error)
+    }
+  
+    
+}
 
   sendInvite = async (values: InviteProps) => {
     try {

@@ -1,23 +1,11 @@
 "use client";
 import Button from "@/app/components/ui/Button";
+import { PropertyFormValues } from "@/types/auth/formik";
 import { FormikProps } from "formik";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
 import { PiCloudArrowUpDuotone } from "react-icons/pi";
-interface PropertyFormValues {
-  propertyName: string;
-  yearBuilt: number;
-  uniqueId: string;
-  stateAddress: string;
-  city: string;
-  region: string;
-  zip: string;
-  country: string;
-  propertyType?: "individual" | "multi-unit";
-  amenities?: string[];
-  features?: string[];
-  attachments?: File[];
-}
+
 export default function UploadAttachment({
   formik,
 }: {
@@ -32,8 +20,8 @@ export default function UploadAttachment({
     if (e.target.files) {
       const file = e?.target?.files[0];
       if (file) {
-        formik.setFieldValue("attachments", [
-          ...(formik.values.attachments ?? []),
+        formik.setFieldValue("property_images", [
+          ...(formik.values.property_images ?? []),
           file,
         ]);
         setImage((prev) => [...prev, file]);
@@ -53,7 +41,7 @@ export default function UploadAttachment({
             Store important documents and ready made templates
           </h1>
         )}
-        <div className="inset-y-0 my-auto absolute flex items-center gap-x-2">
+        <div className="inset-y-0 my-auto absolute flex flex-wrap items-center gap-x-2">
           {image.length > 0 &&
             image?.map((img, index) => {
               return (

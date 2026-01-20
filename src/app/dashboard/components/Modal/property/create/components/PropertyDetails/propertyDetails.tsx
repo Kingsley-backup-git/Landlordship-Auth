@@ -2,22 +2,9 @@ import React from "react";
 import TextField from "../form/TextField";
 import CurrencyInput from "../form/CurrencyInput";
 import { FormikProps } from "formik";
+import { PropertyFormValues } from "@/types/auth/formik";
 
-interface PropertyFormValues {
-  propertyName: string;
-  yearBuilt: number;
-  uniqueId: string;
-  stateAddress: string;
-  city: string;
-  region: string;
-  zip: string;
-  country: string;
-  propertyType?: "individual" | "multi-unit";
-  amenities?: string[];
-  features?: string[];
-  attachments?: File[];
-  description?: string;
-}
+
 
 export default function PropertyDetails({
   formik,
@@ -30,22 +17,65 @@ export default function PropertyDetails({
       <div className="grid grid-cols-6 gap-4 mt-4">
         <TextField
           className="bg-[#FFFFFFCC] border-[.5px] border-[#0000001A] rounded-2xl py-4 px-5"
-          text="Active Units"
+          text="Bedrooms"
           type="number"
-          placeholder="Active units"
+            onChange={formik.handleChange}
+          value={formik.values.bedrooms}
+          touched={formik.touched.bedrooms}
+          error={formik.errors.bedrooms}
+          onBlur={formik.handleBlur}
+          name="bedrooms"
+          placeholder="Bedrooms"
         />
+          <TextField
+          className="bg-[#FFFFFFCC] border-[.5px] border-[#0000001A] rounded-2xl py-4 px-5"
+          text="Bathrooms"
+          type="number"
+              onChange={formik.handleChange}
+          value={formik.values.bathrooms}
+          touched={formik.touched.bathrooms}
+          error={formik.errors.bathrooms}
+          onBlur={formik.handleBlur}
+          name="bathrooms"
+          placeholder="Bathrooms"
+        />
+          <TextField
+          className="bg-[#FFFFFFCC] border-[.5px] border-[#0000001A] rounded-2xl py-4 px-5"
+          text="Parking spaces"
+          type="number"
+             onChange={formik.handleChange}
+          value={formik.values.parkingspaces}
+          touched={formik.touched.parkingspaces}
+          error={formik.errors.parkingspaces}
+          onBlur={formik.handleBlur}
+          name="parkingspaces"
+          placeholder="Parking spaces"
+        />
+     
      
      <TextField
           className="bg-[#FFFFFFCC] border-[.5px] border-[#0000001A] rounded-2xl py-4 px-5"
           text="Square Feet"
           type="number"
+           onChange={formik.handleChange}
+          value={formik.values.square_feet}
+          touched={formik.touched.square_feet}
+          error={formik.errors.square_feet}
+          onBlur={formik.handleBlur}
+          name="square_feet"
           placeholder="Square feet"
         />
 
         <CurrencyInput
           className="bg-[#FFFFFFCC] col-span-2 border-[.5px] border-[#0000001A] rounded-2xl py-4 px-5"
           text="Rental Value"
-          type="string"
+          type="number"
+             onChange={formik.handleChange}
+          value={formik.values.property_value}
+          touched={formik.touched.property_value}
+          error={formik.errors.property_value}
+          onBlur={formik.handleBlur}
+          name="property_value"
           placeholder="Rental value"
         />
       </div>
@@ -56,8 +86,8 @@ export default function PropertyDetails({
             Description
           </label>
           <textarea
-            name="description"
-            value={formik.values.description || ""}
+            name="property_description"
+            value={formik.values.property_description || ""}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             placeholder="Enter property description"
@@ -65,8 +95,8 @@ export default function PropertyDetails({
             className="w-full py-1 text-black text-sm placeholder:text-[#00000033] placeholder:opacity-70 rounded-lg outline-none border-0 resize-none"
           />
         </div>
-        {formik.touched.description && formik.errors.description && (
-          <div className="text-red-500 text-xs mt-1">{formik.errors.description}</div>
+        {formik.touched.property_description && formik.errors.property_description && (
+          <div className="text-red-500 text-xs mt-1">{formik.errors.property_description}</div>
         )}
       </div>
     </div>

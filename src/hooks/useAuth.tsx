@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 type setupRouter = ReturnType<typeof useRouter>;
 export function useAuth(
   handleLoader: (val: boolean) => void,
-  push: setupRouter["push"],
+  push: setupRouter["push"]
 ) {
   const RegisterMutation = useMutation({
     mutationFn: async (values: AuthInitialValues) => {
@@ -22,11 +22,11 @@ export function useAuth(
     onSuccess: (data: any) => {
       toast.dismiss("register");
 
-      console.log(data);
+     
 
       Cookies.set("token", data?.accessToken, { expires: 7, secure: true });
 
-      toast.success(`Welcome ${data?.user?.email}`, { autoClose: 3000 });
+      toast.success(`Welcome ${data?.email}`, { autoClose: 3000 });
       handleLoader(false);
       push("/dashboard/overview");
     },
@@ -49,9 +49,7 @@ export function useAuth(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onSuccess: (data: any) => {
       toast.dismiss("login");
-
-      console.log(data);
-
+    
       Cookies.set("token", data?.accessToken, { expires: 7, secure: true });
       toast.success(`Successfully Logged In`, { autoClose: 3000 });
       handleLoader(false);

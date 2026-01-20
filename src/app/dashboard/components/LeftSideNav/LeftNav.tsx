@@ -43,7 +43,7 @@ export default function LeftNav() {
 
           {leftNav && userQuery.isSuccess ? (
             <h1 className="text-[#1C1C1C] font-[400] text-sm">
-              {userQuery?.data?.data?.email}
+              {userQuery?.data?.data?.userName}
             </h1>
           ) : null}
 

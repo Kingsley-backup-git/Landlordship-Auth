@@ -46,7 +46,7 @@ export default function PropertyInfoTab({ propertyData }: PropertyInfoTabProps) 
                       Property Name
                     </h3>
                     <h1 className="text-black font-[400] text-sm break-words">
-                      {propertyData.propertyName}
+                      {propertyData?.Properties?.propertyName}
                     </h1>
                   </div>
                 </div>
@@ -60,7 +60,7 @@ export default function PropertyInfoTab({ propertyData }: PropertyInfoTabProps) 
                       Property Type
                     </h3>
                     <h1 className="text-black font-[400] text-sm">
-                      {propertyData.propertyType}
+                      {propertyData?.Properties?.propertyType}
                     </h1>
                   </div>
                 </div>
@@ -74,7 +74,7 @@ export default function PropertyInfoTab({ propertyData }: PropertyInfoTabProps) 
                       Square Feet
                     </h3>
                     <h1 className="text-black font-[400] text-sm">
-                      {propertyData.squareFeet.toLocaleString()} sq ft
+                      {propertyData?.Properties?.square_feet.toLocaleString()} sq ft
                     </h1>
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export default function PropertyInfoTab({ propertyData }: PropertyInfoTabProps) 
                       Bedrooms
                     </h3>
                     <h1 className="text-black font-[400] text-sm">
-                      {propertyData.bedrooms}
+                      {propertyData?.Properties?.bedrooms}
                     </h1>
                   </div>
                 </div>
@@ -108,7 +108,7 @@ export default function PropertyInfoTab({ propertyData }: PropertyInfoTabProps) 
                       Bathrooms
                     </h3>
                     <h1 className="text-black font-[400] text-sm">
-                      {propertyData.bathrooms}
+                      {propertyData?.Properties?.bathrooms}
                     </h1>
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default function PropertyInfoTab({ propertyData }: PropertyInfoTabProps) 
                       Parking Spaces
                     </h3>
                     <h1 className="text-black font-[400] text-sm">
-                      {propertyData.parkingSpaces}
+                      {propertyData?.Properties?.parkingspaces}
                     </h1>
                   </div>
                 </div>
@@ -138,7 +138,7 @@ export default function PropertyInfoTab({ propertyData }: PropertyInfoTabProps) 
                 Description
               </h2>
               <p className="text-black font-[400] text-sm leading-relaxed">
-                {propertyData.description}
+                {propertyData?.Properties?.property_description || "No description"}
               </p>
             </div>
 
@@ -147,16 +147,17 @@ export default function PropertyInfoTab({ propertyData }: PropertyInfoTabProps) 
               <h2 className="font-semibold text-sm text-black mb-4 pb-3 border-b-[1px] border-[#0000000A]">
                 Key Features
               </h2>
-              <div className="flex flex-wrap gap-2">
-                {propertyData.keyFeatures.map((feature, index) => (
-                  <span
-                    key={index}
-                    className="inline-flex items-center px-3 py-1.5 rounded-lg bg-[#E6F1FD] text-black text-xs font-[400] border-[.5px] border-[#0000000A]"
-                  >
-                    {feature}
-                  </span>
-                ))}
-              </div>
+              {propertyData?.Properties?.additional_features.length > 0 ?
+                <div className="flex flex-wrap gap-2">
+                  {propertyData?.Properties?.additional_features.map((feature, index) => (
+                    <span
+                      key={index}
+                      className="inline-flex items-center px-3 py-1.5 rounded-lg bg-[#E6F1FD] text-black text-xs font-[400] border-[.5px] border-[#0000000A]"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div> : <h1 className="text-black">No additional features</h1>}
             </div>
           </div>
         </div>
@@ -164,5 +165,8 @@ export default function PropertyInfoTab({ propertyData }: PropertyInfoTabProps) 
     </div>
   );
 }
+
+
+
 
 
