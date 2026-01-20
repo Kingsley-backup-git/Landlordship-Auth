@@ -11,8 +11,8 @@ export default function Occupancy() {
       </div>
 
       <div className="mt-4 flex gap-x-2 items-center">
-        <h1 className="sm:text-xl text-base font-semibold text-black">
-      84%
+        <h1 className="sm:text-lg text-base font-semibold text-black">
+      In progres...
         </h1>
 
         <h1 className="text-xs font-[400] ms-auto text-black">-0.03%</h1>

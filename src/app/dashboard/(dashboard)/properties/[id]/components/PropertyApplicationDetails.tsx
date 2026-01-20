@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
 import { FaChevronLeft } from "react-icons/fa6";
-import { PiFilePdf, PiDownloadSimple } from "react-icons/pi";
+import { LiaFileAlt } from "react-icons/lia";
 import { getStatusBadge } from "./utils";
-
+import { MdFilePresent } from "react-icons/md";
+import { PiDownloadSimple } from "react-icons/pi";
 
 
 interface PropertyApplicationDetailsProps {
@@ -23,7 +24,7 @@ const DocumentCard = ({ url, label }: { url: string; label: string }) => (
     rel="noopener noreferrer"
     className="flex items-center gap-2 p-3 bg-white border-[.5px] border-[#0000001A] rounded-lg hover:bg-[#F9F9FA] transition-colors cursor-pointer group"
   >
-    <PiFilePdf className="text-lg text-[#007AFF] flex-shrink-0" />
+    <LiaFileAlt className="text-lg text-[#007AFF] flex-shrink-0" />
     <span className="text-black font-[400] text-xs sm:text-sm flex-1 truncate">
       {label}
     </span>

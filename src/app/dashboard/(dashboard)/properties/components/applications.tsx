@@ -15,8 +15,8 @@ export default function PendingApplications() {
       </div>
 
       <div className="mt-4 flex gap-x-2 items-center">
-        <h1 className="sm:text-xl text-base font-semibold text-black">
-         4
+        <h1 className="sm:text-lg text-base font-semibold text-black">
+       In progres...
         </h1>
 
       </div>

@@ -52,7 +52,7 @@ export default function Unit() {
     setPropertyId(id);
   }
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(`http://localhost:3000/public/properties/${userQuery?.data?.data?.slug}`);
+    navigator.clipboard.writeText(`https://landlordship-auth.vercel.app/public/properties/${userQuery?.data?.data?.slug}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -133,7 +133,7 @@ export default function Unit() {
                               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                                 <input
                                   type="text"
-                                  value={`http://localhost:3000/public/properties/${userQuery?.data?.data?.slug}`}
+                                  value={`https://landlordship-auth.vercel.app/public/properties/${userQuery?.data?.data?.slug}`}
                                   readOnly
                                   className="flex-1 bg-white border-[.5px] border-[#0000001A] rounded-lg py-2 px-4 text-sm text-black font-[400] focus:outline-none focus:ring-2 focus:ring-[#007AFF] focus:ring-opacity-20 truncate"
                                 />

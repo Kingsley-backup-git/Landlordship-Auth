@@ -8,7 +8,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { PropertyService } from "@/services/property";
 import { getStatusBadge } from "./utils";
 import PropertyInterestDetails from "./PropertyInterestDetails";
-
+import { FaRegFolderOpen } from "react-icons/fa";
 interface Interest {
   _id: string;
   firstName: string;
@@ -78,7 +78,7 @@ function PropertyInterestTab({
   const [copied, setCopied] = useState(false);
   const copyToClipboard = () => {
     navigator.clipboard.writeText(
-      `http://localhost:3000/public/properties/${data?.data?.slug}/${propertyData?.Properties?._id}`
+      `https://landlordship-auth.vercel.app/public/properties/${data?.data?.slug}/${propertyData?.Properties?._id}`
     );
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -140,7 +140,7 @@ function PropertyInterestTab({
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <input
               type="text"
-              value={`http://localhost:3000/public/properties/${data?.data?.slug}/${propertyData?.Properties?._id}`}
+              value={`https://landlordship-auth.vercel.app/public/properties/${data?.data?.slug}/${propertyData?.Properties?._id}`}
               readOnly
               className="flex-1 bg-white border-[.5px] border-[#0000001A] rounded-lg py-2 px-4 text-sm text-black font-[400] focus:outline-none focus:ring-2 focus:ring-[#007AFF] focus:ring-opacity-20 truncate"
             />
@@ -163,7 +163,7 @@ function PropertyInterestTab({
           </div>
         </div>
       )}
-
+<h1 className= "text-2xl font-medium text-black/80">Interests</h1>
       {/* Loading State */}
       {isPending && (
         <div className="flex items-center justify-center py-12">
@@ -184,6 +184,11 @@ function PropertyInterestTab({
       )}
 
       {isSuccess && (
+
+        interestData.length < 1 ? <div className="py-4 w-full flex justify-center flex-col items-center">
+           <FaRegFolderOpen className="text-5xl text-black"/>
+          <h1 className="text-black font-bold">No Interest yet</h1>
+          </div>: 
         <div className="sm:block hidden overflow-x-auto w-full px-6">
           <div className="w-full">
             {/* Table Header */}
