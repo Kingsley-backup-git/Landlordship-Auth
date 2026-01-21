@@ -151,7 +151,7 @@ export default function StepNine({
             type="button"
             disabled = {ApplyPropertyMutation?.isPending}
             onClick={onSubmit}
-            classname={`w-full bg-black text-white text-sm ${Object.keys(formik.errors).length > 0 ? "disabled:cursor-not-allowed pointer-events-none disabled:bg-gray-300" : ""} font-[400] rounded-lg py-3 px-4`}
+            classname={`w-full bg-black text-white disabled:bg-gray-300 disabled:cursor-not-allowed text-sm ${Object.keys(formik.errors).length > 0 ? " pointer-events-none " : ""} font-[400] rounded-lg py-3 px-4`}
             text="Submit Application"
           />
         </div>

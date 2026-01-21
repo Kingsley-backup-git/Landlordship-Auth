@@ -31,7 +31,7 @@ export default function StepThree({
               <option value="">Select employment status</option>
               <option value="employed_fulltime">Employed Fulltime</option>
                  <option value="employed_partime">Employed Fulltime</option>
-              <option value="self-employed">Self-Employed</option>
+              <option value="self_employed">Self-Employed</option>
               <option value="unemployed">Unemployed</option>
               <option value="student">Student</option>
               <option value="retired">Retired</option>
