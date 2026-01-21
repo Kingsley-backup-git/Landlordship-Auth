@@ -247,6 +247,7 @@ export default function RentalApplicationForm({
 
     hasPets: Yup.string().required("Required").oneOf(["yes", "no"]),
     smokes: Yup.string().required("Required").oneOf(["yes", "no"]),
+    requiresParking : Yup.string().required("Required").oneOf(["yes", "no"]),
     // Step 5
     hasCCJs: Yup.string().required("Please answer"),
     declaredBankrupt: Yup.string().required("Please answer"),
@@ -658,14 +659,15 @@ export default function RentalApplicationForm({
         "proofOfIdFile",
         "proofOfAddressFile",
         "consentToRightToRent",
-      ],
-      3: ["employmentStatus", "monthlyIncomeNet"],
-      4: ["desiredMoveInDate", "preferredTenancyLength", "numberOfTenants"],
+      ], 
+      3: ["employmentStatus", "monthlyIncomeNet", "payslipsFiles", "lengthOfEmploymentYears", "lengthOfEmploymentMonths", "annualIncomeGross","bankStatementsFiles"],
+      4: ["desiredMoveInDate", "preferredTenancyLength","numberOfTenants","hasPets", "smokes","requiresParking"],
       5: [
         "hasCCJs",
         "declaredBankrupt",
         "receivingHousingBenefits",
         "consentToCreditCheck",
+        "additionalProofOfIncomeFiles"
       ],
       8: [
         // "consentToCreditReferenceChecks",

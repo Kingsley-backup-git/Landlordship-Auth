@@ -168,6 +168,13 @@ export default function StepFive({
             label="Additional Proof of Income (if not already uploaded)"
             accept="image/*,.pdf"
             multiple
+            error = {
+ typeof formik.errors.additionalProofOfIncomeFiles === "string" ?
+              formik.errors.additionalProofOfIncomeFiles : undefined
+            }
+            touched={
+              !!formik.touched.additionalProofOfIncomeFiles
+            }
             files={formik.values.additionalProofOfIncomeFiles}
             onChange={(files) => formik.setFieldValue("additionalProofOfIncomeFiles", files)}
           />

@@ -200,7 +200,12 @@ export default function StepFour({
                 />
                 <span className="text-sm sm:text-base text-black font-medium">No</span>
               </label>
+
+
             </div>
+             {formik.touched.hasPets && formik.errors.hasPets && (
+            <div className="text-red-500 text-sm mt-2 block font-medium">{formik.errors.hasPets}</div>
+          )}
           </div>
 
           {/* Smoking */}
@@ -230,6 +235,9 @@ export default function StepFour({
                 <span className="text-sm sm:text-base text-black font-medium">No</span>
               </label>
             </div>
+               {formik.touched.smokes && formik.errors.smokes && (
+            <div className="text-red-500 text-sm mt-2 block font-medium">{formik.errors.smokes}</div>
+          )}
           </div>
 
           {/* Parking */}
@@ -262,6 +270,9 @@ export default function StepFour({
               </label>
             </div>
           </div>
+              {formik.touched.requiresParking && formik.errors.requiresParking && (
+            <div className="text-red-500 text-sm mt-2 block font-medium">{formik.errors.requiresParking}</div>
+          )}
         </div>
 
         {/* Special Requests */}

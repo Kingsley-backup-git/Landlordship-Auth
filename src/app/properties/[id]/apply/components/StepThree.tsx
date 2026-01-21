@@ -123,9 +123,16 @@ export default function StepThree({
                 value={formik.values.lengthOfEmploymentYears}
                 onChange={formik.handleChange}
                 placeholder="Years"
+                   onBlur={formik.handleBlur}
                 className="w-full py-1 text-black text-sm sm:text-base placeholder:text-black/40 rounded-lg outline-none border-0"
               />
             </div>
+
+               {formik.touched.lengthOfEmploymentYears && formik.errors.lengthOfEmploymentYears && (
+                <div className="text-red-500 text-sm mt-2 font-medium">
+                  {formik.errors.lengthOfEmploymentYears}
+                </div>
+              )}
           </div>
           <div>
             <label className="text-black/80 text-sm sm:text-base font-medium block mb-3">Months</label>
@@ -136,9 +143,15 @@ export default function StepThree({
                 value={formik.values.lengthOfEmploymentMonths}
                 onChange={formik.handleChange}
                 placeholder="Months"
+                   onBlur={formik.handleBlur}
                 className="w-full py-1 text-black text-sm sm:text-base placeholder:text-black/40 rounded-lg outline-none border-0"
               />
             </div>
+              {formik.touched.lengthOfEmploymentMonths && formik.errors.lengthOfEmploymentMonths && (
+                <div className="text-red-500 text-sm mt-2 font-medium">
+                  {formik.errors.lengthOfEmploymentMonths}
+                </div>
+              )}
           </div>
         </div>
 
@@ -214,6 +227,10 @@ export default function StepThree({
               label="Upload Recent Payslips (Last 3 months)"
               accept="image/*,.pdf"
               multiple
+                    error={
+       typeof formik.errors.payslipsFiles === "string" ? formik.errors.payslipsFiles : undefined
+          }
+          touched={!!formik.touched.payslipsFiles}
               files={formik.values.payslipsFiles}
               onChange={(files) => formik.setFieldValue("payslipsFiles", files)}
             />
@@ -225,6 +242,10 @@ export default function StepThree({
               label="Upload Bank Statements (Last 3 months)"
               accept="image/*,.pdf"
               multiple
+              error={
+        typeof formik.errors.bankStatementsFiles === "string" ? formik.errors.bankStatementsFiles : undefined
+          }
+          touched={!!formik.touched.bankStatementsFiles}
               files={formik.values.bankStatementsFiles}
               onChange={(files) => formik.setFieldValue("bankStatementsFiles", files)}
             />
