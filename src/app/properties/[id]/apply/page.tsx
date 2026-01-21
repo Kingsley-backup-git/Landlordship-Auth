@@ -247,6 +247,7 @@ export default function RentalApplicationForm({
 
     hasPets: Yup.string().required("Required").oneOf(["yes", "no"]),
     smokes: Yup.string().required("Required").oneOf(["yes", "no"]),
+    requiresParking : Yup.string().required("Required").oneOf(["yes", "no"]),
     // Step 5
     hasCCJs: Yup.string().required("Please answer"),
     declaredBankrupt: Yup.string().required("Please answer"),
@@ -450,8 +451,10 @@ export default function RentalApplicationForm({
         });
       }
       if (
-        formik.values.currentLandlordName !== "" ||
-        formik.values.currentLandlordName !== null ||
+        formik.values.currentLandlordName !== "" &&
+
+        formik.values.currentLandlordName !== null &&
+
         formik.values.currentLandlordName !== undefined
       ) {
         formData.append(
@@ -460,8 +463,10 @@ export default function RentalApplicationForm({
         );
       }
       if (
-        formik.values.currentLandlordContact !== "" ||
-        formik.values.currentLandlordContact !== null ||
+        formik.values.currentLandlordContact !== ""&&
+
+        formik.values.currentLandlordContact !== null &&
+
         formik.values.currentLandlordContact !== undefined
       ) {
         formData.append(
@@ -471,8 +476,10 @@ export default function RentalApplicationForm({
       }
 
       if (
-        formik.values.currentLandlordDuration !== "" ||
-        formik.values.currentLandlordDuration !== null ||
+        formik.values.currentLandlordDuration !== "" &&
+
+        formik.values.currentLandlordDuration !== null &&
+
         formik.values.currentLandlordDuration !== undefined
       ) {
         formData.append(
@@ -481,8 +488,10 @@ export default function RentalApplicationForm({
         );
       }
       if (
-        formik.values.currentLandlordRentAmount !== "" ||
-        formik.values.currentLandlordRentAmount !== null ||
+        formik.values.currentLandlordRentAmount !== "" &&
+
+        formik.values.currentLandlordRentAmount !== null &&
+
         formik.values.currentLandlordRentAmount !== undefined
       ) {
         formData.append(
@@ -491,15 +500,19 @@ export default function RentalApplicationForm({
         );
       }
       if (
-        formik.values.personalReferenceName !== "" ||
-        formik.values.personalReferenceName !== null ||
+        formik.values.personalReferenceName !== "" &&
+
+        formik.values.personalReferenceName !== null &&
+
         formik.values.personalReferenceName !== undefined
       ) {
         formData.append("reference_name", formik.values.personalReferenceName);
       }
       if (
-        formik.values.personalReferenceRelationship !== "" ||
-        formik.values.personalReferenceRelationship !== null ||
+        formik.values.personalReferenceRelationship !== "" &&
+
+        formik.values.personalReferenceRelationship !== null &&
+
         formik.values.personalReferenceRelationship !== undefined
       ) {
         formData.append(
@@ -508,8 +521,10 @@ export default function RentalApplicationForm({
         );
       }
       if (
-        formik.values.personalReferenceContact !== "" ||
-        formik.values.personalReferenceContact !== null ||
+        formik.values.personalReferenceContact !== "" &&
+
+        formik.values.personalReferenceContact !== null &&
+
         formik.values.personalReferenceContact !== undefined
       ) {
         formData.append(
@@ -518,8 +533,10 @@ export default function RentalApplicationForm({
         );
       }
       if (
-        formik.values.personalReferenceYearsKnown !== "" ||
-        formik.values.personalReferenceYearsKnown !== null ||
+        formik.values.personalReferenceYearsKnown !== "" &&
+
+        formik.values.personalReferenceYearsKnown !== null &&
+
         formik.values.personalReferenceYearsKnown !== undefined
       ) {
         formData.append(
@@ -609,7 +626,7 @@ export default function RentalApplicationForm({
           <div className="text-6xl mb-4">⚠️</div>
           <h2 className="text-xl sm:text-2xl font-semibold text-black mb-2">Property Not Found</h2>
           <p className="text-[#00000066] font-[400] text-sm sm:text-base mb-6">
-            We couldn&aapos;t find the property you&apos;re looking for. It may have been removed or the link is invalid.
+            We couldn&apos;t find the property you&apos;re looking for. It may have been removed or the link is invalid.
           </p>
           <button
             onClick={() => window.history.back()}
@@ -642,14 +659,15 @@ export default function RentalApplicationForm({
         "proofOfIdFile",
         "proofOfAddressFile",
         "consentToRightToRent",
-      ],
-      3: ["employmentStatus", "monthlyIncomeNet"],
-      4: ["desiredMoveInDate", "preferredTenancyLength", "numberOfTenants"],
+      ], 
+      3: ["employmentStatus", "monthlyIncomeNet", "payslipsFiles", "lengthOfEmploymentYears", "lengthOfEmploymentMonths", "annualIncomeGross","bankStatementsFiles"],
+      4: ["desiredMoveInDate", "preferredTenancyLength","numberOfTenants","hasPets", "smokes","requiresParking"],
       5: [
         "hasCCJs",
         "declaredBankrupt",
         "receivingHousingBenefits",
         "consentToCreditCheck",
+        "additionalProofOfIncomeFiles"
       ],
       8: [
         // "consentToCreditReferenceChecks",
@@ -665,7 +683,7 @@ export default function RentalApplicationForm({
       await formik.validateForm();
 
       const hasErrors = fieldsToValidate.some(
-        (field) => formik.errors[field] && formik.touched[field],
+        (field) => formik.errors[field]
       );
       if (hasErrors) {
         // Mark fields as touched
