@@ -16,10 +16,7 @@ import { useUser } from "@/app/components/Providers/UserProvider";
 export default function LeftNav() {
   const [toggle, setToggle] = useState(false);
   const {data, query} = useUser()
-   const tenantQuery = useQuery({
-        queryKey: ["tenant"],
-        queryFn: async () => await new TenantService().getTenant(),
-    });
+  
 
   function toggleState() {
     setToggle((prev) => !prev);
@@ -40,9 +37,9 @@ export default function LeftNav() {
             className="w-[24px] h-[24px] rounded-full"
           />
 
-          {leftNav && query.isSuccess ? (
+          {leftNav && query?.isSuccess ? (
             <h1 className="text-[#1C1C1C] font-[400] text-sm">
-              {data.data?.userName}
+              {data?.data?.userName}
             </h1>
           ) : null}
 
