@@ -24,6 +24,7 @@ export default function LeftNav() {
   const type = useUserStore((state) => state.type);
   const setType = useUserStore((state) => state.setType);
   const { leftNav } = useMyContext();
+  if(query.isSuccess)
   return (
     <div className="w-[100%] py-5 flex flex-col overflow-x-visible h-screen gap-y-6 ">
       <div className="flex-1 relative">
