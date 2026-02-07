@@ -1,14 +1,27 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode, JwtPayload } from "jwt-decode";
 export function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isAuthenticated = checkAuthentication(request);
-  const isProtectedRoutes = path.startsWith("/dashboard");
-  
-  if (!isAuthenticated && isProtectedRoutes) {
+  const isProtectedRoutes = (path.startsWith("/dashboard") || path.startsWith("/properties"));
+  try {
+ 
+
+       if (isAuthenticated && (path.startsWith("/auth/signin") || path.startsWith("/auth/signup"))) {
+    // Redirect unauthenticated users to the login page
+    return NextResponse.redirect(new URL("/dashboard/overview", request.nextUrl));
+}
+else if (!isAuthenticated && isProtectedRoutes) {
     // Redirect unauthenticated users to the login page
     return NextResponse.redirect(new URL("/auth/signin", request.nextUrl));
-  } else if (
+}
+
+else if (!isAuthenticated && path.startsWith("/auth/setup")) {
+    // Redirect unauthenticated users to the login page
+    return NextResponse.redirect(new URL("/auth/signin", request.nextUrl));
+}
+
+       else if (
     isAuthenticated &&
     (path.startsWith("/auth/signin") || path.startsWith("/auth/signup"))
   ) {
@@ -17,6 +30,10 @@ export function proxy(request: NextRequest) {
       new URL("/dashboard/overview", request.nextUrl),
     );
   }
+  } catch (error) {
+    console.log(error)
+  }
+  
 
   return NextResponse.next();
 }
@@ -25,7 +42,7 @@ export function checkAuthentication(request: NextRequest): boolean {
   const token = request.cookies.get("token")?.value;
 
 
-  if (!token) return false;
+  if (!token || token === undefined) return false;
 
   if (token && isTokenValid(token)) return true;
 

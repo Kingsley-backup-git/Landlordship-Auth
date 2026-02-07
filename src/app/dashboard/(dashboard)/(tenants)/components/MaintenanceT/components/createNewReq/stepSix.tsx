@@ -13,8 +13,8 @@ export default function StepSix({
   createReqMutation
 }: {
   stepHandler: (num: number) => void;
-  urgencyHandler: (str: "Low" | "Normal" | "High" | "Critical") => void;
-        urgency: "Low" | "Normal" | "High" | "Critical";
+  urgencyHandler: (str:  "low"| "medium" | "high" | "urgent") => void;
+        urgency:  "low"| "medium" | "high" | "urgent";
     request: requestTypes;
     CreateReqHandler: () => void;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,15 +33,15 @@ export default function StepSix({
         <div
           className="w-full  cursor-pointer"
           onClick={() => {
-            urgencyHandler("Low");
+            urgencyHandler("low");
           }}
         >
           <Options
             Icon={""}
             subClassName=""
-            className={`flex gap-x-3 ${urgency === "Low" ? "border-2 border-black" : ""} relative  bg-[#F9F9FA] rounded-2xl p-4`}
+            className={`flex gap-x-3 ${urgency === "low" ? "border-2 border-black" : ""} relative  bg-[#F9F9FA] rounded-2xl p-4`}
             header={"Low"}
-            checked = {urgency === "Low"}
+            checked = {urgency === "low"}
             text={""}
           />
         </div>
@@ -49,15 +49,16 @@ export default function StepSix({
         <div
           className="w-full  cursor-pointer"
           onClick={() => {
-            urgencyHandler("Normal");
+            urgencyHandler("medium");
           }}
         >
+         
           <Options
             Icon={""}
             subClassName=""
-                      checked = {urgency === "Normal"}
-            className={`flex gap-x-3 ${urgency === "Normal" ? "border-2 border-black" : ""} relative  bg-[#F9F9FA] rounded-2xl p-4`}
-            header={"Normal"}
+                      checked = {urgency === "medium"}
+            className={`flex gap-x-3 ${urgency === "medium" ? "border-2 border-black" : ""} relative  bg-[#F9F9FA] rounded-2xl p-4`}
+            header={"Medium"}
             text={""}
           />
         </div>
@@ -65,14 +66,14 @@ export default function StepSix({
         <div
           className="w-full  cursor-pointer"
           onClick={() => {
-            urgencyHandler("High");
+            urgencyHandler("high");
           }}
         >
           <Options
             Icon={""}
-             checked = {urgency === "High"}
+             checked = {urgency === "high"}
             subClassName=""
-            className={`flex gap-x-3 ${urgency === "High" ? "border-2 border-black" : ""} relative  bg-[#F9F9FA] rounded-2xl p-4`}
+            className={`flex gap-x-3 ${urgency === "high" ? "border-2 border-black" : ""} relative  bg-[#F9F9FA] rounded-2xl p-4`}
             header={"High"}
             text={""}
           />
@@ -81,15 +82,15 @@ export default function StepSix({
         <div
           className="w-full  cursor-pointer"
           onClick={() => {
-            urgencyHandler("Critical");
+            urgencyHandler("urgent");
           }}
         >
           <Options
             Icon={""}
-              checked = {urgency === "Critical"}
+              checked = {urgency === "urgent"}
             subClassName=""
-            className={`flex gap-x-3 ${urgency === "Critical" ? "border-2 border-black" : ""} relative  bg-[#F9F9FA] rounded-2xl p-4`}
-            header={"Critical"}
+            className={`flex gap-x-3 ${urgency === "urgent" ? "border-2 border-black" : ""} relative  bg-[#F9F9FA] rounded-2xl p-4`}
+            header={"Urgent"}
             text={""}
           />
         </div>

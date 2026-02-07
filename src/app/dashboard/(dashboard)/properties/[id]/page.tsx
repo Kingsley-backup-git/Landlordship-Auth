@@ -37,11 +37,13 @@ export default function PropertyDetailsPage({
     queryKey: ['applications', id],
     queryFn : async()=> await new ApplicationService().getApplications(id)
   })
+  const { data: documents, isSuccess: documentsSuccess, isError: documentsError } = useQuery({
+    queryKey: ['documents'],
+    queryFn : async()=> await new PropertyService().getPropertyDocuments()
+  })
   const [activeTab, setActiveTab] = useState<TabType>("interest");
   const [copied, setCopied] = useState(false);
 const [applicationStatus, setApplicationStatus] = useState<string>("all")
-  // Dummy data
-  
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
 
@@ -52,32 +54,7 @@ const [applicationStatus, setApplicationStatus] = useState<string>("all")
     electricalSafetyDate: "2023-11-20",
   };
 
-  const [legalDocuments, setLegalDocuments] = useState<LegalDocument[]>([
-    {
-      documentName: "Lease Agreement",
-      type: "Lease",
-      uploadDate: "2023-01-15",
-      expiryDate: "2024-01-31",
-    },
-    {
-      documentName: "Gas Safety Certificate",
-      type: "Certificate",
-      uploadDate: "2023-12-15",
-      expiryDate: "2024-12-15",
-    },
-    {
-      documentName: "EPC Certificate",
-      type: "Certificate",
-      uploadDate: "2023-12-15",
-      expiryDate: "2028-12-15",
-    },
-    {
-      documentName: "Electrical Safety Certificate",
-      type: "Certificate",
-      uploadDate: "2023-11-20",
-      expiryDate: "2026-11-20",
-    },
-  ]);
+
 
   const rentHistory: RentHistoryItem[] = [
     {
@@ -137,19 +114,10 @@ const [applicationStatus, setApplicationStatus] = useState<string>("all")
     console.log("Downloading receipt for:", payment);
   };
 
-  const downloadDocument = (doc: LegalDocument) => {
-    // Placeholder for document download
-    console.log("Downloading:", doc.documentName);
-  };
+  
 
-  const handleAddDocument = (document: Omit<LegalDocument, "uploadDate">) => {
-    const today = new Date().toISOString().split("T")[0];
-    const newDocument: LegalDocument = {
-      ...document,
-      uploadDate: today,
-    };
-    setLegalDocuments([...legalDocuments, newDocument]);
-  };
+
+  
 
 //   const filteredStatus = useMemo(() => {
 //     if(applicationStatus === "all") {
@@ -230,16 +198,16 @@ const [applicationStatus, setApplicationStatus] = useState<string>("all")
           <PropertyInfoTab propertyData={data} />
         )}
 
-        {/* {activeTab === "tenant-info" && (
-          <TenantInformationTab tenantData={tenantData} />
-        )} */}
+        {activeTab === "tenant-info" && (
+          <TenantInformationTab propertyId={data?.Properties?._id} />
+        )}
 
         {activeTab === "legal-compliance" && (
           <LegalComplianceTab
             complianceData={complianceData}
-            legalDocuments={legalDocuments}
-            onAddDocument={handleAddDocument}
-            onDownloadDocument={downloadDocument}
+            legalDocuments={documents}
+       
+         
           />
         )}
 

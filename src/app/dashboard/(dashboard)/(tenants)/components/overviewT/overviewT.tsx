@@ -4,9 +4,12 @@ import Deposits from "./components/Deposits";
 import Credits from "./components/Credits";
 import Button from "@/app/components/ui/ButtonTwo";
 import Outstanding from "./components/outstanding";
+import { useUser } from "@/app/components/Providers/UserProvider";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function OverviewT({tenantData}: {tenantData : any}) {
+export default function OverviewT() {
+  const {tenantData,tenantQuery} = useUser()
+  
   return (
     <div className="grid grid-cols-12 gap-5 w-full mt-6">
       <div className="col-span-12 grid grid-cols-3 gap-5 items-start">
@@ -24,7 +27,7 @@ export default function OverviewT({tenantData}: {tenantData : any}) {
             Landlords Name
           </h1>
           <p className="text-[#000000] font-[400] text-xs mt-1 text-center">
-            {tenantData?.tenant?.landlordId?.email}
+            {tenantData?.propertyId?.landlordId?.slug.toUpperCase()}
           </p>
 
           <div className="flex flex-col gap-2 mt-2 mx-auto">

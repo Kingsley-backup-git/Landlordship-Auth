@@ -11,6 +11,8 @@ import { usePathname } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import { PiMoneyDuotone } from "react-icons/pi";
 import { PiFolderOpenDuotone } from "react-icons/pi";
+import { PiUserCircleDuotone } from "react-icons/pi";
+import { MdPendingActions } from "react-icons/md";
 export default function DashboardList({ leftNav }: { leftNav: boolean }) {
   // const [open, setOpen] = useState (false)
   const type = useUserStore((state) => state.type);
@@ -43,7 +45,7 @@ export default function DashboardList({ leftNav }: { leftNav: boolean }) {
           ) : null}
         </Link>
 
-        {type !== "tenant" && (
+        {(type !== "tenant" && type!=="agent") && (
           <div className="w-full py-1">
             <Link
               href="/dashboard/properties"
@@ -106,7 +108,33 @@ export default function DashboardList({ leftNav }: { leftNav: boolean }) {
           </>
         )}
 
-     
+          {type === "agent" && (
+          <>
+            
+
+            <Link
+              href="/dashboard/documentation/finance"
+              className={`flex rounded-xl  hover:bg-[#1C1C1C0D] gap-x-2 p-2  items-center ${pathname.includes("/requests") ? "bg-[#1C1C1C0D]" : null}`}
+            >
+              <MdPendingActions className="min-w-[20px] min-h-[20px] max-w-[20px] w-[100%] h-[100%] text-black" />
+              {leftNav ? (
+                <h1 className="text-[#1C1C1C] text-xs font-[400]">Requests</h1>
+              ) : null}
+            </Link>
+
+          
+          </>
+        )}
+
+        <Link
+          href="/dashboard/profile"
+          className={`flex gap-x-2 p-2 hover:bg-[#1C1C1C0D] cursor-pointer rounded-xl items-center ${pathname.includes("/profile") ? "bg-[#1C1C1C0D]" : ""}`}
+        >
+          <PiUserCircleDuotone className="min-w-[20px] min-h-[20px] max-w-[20px] w-[100%] h-[100%] text-[#1C1C1C]" />
+          {leftNav ? (
+            <h1 className="text-[#1C1C1C] text-xs font-[400]">Profile</h1>
+          ) : null}
+        </Link>
       </div>
     </div>
   );

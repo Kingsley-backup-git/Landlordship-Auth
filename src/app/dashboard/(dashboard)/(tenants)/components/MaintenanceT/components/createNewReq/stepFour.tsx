@@ -37,7 +37,7 @@ export default function StepFour({  stepHandler,descriptionHandler, description,
                     onClick={() => {
                             // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             setRequest((req: any)=> ({...req, description}))
-                      stepHandler(5);
+                      stepHandler(6);
                      
                     }}
                     classname={`bg-[#1D3639] cursor-pointer flex items-center gap-x-2 justify-center max-w-[170px] w-full rounded-xl py-2 px-4`}

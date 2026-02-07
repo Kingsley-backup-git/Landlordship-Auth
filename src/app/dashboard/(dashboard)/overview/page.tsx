@@ -18,12 +18,11 @@ import { useQuery } from "@tanstack/react-query";
 import { TenantService } from "@/services/tenant";
 import NotFoundImg from "../../../../../public/notfound.png";
 import Image from "next/image";
+import { useUser } from "@/app/components/Providers/UserProvider";
 
 export default function Overview() {
-  const tenantQuery = useQuery({
-    queryKey: ["tenant"],
-    queryFn: async () => await new TenantService().getTenant(),
-  });
+  
+  const {data, query} = useUser()
   const type = useUserStore((state) => state.type);
 
   return (
@@ -72,11 +71,11 @@ export default function Overview() {
             <FinancialOverview />
           </div>
         </>
-      ) : type === "tenant" &&
-        tenantQuery?.isSuccess &&
-        tenantQuery?.data?.tenant !== null ? (
+      ) : (type === "tenant" &&
+        query?.isSuccess &&
+        data?.data?.isTenant) ? (
         <div className="w-full">
-          <OverviewT tenantData={tenantQuery?.data} />
+          <OverviewT  />
         </div>
       ) : (
         <div className="flex-1 mt-8 flex flex-col w-full items-center justify-center">

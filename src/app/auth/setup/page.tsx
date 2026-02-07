@@ -4,13 +4,16 @@ import React, { useState } from "react";
 import TenantAcc from "./components/tenantAcc";
 import LandlordAcc from "./components/landlordAcc";
 import Button from "./components/Button/button";
-import useUpdateAcc from "@/hooks/useUpdateAcc";
+
+import { useUserStore } from "@/store/useUserStore";
+import { useRouter } from "next/navigation";
 export default function Setup() {
   const [accountType, setAccountType] = useState("tenant");
+  const router = useRouter()
   function AccountTypeHandler(val: string) {
     setAccountType(val);
   }
-  const { doAccountUpdate, updateMutation } = useUpdateAcc();
+  const setType = useUserStore(state=> state.setType);
   return (
     <div className="">
       <h1 className="font-semibold text-xl text-center text-black">
@@ -33,8 +36,14 @@ export default function Setup() {
       </div>
 
       <Button
-        disabled={updateMutation.isPending}
-        onClick={() => doAccountUpdate({ type: accountType })}
+       disabled = {false}
+        onClick={() => {
+          setType(accountType)
+
+          setTimeout(() => {
+            router.push("/dashboard/overview")
+          }, 1000)
+        }}
         textStyle="text-sm font-[400] text-white"
         text={"Continue"}
         classname="max-w-[390x] w-full mt-6 bg-[#1D3639] py-2 px-4 mx-auto rounded-xl"

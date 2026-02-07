@@ -35,6 +35,16 @@ export class TenantService {
     }
   };
 
+  getLandlordTenant = async (propertyId:string) => {
+    try {
+      const res = await userInstance.get(`api/tenant/${propertyId}`);
+      return res?.data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      throw Error(error?.error);
+    }
+  };
+
 
    getAllTenant = async () => {
     try {

@@ -59,10 +59,11 @@ export interface ComplianceData {
 }
 
 export interface LegalDocument {
-  documentName: string;
+  name: string;
   type: string;
-  uploadDate: string;
+  createdAt: string;
   expiryDate: string;
+  url : string
 }
 
 export interface RentHistoryItem {

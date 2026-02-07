@@ -6,16 +6,16 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 
 export default function StepOne({
-  MaintenanceOptions,
+ 
   stepHandler,
-  typeHandler,
-  type,
+  titleHandler,
+  title,
   setRequest,
 }: {
-  MaintenanceOptions: any;
+
   stepHandler: (num: number) => void;
-  typeHandler: (val: string) => void;
-  type: string;
+  titleHandler: (val: string) => void;
+  title: string;
   setRequest: SetStateAction<any>;
 }) {
   return (
@@ -29,30 +29,8 @@ export default function StepOne({
 
       <div className="max-w-[400px] w-full mx-auto block mt-8">
         <h1 className="text-sm text-black font-semibold">Select An Issue</h1>
-        <div className="flex flex-col gap-y-4 mt-4">
-          {MaintenanceOptions.map(
-            (option: any, index: React.Key | null | undefined) => {
-              const Icon = option?.icon;
-              return (
-                <div
-                  key={index}
-                  className="w-full max-w-fit cursor-pointer"
-                  onClick={() => typeHandler(option?.header)}
-                >
-                  <Options
-                    Icon={Icon}
-                    subClassName=""
-                    checked = {type === option?.header}
-                    className={`flex gap-x-3 ${type === option?.header ? "border-2 border-black" : ""} relative  bg-[#F9F9FA] rounded-2xl p-4`}
-                    header={option?.header}
-                    text={option?.text}
-                  />
-                </div>
-              );
-            }
-          )}
-        </div>
-
+        
+<input type="text" value = {title} onChange={(e)=> titleHandler(e.target.value)} placeholder="Add title" className="border-2  mt-4 py-1 px-3 border-[#0000001A] rounded-xl w-full bg-transparent p-2 text-sm font-[400] flex-1 placeholder:text-[#00000033] text-black outline-none"/>
         <div className="flex items-center gap-x-4 mt-6 justify-between">
           <Button
             onClick={() => stepHandler(0)}
@@ -64,8 +42,8 @@ export default function StepOne({
 
           <Button
             onClick={() => {
-              setRequest((req: any)=> ({...req, category : type}));
-              stepHandler(2);
+              setRequest((req: any)=> ({...req, title}));
+              stepHandler(3);
             }}
             classname={`bg-[#1D3639] cursor-pointer flex items-center gap-x-2 justify-center max-w-[170px] w-full rounded-xl py-2 px-4`}
           >

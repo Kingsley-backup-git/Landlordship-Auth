@@ -3,20 +3,24 @@ import { IoDownloadOutline } from "react-icons/io5";
 import { PiPlus } from "react-icons/pi";
 import { ComplianceData, LegalDocument } from "./types";
 import AddDocumentForm from "./AddDocumentForm";
+import useAddPropertyDocument from "@/hooks/property/useAddPropertyDoc";
 
 interface LegalComplianceTabProps {
   complianceData: ComplianceData;
   legalDocuments: LegalDocument[];
-  onAddDocument: (document: Omit<LegalDocument, "uploadDate">) => void;
-  onDownloadDocument: (document: LegalDocument) => void;
+ 
+  
 }
 
 export default function LegalComplianceTab({
   complianceData,
   legalDocuments,
-  onAddDocument,
-  onDownloadDocument,
+
+
 }: LegalComplianceTabProps) {
+ 
+  const { handleAddDocuments, AddDocumentMutation } = useAddPropertyDocument()
+  
   return (
     <div className="space-y-6 animate-fadeIn">
       {/* Compliance Certificates */}
@@ -90,7 +94,7 @@ export default function LegalComplianceTab({
           <h1 className="font-semibold text-sm text-black">
             Legal Documents
           </h1>
-          <AddDocumentForm onAddDocument={onAddDocument} />
+          <AddDocumentForm onAddDocument={handleAddDocuments} AddDocumentMutation={AddDocumentMutation} />
         </div>
 
         {/* Desktop Table */}
@@ -117,31 +121,32 @@ export default function LegalComplianceTab({
 
             {/* Table Rows */}
             <div className="space-y-4">
-              {legalDocuments.map((doc, index) => (
+              {legalDocuments?.map((doc, index) => (
                 <div
                   key={index}
                   className="grid grid-cols-12 gap-4 items-center py-3 border-b-[1px] border-[#0000000A] last:border-0"
                 >
                   <div className="col-span-4 text-black font-[400] text-sm truncate">
-                    {doc.documentName}
+                    {doc?.name}
                   </div>
                   <div className="col-span-2 text-black font-[400] text-sm">
-                    {doc.type}
+                    {doc?.type}
                   </div>
                   <div className="col-span-2 text-black font-[400] text-sm">
-                    {new Date(doc.uploadDate).toLocaleDateString()}
+                    {new Date(doc.createdAt).toLocaleDateString()}
                   </div>
                   <div className="col-span-2 text-black font-[400] text-sm">
-                    {new Date(doc.expiryDate).toLocaleDateString()}
+                    {new Date(doc?.expiryDate).toLocaleDateString()}
                   </div>
                   <div className="col-span-2">
-                    <button
-                      onClick={() => onDownloadDocument(doc)}
+                    <a
+                     href = {doc?.url}
+                     download
                       className="flex items-center gap-x-2 text-[#007AFF] hover:text-[#0056CC] text-sm font-[400] transition-colors whitespace-nowrap"
                     >
                       <IoDownloadOutline className="text-lg" />
                       <span>Download</span>
-                    </button>
+                    </a>
                   </div>
                 </div>
               ))}
@@ -151,39 +156,40 @@ export default function LegalComplianceTab({
 
         {/* Mobile Cards */}
         <div className="sm:hidden block space-y-4">
-          {legalDocuments.map((doc, index) => (
+          {legalDocuments?.map((doc, index) => (
             <div
               key={index}
               className="bg-white p-4 rounded-xl border-[.5px] border-[#0000001A]"
             >
               <div className="flex items-center justify-between mb-3">
                 <h1 className="text-black font-semibold text-sm flex-1 truncate pr-2">
-                  {doc.documentName}
+                  {doc?.name}
                 </h1>
                 <span className="text-[#00000066] text-xs bg-[#F9F9FA] px-2 py-1 rounded">
-                  {doc.type}
+                  {doc?.type}
                 </span>
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-[#00000066] text-xs">Uploaded:</span>
                   <span className="text-black text-xs font-[400]">
-                    {new Date(doc.uploadDate).toLocaleDateString()}
+                    {new Date(doc?.createdAt).toLocaleDateString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#00000066] text-xs">Expires:</span>
                   <span className="text-black text-xs font-[400]">
-                    {new Date(doc.expiryDate).toLocaleDateString()}
+                    {new Date(doc?.expiryDate).toLocaleDateString()}
                   </span>
                 </div>
-                <button
-                  onClick={() => onDownloadDocument(doc)}
+                <a
+                   href = {doc?.url}
+                     download
                   className="w-full mt-3 flex items-center justify-center gap-x-2 text-[#007AFF] hover:text-[#0056CC] text-sm font-[400] transition-colors bg-[#F9F9FA] py-2 rounded-lg"
                 >
                   <IoDownloadOutline className="text-lg" />
                   <span>Download</span>
-                </button>
+                </a>
               </div>
             </div>
           ))}

@@ -1,14 +1,28 @@
 import Button from "@/app/components/ui/ButtonTwo";
-import React from "react";
+import Image from "next/image";
+import React, { SetStateAction, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { PiCloudArrowUpDuotone } from "react-icons/pi";
 import { PiVideoCameraDuotone } from "react-icons/pi";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function StepThree({
   stepHandler,
+   setRequest
 }: {
-  stepHandler: (num: number) => void;
-}) {
+    stepHandler: (num: number) => void;
+ // eslint-disable-next-line @typescript-eslint/no-explicit-any
+ setRequest: SetStateAction<any>;
+  }) {
+  const [images, setImages] = useState<File[]>([])
+  function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0] ?? null
+    if (!file) {
+  return
+    }
+    setImages([...images, file])
+    setRequest((prev: { attachment: File[]; })=> ({...prev, attachment : [...prev.attachment, file] }))
+    
+  }
   return (
     <div className="mt-8 max-w-[400px] w-full mx-auto block">
       <h1 className="text-black font-semibold text-2xl text-center">
@@ -26,13 +40,17 @@ export default function StepThree({
             <h1 className="text-black text-center text-sm">
               Add photos or upload a file
             </h1>
-             <input type="file" accept = "image/*" className="hidden w-full"/>
+             <input type="file" onChange={(e)=> changeHandler(e)} accept = "image/*" multiple className="hidden w-full"/>
           </div>
         </label>
+{(images && images.length > 0 )&& images?.map((image, index)=> {
+  return <div key = {index} className="w-[70px] h-[70px]">
+<Image src={URL.createObjectURL(image)} width = {70}  height = {70} className="w-full h-full object-cover" alt={`attachment${[index]}`}/>
+  </div>
+})}
 
 
-
-          <label className="max-w-[280px] w-full mx-auto block">
+          {/* <label className="max-w-[280px] w-full mx-auto block">
          
           <div className="border flex flex-col gap-y-3 cursor-pointer items-center border-[rgba(0, 0, 0, 0.2)]  border-dashed  mx-auto w-full rounded-2xl p-6 h-[126px]">
             <PiVideoCameraDuotone className="text-2xl text-black" />
@@ -41,7 +59,7 @@ export default function StepThree({
             </h1>
              <input type="file" accept = "video/*" className="hidden w-full"/>
           </div>
-        </label>
+        </label> */}
       </div>
 
 

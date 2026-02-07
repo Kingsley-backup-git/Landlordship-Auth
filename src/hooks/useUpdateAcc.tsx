@@ -2,7 +2,7 @@ import { UserService } from "@/services/user";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-
+import Cookies from "js-cookie";
 export default function useUpdateAcc() {
   const { push } = useRouter();
   const updateMutation = useMutation({
@@ -16,6 +16,7 @@ export default function useUpdateAcc() {
       console.log(variables);
       toast.dismiss("updateAcc");
       toast.success(`Account successfully updated as a ${variables.type}`);
+       Cookies.set("token", data?.accessToken, { expires: 7, secure: true });
       push("/dashboard/overview");
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
