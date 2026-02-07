@@ -55,19 +55,12 @@ function PropertyPreviewPage({ propertyId }: { propertyId: string }) {
   const landlordEmail = property?.landlord?.email || data?.landlord?.email || "";
 
   const applyHref = `/properties/${propertyId}/apply`;
-  const previewHref = `/properties/${propertyId}`;
-  const loginHref = `/login?redirect=${encodeURIComponent(previewHref)}`;
+ 
+ 
 
-  const handleApply = () => router.push(applyHref);
+ 
 
-  const handleLogin = () => {
-    try {
-      window.localStorage.setItem("postLoginRedirect", previewHref);
-    } catch {
-      // ignore storage errors
-    }
-    router.push(loginHref);
-  };
+
 
   if (isPending) {
     return (
@@ -291,14 +284,14 @@ function PropertyPreviewPage({ propertyId }: { propertyId: string }) {
 
               {isAuthed ? (
                 <button
-                  onClick={handleApply}
+                  onClick={()=> router.push(applyHref)}
                   className="w-full bg-black text-white font-semibold text-base py-4 px-6 rounded-xl hover:bg-[#333] transition-all duration-300 shadow-sm hover:shadow-lg"
                 >
                   Apply
                 </button>
               ) : (
                 <button
-                  onClick={handleLogin}
+                  onClick={()=> router.push("/auth/signin")}
                   className="w-full bg-white text-black font-semibold text-base py-4 px-6 rounded-xl border border-[#0000001A] hover:bg-white/60 transition-all duration-300 shadow-sm"
                 >
                   Sign in to apply

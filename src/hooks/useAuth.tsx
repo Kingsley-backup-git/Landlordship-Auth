@@ -55,18 +55,7 @@ export function useAuth(
       handleLoader(false);
       // If the user was trying to access a protected page, send them back there.
       // Falls back to the existing default route to avoid breaking current behavior.
-      try {
-        if (typeof window !== "undefined") {
-          const redirectTo = window.localStorage.getItem("postLoginRedirect");
-          if (redirectTo) {
-            window.localStorage.removeItem("postLoginRedirect");
-            push(redirectTo);
-            return;
-          }
-        }
-      } catch {
-        // ignore storage errors and continue
-      }
+  
 
       push("/dashboard/overview");
     },
