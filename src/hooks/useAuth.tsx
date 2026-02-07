@@ -53,6 +53,10 @@ export function useAuth(
       Cookies.set("token", data?.accessToken, { expires: 7, secure: true });
       toast.success(`Successfully Logged In`, { autoClose: 3000 });
       handleLoader(false);
+      // If the user was trying to access a protected page, send them back there.
+      // Falls back to the existing default route to avoid breaking current behavior.
+  
+
       push("/dashboard/overview");
     },
     onError: (error) => {

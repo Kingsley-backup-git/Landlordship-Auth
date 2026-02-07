@@ -11,7 +11,7 @@ export default function FinalStep({
 
 }) {
   return (
-    <div className="fixed h-screen top-0 flex justify-center items-center bottom-0 left-0 right-0 bg-white/.1 z-[9999999] backdrop-blur-sm">
+    <div className="fixed h-screen top-0 flex justify-center items-center bottom-0 left-0 right-0 bg-white/.1 z-[99] backdrop-blur-sm">
       <div className="max-w-[620px] w-full min-h-[600px] bg-white rounded-3xl flex flex-col justify-center items-center">
         <Image
           src={CheckedImg}

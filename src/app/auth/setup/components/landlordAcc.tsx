@@ -19,7 +19,7 @@ export default function LandlordAcc({
       <div className="">
         <h1 className="font-semibold text-sm text-black">Landlord Account</h1>
         <p className="text-[#00000066] font-[400] text-xs">
-          Setup your landlord account
+         Continue as a landlord
         </p>
       </div>
 
@@ -30,7 +30,7 @@ export default function LandlordAcc({
           ): void {
             throw new Error("Function not implemented.");
           }}
-          checked={false}
+          checked={accountType === "landlord"}
         />
       ) : null}
     </div>

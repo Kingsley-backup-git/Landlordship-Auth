@@ -13,97 +13,61 @@ import StepTwo from "./components/createNewReq/stepTwo";
 import StepThree from "./components/createNewReq/stepThree";
 import { MaintenanceOptions } from "@/lib/data/maintenanceOptions";
 import StepFour from "./components/createNewReq/stepFour";
-import StepFive from "./components/createNewReq/stepFive";
+// import StepFive from "./components/createNewReq/stepFive";
 import StepSix from "./components/createNewReq/stepSix";
 import FinalStep from "./components/createNewReq/finalStep";
 import { useQuery } from "@tanstack/react-query";
 import { TenantService } from "@/services/tenant";
 import CreateRequest from "@/hooks/maintenance/useCreateReq";
+import { useUser } from "@/app/components/Providers/UserProvider";
 export interface requestTypes {
-  category: string;
-  description: string;
-  subCategory: string;
-  permissionToAccess: false;
-  pets: {
-    dogs: false;
-    cats: false;
-    other: false;
-  };
-  urgency: "Low" | "Normal" | "High" | "Critical";
-
-  attachment: File | null;
+title: string,
+    description:string,
+    attachment: File[] | null,
 }
 export default function MaintenanceT() {
-  const tenantQuery = useQuery({
-      queryKey: ["tenant"],
-      queryFn: async () => await new TenantService().getTenant(),
-  });
+  const {tenantData, tenantQuery} = useUser()
+  console.log(tenantData)
   const {CreateRequestHandler, createReqMutation} = CreateRequest(stepHandler)
   const [request, setRequest] = useState<requestTypes>({
-    category: "",
+    title: "",
     description: "",
-    subCategory: "",
-    permissionToAccess: false,
-    pets: {
-      dogs: false,
-      cats: false,
-      other: false,
-    },
-    urgency: "Low",
-    attachment: null,
+    attachment:  [],
   });
   const [urgency, setUrgency] = useState<
-    "Low" | "Normal" | "High" | "Critical"
-  >("Low");
+    "low" | "medium" | "high" | "urgent"
+  >("low");
   const [step, setStep] = useState(-1);
-  const [type, setType] = useState<string>("");
-  const [subType, setSubType] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [accessPermission, setAccessPermission] = useState<boolean>(false);
+
   function stepHandler(num: number) {
     setStep(num);
   }
-  function typeHandler(val: string) {
-    setType(val);
-  }
-  function subtypeHandler(val: string) {
-    setSubType(val);
+  function titleHandler(val: string) {
+    setTitle(val);
   }
   function descriptionHandler(val: string) {
     setDescription(val);
   }
-  function urgencyHandler(str: "Low" | "Normal" | "High" | "Critical") {
+  function urgencyHandler(str: "low"| "medium" | "high" | "urgent") {
     setUrgency(str);
-  }
-  function permissionHandler(val: boolean) {
-    setAccessPermission(val);
-  }
-  function ChoosePetHandler(name: string, value: boolean) {
-    setRequest((prev) => ({
-      ...prev,
-      pets: { ...request.pets, [name]: value },
-    }));
   }
 
 async function CreateReqHandler() {
     const formdata = new FormData()
    
     if (formdata) {
-      formdata.append("category", request.category)
-      if (request.subCategory !== "") {
-         formdata.append("subCategory", request.subCategory)
-      }
-     
+      formdata.append("title", request.title)
       formdata.append("description", request.description)
-      formdata.append("urgency", request.urgency)
-    
-        formdata.append("permissionToAccess", JSON.stringify(request.permissionToAccess))
-      
-     
-         formdata.append("pets", JSON.stringify(request.pets))
-      formdata.append("tenantId", tenantQuery?.data?.tenant?.tenantId?._id)
-      formdata.append("propertyId", tenantQuery?.data?.tenant?.propertyId?._id)
-      formdata.append("landlordId", tenantQuery?.data?.tenant?.landlordId?._id)
+      formdata.append("priority", urgency)
+      request.attachment?.forEach((val) => {
+       return formdata.append("images", val)
+      })
+
+      // formdata.append("tenantId", tenantData?._id)
+      formdata.append("propertyId", tenantData?.propertyId?._id)
+      // formdata.append("landlordId", tenantData?.landlordId?._id)
       
      
 await CreateRequestHandler(formdata)
@@ -115,23 +79,14 @@ await CreateRequestHandler(formdata)
     <>
       {step === 0 ? (
         <StepOne
-          MaintenanceOptions={MaintenanceOptions}
           stepHandler={stepHandler}
-          typeHandler={typeHandler}
-          type={type}
+          titleHandler={titleHandler}
+          title={title}
           setRequest={setRequest}
-        />
-      ) : step === 2 ? (
-        <StepTwo
-          stepHandler={stepHandler}
-          type={type}
-          MaintenanceOptions={MaintenanceOptions}
-          subtypeHandler={subtypeHandler}
-          setRequest={setRequest}
-          subType={subType}
         />
       ) : step === 3 ? (
-        <StepThree stepHandler={stepHandler} />
+          <StepThree stepHandler={stepHandler}
+         setRequest={setRequest}  />
       ) : step === 4 ? (
         <StepFour
           stepHandler={stepHandler}
@@ -139,15 +94,7 @@ await CreateRequestHandler(formdata)
           description={description}
           setRequest={setRequest}
         />
-      ) : step === 5 ? (
-        <StepFive
-          stepHandler={stepHandler}
-          permissionHandler={permissionHandler}
-          accessPermission={accessPermission}
-          request={request}
-          ChoosePetHandler={ChoosePetHandler}
-        />
-      ) : step === 6 ? (
+      )  : step === 6 ? (
         <StepSix
           stepHandler={stepHandler}
           urgencyHandler={urgencyHandler}

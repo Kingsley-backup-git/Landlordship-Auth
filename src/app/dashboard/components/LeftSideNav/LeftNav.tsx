@@ -12,22 +12,19 @@ import { UserService } from "@/services/user";
 import { useUserStore } from "@/store/useUserStore";
 import { FaCheck } from "react-icons/fa6";
 import { TenantService } from "@/services/tenant";
+import { useUser } from "@/app/components/Providers/UserProvider";
 export default function LeftNav() {
   const [toggle, setToggle] = useState(false);
-   const tenantQuery = useQuery({
-        queryKey: ["tenant"],
-        queryFn: async () => await new TenantService().getTenant(),
-    });
-  const userQuery = useQuery({
-    queryKey: ["user"],
-    queryFn: async () => await new UserService().getUser(),
-  });
+  const {data, query} = useUser()
+  
+
   function toggleState() {
     setToggle((prev) => !prev);
   }
   const type = useUserStore((state) => state.type);
   const setType = useUserStore((state) => state.setType);
   const { leftNav } = useMyContext();
+  if(query.isSuccess)
   return (
     <div className="w-[100%] py-5 flex flex-col overflow-x-visible h-screen gap-y-6 ">
       <div className="flex-1 relative">
@@ -41,16 +38,16 @@ export default function LeftNav() {
             className="w-[24px] h-[24px] rounded-full"
           />
 
-          {leftNav && userQuery.isSuccess ? (
+          {leftNav && query?.isSuccess ? (
             <h1 className="text-[#1C1C1C] font-[400] text-sm">
-              {userQuery?.data?.data?.userName}
+              {data?.data?.userName}
             </h1>
           ) : null}
 
           {toggle && (
             <div className="fixed z-[99999] rounded-lg bg-gray-500 gap-y-1 shadow-2xl flex flex-col   top-12 left-10 p-2  max-w-[110px] w-full">
               <div
-                className="text-white flex justify-between items-center text-sm cursor-pointer"
+                className={`text-white flex justify-between  items-center text-sm cursor-pointer`}
                 onClick={() => setType("landlord")}
               >
                 <div>LandLord</div>{" "}
@@ -58,11 +55,19 @@ export default function LeftNav() {
               </div>
 
              <div
-                className={`text-white ${tenantQuery?.data?.tenant !== null ? "" :  "pointer-events-none opacity-20"} flex justify-between items-center text-sm cursor-pointer`}
+                className={`text-white flex justify-between items-center text-sm cursor-pointer`}
                 onClick={() => setType("tenant")}
               >
                 <div>Tenant</div>{" "}
                 {type === "tenant" && <FaCheck className="text-green-300" />}
+              </div>
+
+              <div
+                className={`text-white flex justify-between items-center text-sm cursor-pointer`}
+                onClick={() => setType("agent")}
+              >
+                <div>Agent</div>{" "}
+                {type === "agent" && <FaCheck className="text-green-300" />}
               </div>
             </div>
           )}
@@ -70,9 +75,9 @@ export default function LeftNav() {
 
         <DashboardList leftNav={leftNav} />
 
-        {type !== "tenant" && <PeopleList leftNav={leftNav} />}
+        {(type !== "tenant" && type !== "agent") && <PeopleList leftNav={leftNav} />}
 
-        {type !== "tenant" && <DocList leftNav={leftNav} />}
+        {(type !== "tenant" && type !== "agent") && <DocList leftNav={leftNav} />}
       </div>
       <Image
         src={Logo}

@@ -1,13 +1,11 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { FiPlus } from "react-icons/fi";
 import RadioInput from "./components/radioInput";
 import { PiMapPin } from "react-icons/pi";
 import { PiEnvelopeSimple } from "react-icons/pi";
 import { PiPhone } from "react-icons/pi";
-import Img1 from "../../../../../../public/user.png";
-import Img2 from "../../../../../../public/contact4.png";
-import Img3 from "../../../../../../public/Req1015.png";
-import Img4 from "../../../../../../public/contact5.png";
 import { RiAddLargeLine } from "react-icons/ri";
 import Image from "next/image";
 import { FaChevronLeft } from "react-icons/fa6";
@@ -16,82 +14,19 @@ import { FiSearch } from "react-icons/fi";
 import { PiArrowsDownUp } from "react-icons/pi";
 import { BsThreeDots } from "react-icons/bs";
 import Link from "next/link";
-export default function Agents() {
-  const agents = [
-    {
-      name: "Andre Cage",
-      email: "andrewcage@gmail.com",
-      location: "Meadow Lane Oakland",
-      img: Img1,
-      no: 4100922932903,
-      isSelected: true,
-    },
-    {
-      name: "Kate Morrison",
-      email: "melody@altbox.com",
-      img: Img2,
-      location: "Larry San Francisco",
-      no: 4100922932903,
-      isSelected: false,
-    },
-    {
-      name: "Drew Cano",
-      email: "max@kt.com",
-      img: Img3,
-      location: "Bagwell Avenue Ocala",
-      no: 4100922932903,
-      isSelected: false,
-    },
-    {
-      name: "Diggs",
-      email: "sean@dellito.com",
-      img: Img4,
-      location: "Washburn Baton Rouge",
-      no: 4100922932903,
-      isSelected: false,
-    },
-    {
-      name: "Andre Cage",
-      email: "andrewcage@gmail.com",
-      location: "Bagwell Avenue Ocala",
-      img: Img1,
-      no: 4100922932903,
-      isSelected: false,
-    },
+import AddAgentModal from "./components/AddAgentModal";
+import { useQuery } from "@tanstack/react-query";
+import { AgentService } from "@/services/agent";
+import UserImg from "../../../../../../public/user.png";
 
-    {
-      name: "Andre Cage",
-      email: "andrewcage@gmail.com",
-      location: "Bagwell Avenue Ocala",
-      img: Img2,
-      no: +4100922932903,
-      isSelected: false,
-    },
-    {
-      name: "Andre Cage",
-      email: "andrewcage@gmail.com",
-      img: Img3,
-      location: "Bagwell Avenue Ocala",
-      no: +4100922932903,
-      isSelected: false,
-    },
-    {
-      name: "Andre Cage",
-      email: "andrewcage@gmail.com",
-      location: "Bagwell Avenue Ocala",
-      img: Img4,
-      no: +4100922932903,
-      isSelected: false,
-    },
-    {
-      name: "Andre Cage",
-      email: "andrewcage@gmail.com",
-      location: "Bagwell Avenue Ocala",
-      img: Img1,
-      no: +4100922932903,
-      isSelected: false,
-    },
-  ];
+export default function Agents() {
+  const [isAddAgentModalOpen, setIsAddAgentModalOpen] = useState(false);
+  const { data, isSuccess, isError, isPending } = useQuery({
+    queryKey: ["agents"],
+    queryFn : async()=> await new AgentService().getAgent()
+})
+
+  
   return (
     <div className="sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]">
       <div className="flex justify-between items-center">
@@ -109,10 +44,14 @@ export default function Agents() {
           Agents
         </h1>
 
-        <div className="sm:flex hidden items-center gap-x-1 max-w-fit w-[100%] cursor-pointer">
+        <button
+          type="button"
+          onClick={() => setIsAddAgentModalOpen(true)}
+          className="sm:flex hidden items-center gap-x-1 max-w-fit w-[100%] cursor-pointer"
+        >
           <FiPlus className="text-[#00000066] w-[10px] h-[10px]" />
           <h1 className="text-[#00000066] font-[400] text-sm">Add Agent</h1>
-        </div>
+        </button>
 
         <BsThreeDots className="text-[#007AFF] text-lg sm:hidden flex" />
       </div>
@@ -129,15 +68,16 @@ export default function Agents() {
 
       <div className={`grid grid-cols-12 sm:mt-10 mt-2 gap-y-6 gap-x-4 w-full`}>
         <div className="sm:flex grid 2sm:grid-cols-2 grid-cols-1 flex-col sm:gap-y-6 gap-y-4 sm:col-span-6 col-span-12">
-          {agents.map((agent, index) => {
+          {isSuccess && data.map((agent: { name: string; email: string; _id: string; phone: string;  address:string}) => {
             return (
-              <div
-                className={`sm:bg-[#F9F9FA] break-words w-[100%] text-wrap whitespace-normal xs:flex-row  1/2md:flex-row 1md:flex-col lg:flex-row items-center relative bg-white hover:border-[2px] cursor-pointer transition-[border] ease-in-out duration-100 border-black p-3 xs:p-3 rounded-2xl flex gap-x-4 ${agent.isSelected && "border-[2px]"}`}
-                key={index}
+              <Link
+                href={`/dashboard/people/agents/${agent._id}`}
+                key={agent._id}
+                className={`sm:bg-[#F9F9FA] break-words w-[100%] text-wrap whitespace-normal xs:flex-row  1/2md:flex-row 1md:flex-col lg:flex-row items-center relative bg-white hover:border-[2px] cursor-pointer transition-[border] ease-in-out duration-100 border-black/20 p-3 xs:p-3 rounded-2xl flex gap-x-4 `}
               >
                 {/* <div className="flex xs:flex-row justify-center flex-col items-center xs:gap-x-4"> */}
                 <Image
-                  src={agent.img}
+                  src={UserImg}
                   className="xs:max-w-[70px] max-w-[60px] self-center w-full xs:h-[70px] h-[60px] rounded-2xl"
                   width={70}
                   height={70}
@@ -148,23 +88,23 @@ export default function Agents() {
                   <h1 className="text-black xs:text-start 1md:text-center lg:text-start font-semibold xs:text-base text-sm">
                     {agent.name}
                   </h1>
-                  <p className="text-[#00000066] text-xs lg:text-start 1md:text-center font-[400] mt-[2px] text-break flex items-center lg:justify-start 1md:justify-center gap-x-1">
+                  <div className="text-[#00000066] text-xs lg:text-start 1md:text-center font-[400] mt-[2px] text-break flex items-center lg:justify-start 1md:justify-center gap-x-1">
                     <PiEnvelopeSimple className="" />{" "}
                     <div className="break-all">{agent.email}</div>
-                  </p>
+                  </div>
                   <p className="text-[#00000066] text-xs lg:text-start 1md:text-center font-[400] mt-1">
                     <PiMapPin className="inline-block align-middle" />{" "}
-                    {agent.location}
+                    {agent.address}
                   </p>
                   <p className="text-[#00000066] text-xs lg:text-start 1md:text-center font-[400] mt-1">
-                    <PiPhone className="inline-block align-middle" /> +
-                    {agent.no}
+                    <PiPhone className="inline-block align-middle" /> 
+                    {agent.phone}
                   </p>
                 </div>
                 {/* </div> */}
 
-                {agent.isSelected ? <RadioInput /> : null}
-              </div>
+             
+              </Link>
             );
           })}
         </div>
@@ -182,6 +122,12 @@ export default function Agents() {
           </div>
         </div>
       </div>
+
+      <AddAgentModal
+        isOpen={isAddAgentModalOpen}
+        onClose={() => setIsAddAgentModalOpen(false)}
+     
+      />
     </div>
   );
 }

@@ -12,8 +12,8 @@ export class UserService {
   };
   updateAcc = async (values: { type: string }) => {
     try {
-      const res = userInstance.patch("/api/auth/setup", values);
-      return res;
+      const res = await userInstance.patch("/api/auth/profile-setup", {role : values.type});
+      return res?.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw Error(error);

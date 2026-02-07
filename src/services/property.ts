@@ -16,6 +16,32 @@ export class PropertyService {
     }
   };
 
+    addPropertyDocuments = async (values: FormData) => {
+    try {
+      const res = await userInstance.post("api/property/documents/add", values, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+    return res?.data
+  
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log(error?.error);
+      throw Error(error?.error);
+    }
+  };
+
+
+    getPropertyDocuments = async () => {
+    try {
+      const res = await userInstance.get("api/property/documents");
+    return res?.data
+  
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log(error?.error);
+      throw Error(error?.error);
+    }
+  };
   getAllProperties = async () => {
     try {
       const res = await userInstance.get("api/property/all");

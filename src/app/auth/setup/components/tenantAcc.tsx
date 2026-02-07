@@ -20,7 +20,7 @@ export default function TenantAcc({
       <div className="">
         <h1 className="font-semibold text-sm text-black">Tenant Account</h1>
         <p className="text-[#00000066] font-[400] text-xs">
-          Setup your tenant account
+          Continue as a tenant
         </p>
       </div>
 
@@ -31,7 +31,7 @@ export default function TenantAcc({
           ): void {
             throw new Error("Function not implemented.");
           }}
-          checked={false}
+          checked={accountType === "tenant"}
         />
       ) : null}
     </div>

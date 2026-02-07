@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useMemo, useState } from "react";
 import Cards from "./components/cards";
 import { FaChevronLeft } from "react-icons/fa6";
 import { BsThreeDots } from "react-icons/bs";
@@ -10,58 +10,76 @@ import { useQuery } from "@tanstack/react-query";
 import { MaintenanceService } from "@/services/maintenance";
 import NotFoundImg from "../../../../../public/notfound.png";
 import Image from "next/image";
-import { TenantService } from "@/services/tenant";
+import { useUser } from "@/app/components/Providers/UserProvider";
+import Details from "./components/details";
+import GetEachRequests from "@/hooks/maintenance/getGetEachRequest";
+import AgentRequestPage from "../(agent)/components/MaintenanceA";
 // import Details from './components/details';
 
 export default function Maintenance() {
   const type = useUserStore((state) => state.type);
+  const [open, setOpen] = useState(false)
   const maintenanceQuery = useQuery({
     queryKey: ['maintenanceData'],
-    queryFn : async ()=> await new MaintenanceService().getRequest()
-  })
-  const tenantQuery = useQuery({
-      queryKey: ["tenant"],
-      queryFn: async () => await new TenantService().getTenant(),
-    });
+    queryFn : async ()=> await new MaintenanceService().getLandlordRequests(),
+    enabled : (type === "landlord")
+  }) 
+
+  // Normalize API response into a safe array for UI rendering.
+  const requests = useMemo(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const d: any = maintenanceQuery.data;
+    if (Array.isArray(d)) return d;
+    if (Array.isArray(d?.data)) return d.data;
+    if (Array.isArray(d?.requests)) return d.requests;
+    return [];
+  }, [maintenanceQuery.data]);
+
+  const isListLoading = maintenanceQuery.isLoading || maintenanceQuery.isPending;
+  function openHandler(val:boolean) {
+    setOpen(val)
+  }
+   const {getReqMutation, getRequestHandler} = GetEachRequests(openHandler)
+const {tenantData, tenantQuery, data, agentQuery, agentData} = useUser()
 
   // Show loading state
-  if (maintenanceQuery.isPending || tenantQuery.isPending) {
-    return (
-      <div className="sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]">
-        <div className="flex items-center justify-center py-20">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
-            <p className="text-[#00000066] font-[400] text-sm">Loading maintenance requests...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // if (maintenanceQuery.isPending) {
+  //   return (
+  //     <div className="sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]">
+  //       <div className="flex items-center justify-center py-20">
+  //         <div className="text-center">
+  //           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
+  //           <p className="text-[#00000066] font-[400] text-sm">Loading maintenance requests...</p>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
-  // Show error state
-  if (maintenanceQuery.isError) {
-    return (
-      <div className="sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]">
-        <div className="bg-[#FFE5E5] border border-red-200 rounded-xl p-8 text-center max-w-md mx-auto mt-8">
-          <div className="text-4xl mb-4">⚠️</div>
-          <h2 className="text-xl font-semibold text-black mb-2">Failed to Load Requests</h2>
-          <p className="text-red-600 font-[400] text-sm mb-6">
-            We couldn't load maintenance requests. Please try again later.
-          </p>
-          <button
-            onClick={() => window.location.reload()}
-            className="px-6 py-2 bg-black text-white rounded-lg hover:bg-black/90 transition-colors text-sm font-[400]"
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
-  }
+  // // Show error state
+  // if (maintenanceQuery.isError) {
+  //   return (
+  //     <div className="sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]">
+  //       <div className="bg-[#FFE5E5] border border-red-200 rounded-xl p-8 text-center max-w-md mx-auto mt-8">
+  //         <div className="text-4xl mb-4">⚠️</div>
+  //         <h2 className="text-xl font-semibold text-black mb-2">Failed to Load Requests</h2>
+  //         <p className="text-red-600 font-[400] text-sm mb-6">
+  //           We couldn't load maintenance requests. Please try again later.
+  //         </p>
+  //         <button
+  //           onClick={() => window.location.reload()}
+  //           className="px-6 py-2 bg-black text-white rounded-lg hover:bg-black/90 transition-colors text-sm font-[400]"
+  //         >
+  //           Retry
+  //         </button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
-  const pending = maintenanceQuery?.data?.filter((data:{status:string})=> data?.status === "pending").length
- const inprogress = maintenanceQuery?.data?.filter((data:{status:string})=> data?.status === "inprogress").length
- const complete = maintenanceQuery?.data?.filter((data:{status:string})=> data?.status === "complete").length
+  const pending = requests?.filter((data:{status:string})=> data?.status === "pending")?.length ?? 0
+ const inprogress = requests?.filter((data:{status:string})=> (data?.status === "assigned" || data?.status === "accepted" || data?.status === "assigned_pending"))?.length ?? 0
+ const complete = requests?.filter((data:{status:string})=> data?.status === "completed")?.length ?? 0
   return (
     <>
       <div className="sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-[100%]">
@@ -85,99 +103,162 @@ export default function Maintenance() {
           <BsThreeDots className="text-[#007AFF] text-lg sm:hidden flex" />
         </div>
 
-        {type !== "tenant" ? (
-          <>
-            {maintenanceQuery?.data?.length < 1 ?
-
-              <div className="flex-1 mt-8 flex flex-col w-full items-center justify-center">
-                <h1 className="text-2xl text-black text-center font-semibold">
-                  No Request Sent yet
-                </h1>
-       
-                <Image
-                  src={NotFoundImg}
-                  className="mt-4"
-                  width={100}
-                  height={100}
-                  alt="the not found image"
-                />
-              </div>
-              :
-              <div>
-                <div className="sm:grid grid-cols-12 hidden sm:gap-x-5 gap-x-3 mt-5 w-full">
-                  <div className="col-span-4 w-full ">
-                    <h1 className="font-semibold text-sm text-black">
-                      Yet to Start <span className="text-[#00000066]">{pending}</span>
-                    </h1>
-                    <div className="h-[5px] sm:flex hidden w-[100%] bg-[#E3572B] mt-2 rounded-2xl"></div>
-                  </div>
-
-                  <div className="col-span-4 w-full">
-                    <h1 className="font-semibold text-sm text-black">
-                      In Progress <span className="text-[#00000066]">{inprogress}</span>
-                    </h1>
-                    <div className="h-[5px] w-[100%] bg-[#C3DF93] mt-2 rounded-2xl"></div>
-                  </div>
-
-                  <div className="sm:col-span-4 col-span-12">
-                    <h1 className="font-semibold text-sm text-black">
-                      Completed <span className="text-[#00000066]">{complete}</span>
-                    </h1>
-                    <div className="h-[5px] w-[100%] bg-[#94E9B8] mt-2 rounded-2xl"></div>
-                  </div>
+        {type === "landlord" ? (
+          open ? (
+            <Details
+              openHandler={openHandler}
+              getReqMutation={getReqMutation}
+            />
+          ) : maintenanceQuery.isError ? (
+            <div className="bg-white border border-[#0000000A] rounded-2xl p-8 text-center max-w-lg mx-auto mt-8 shadow-sm">
+              <div className="text-4xl mb-3">⚠️</div>
+              <h2 className="text-xl font-semibold text-black mb-2">
+                We couldn&apos;t load maintenance requests
+              </h2>
+              <p className="text-[#00000066] font-[400] text-sm mb-6">
+                Please check your connection and try again.
+              </p>
+              <button
+                onClick={() => maintenanceQuery.refetch()}
+                className="px-6 py-3 bg-black text-white rounded-xl hover:bg-black/90 transition-all duration-300 text-sm font-[400] shadow-sm hover:shadow-md"
+              >
+                Retry
+              </button>
+            </div>
+          ) : isListLoading ? (
+            <div className="mt-6">
+              <div className="sm:grid grid-cols-12 hidden sm:gap-x-5 gap-x-3 mt-5 w-full">
+                <div className="col-span-4 w-full ">
+                  <div className="h-4 w-40 bg-[#F5F5F5] rounded-lg animate-pulse" />
+                  <div className="h-[5px] sm:flex hidden w-[100%] bg-[#F5F5F5] mt-2 rounded-2xl animate-pulse"></div>
                 </div>
-
-                <div className="grid grid-cols-12 sm:hidden sm:gap-x-5 gap-x-3 sm:gap-y-3 gap-y-2 mt-5 w-full">
-                  <div className="xs:col-span-6 col-span-12 w-full flex justify-between bg-[#FFFFFF] rounded-2xl  p-5">
-                    <div className="flex gap-x-2 items-center">
-                      <div
-                        className={`w-[9px] h-[9px] rounded-full  bg-[#FFDB56]`}
-                      ></div>
-                      <h1 className="font-semibold text-sm text-black">
-                        Yet to Start{" "}
-                      </h1>
-                    </div>
-                    <div className="text-[#00000066]">{pending}</div>
-                  </div>
-
-                  <div className="xs:col-span-6 col-span-12 w-full flex justify-between bg-[#FFFFFF] items-center rounded-2xl p-5">
-                    <div className="flex gap-x-2 items-center">
-                      <div
-                        className={`w-[9px] h-[9px] rounded-full  bg-[#AF52DE]`}
-                      ></div>
-                      <h1 className="font-semibold text-sm text-black">
-                        In Progress
-                      </h1>
-                    </div>
-                    <div className="text-[#00000066]">{inprogress}</div>
-                  </div>
-
-                  <div className="col-span-12 w-full flex justify-between bg-[#FFFFFF] rounded-2xl p-5">
-                    <div className="flex gap-x-2 items-center">
-                      <div
-                        className={`w-[9px] h-[9px] rounded-full  bg-[#34C759]`}
-                      ></div>
-                      <h1 className="font-semibold text-sm text-black">
-                        Completed
-                      </h1>
-                    </div>
-                    <div className="text-[#00000066]">{complete}</div>
-                  </div>
+                <div className="col-span-4 w-full">
+                  <div className="h-4 w-40 bg-[#F5F5F5] rounded-lg animate-pulse" />
+                  <div className="h-[5px] w-[100%] bg-[#F5F5F5] mt-2 rounded-2xl animate-pulse"></div>
                 </div>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-3  sm:grid-cols-1 2sm:grid-cols-2 grid-cols-1 sm:mt-4 mt-6 gap-x-5 sm:gap-y-8 gap-y-6">
-                  <Cards data={maintenanceQuery?.data} />
+                <div className="sm:col-span-4 col-span-12">
+                  <div className="h-4 w-40 bg-[#F5F5F5] rounded-lg animate-pulse" />
+                  <div className="h-[5px] w-[100%] bg-[#F5F5F5] mt-2 rounded-2xl animate-pulse"></div>
                 </div>
               </div>
-            }
-          </>
-        ) : type === "tenant" &&
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1 2sm:grid-cols-2 grid-cols-1 sm:mt-4 mt-6 gap-x-5 sm:gap-y-8 gap-y-6">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="sm:bg-[#F9F9FA] bg-white rounded-2xl sm:p-6 xs:p-5 p-4 border border-[#0000000A] animate-pulse"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="h-5 w-28 bg-[#F5F5F5] rounded-lg" />
+                      <div className="w-[9px] h-[9px] rounded-full bg-[#F5F5F5]" />
+                    </div>
+                    <div className="mt-3 space-y-2">
+                      <div className="h-5 w-3/4 bg-[#F5F5F5] rounded-lg" />
+                      <div className="h-4 w-full bg-[#F5F5F5] rounded-lg" />
+                    </div>
+                    <div className="mt-4 flex items-center justify-between">
+                      <div className="h-4 w-20 bg-[#F5F5F5] rounded-lg" />
+                      <div className="h-4 w-20 bg-[#F5F5F5] rounded-lg" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : requests.length < 1 ? (
+            <div className="flex-1 mt-8 flex flex-col w-full items-center justify-center">
+              <h1 className="text-2xl text-black text-center font-semibold">
+                No Request Sent yet
+              </h1>
+
+              <Image
+                src={NotFoundImg}
+                className="mt-4"
+                width={100}
+                height={100}
+                alt="the not found image"
+              />
+            </div>
+          ) : (
+            <div>
+              <div className="sm:grid grid-cols-12 hidden sm:gap-x-5 gap-x-3 mt-5 w-full">
+                <div className="col-span-4 w-full ">
+                  <h1 className="font-semibold text-sm text-black">
+                    Yet to Start{" "}
+                    <span className="text-[#00000066]">{pending}</span>
+                  </h1>
+                  <div className="h-[5px] sm:flex hidden w-[100%] bg-[#FFDB56] mt-2 rounded-2xl"></div>
+                </div>
+
+                <div className="col-span-4 w-full">
+                  <h1 className="font-semibold text-sm text-black">
+                    In Progress{" "}
+                    <span className="text-[#00000066]">{inprogress}</span>
+                  </h1>
+                  <div className="h-[5px] w-[100%] bg-[#92BFFF] mt-2 rounded-2xl"></div>
+                </div>
+
+                <div className="sm:col-span-4 col-span-12">
+                  <h1 className="font-semibold text-sm text-black">
+                    Completed{" "}
+                    <span className="text-[#00000066]">{complete}</span>
+                  </h1>
+                  <div className="h-[5px] w-[100%] bg-green-500 mt-2 rounded-2xl"></div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-12 sm:hidden sm:gap-x-5 gap-x-3 sm:gap-y-3 gap-y-2 mt-5 w-full">
+                <div className="xs:col-span-6 col-span-12 w-full flex justify-between bg-[#FFFFFF] rounded-2xl  p-5">
+                  <div className="flex gap-x-2 items-center">
+                    <div className="w-[9px] h-[9px] rounded-full bg-[#FFDB56]"></div>
+                    <h1 className="font-semibold text-sm text-black">
+                      Yet to Start{" "}
+                    </h1>
+                  </div>
+                  <div className="text-[#00000066]">{pending}</div>
+                </div>
+
+                <div className="xs:col-span-6 col-span-12 w-full flex justify-between bg-[#FFFFFF] items-center rounded-2xl p-5">
+                  <div className="flex gap-x-2 items-center">
+                    <div className="w-[9px] h-[9px] rounded-full bg-[#AF52DE]"></div>
+                    <h1 className="font-semibold text-sm text-black">
+                      In Progress
+                    </h1>
+                  </div>
+                  <div className="text-[#00000066]">{inprogress}</div>
+                </div>
+
+                <div className="col-span-12 w-full flex justify-between bg-[#FFFFFF] rounded-2xl p-5">
+                  <div className="flex gap-x-2 items-center">
+                    <div className="w-[9px] h-[9px] rounded-full bg-[#34C759]"></div>
+                    <h1 className="font-semibold text-sm text-black">
+                      Completed
+                    </h1>
+                  </div>
+                  <div className="text-[#00000066]">{complete}</div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3  sm:grid-cols-1 2sm:grid-cols-2 grid-cols-1 sm:mt-4 mt-6 gap-x-5 sm:gap-y-8 gap-y-6">
+                <Cards data={requests} getRequestHandler={getRequestHandler} />
+              </div>
+            </div>
+          )
+        ) : (type === "tenant" &&
         tenantQuery?.isSuccess &&
-        tenantQuery?.data?.tenant !== null ? (
+        data?.data?.isTenant) ? 
         <div className="w-full">
           <MaintenanceT />
        </div>
-             ) : (
+          :
+              (type === "agent" &&
+        agentQuery?.isSuccess &&
+        data?.data?.isAgent) ? 
+        <div className="w-full">
+          <AgentRequestPage 
+          agentData = {agentData}
+                />
+       </div>
+              : (
                <div className="flex-1 mt-8 flex flex-col w-full items-center justify-center">
                  <h1 className="text-2xl text-black text-center font-semibold">
                    No Tenant Information yet
@@ -193,7 +274,7 @@ export default function Maintenance() {
                </div>
              )}
       </div>
-      {/* <Details /> */}
+     
     </>
   );
 }

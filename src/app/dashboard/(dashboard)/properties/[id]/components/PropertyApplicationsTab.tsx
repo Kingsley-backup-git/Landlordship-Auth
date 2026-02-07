@@ -53,22 +53,7 @@ export default function PropertyApplicationsTab({
     },
   });
 
-  // Reject mutation
-  const rejectMutation = useMutation({
-    mutationFn: async (applicationId: string) => {
-      // Replace with your actual API call
-      // await new ApplicationService().rejectApplication(applicationId);
-      return applicationId;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["applications", propertyData?.Properties?._id],
-      });
-      setIsRejecting(false);
-      setShowDetails(false);
-      setSelectedApplication(null);
-    },
-  });
+ 
 
   const handleViewApplication = () => {
    
@@ -80,15 +65,7 @@ export default function PropertyApplicationsTab({
     setSelectedApplication(null);
   };
 
-  const handleApprove = async (applicationId: string) => {
-    setIsApproving(true);
-    approveMutation.mutate(applicationId);
-  };
 
-  const handleReject = async (applicationId: string) => {
-    setIsRejecting(true);
-    rejectMutation.mutate(applicationId);
-  };
   const pendingApplications = useCallback((val:string) => {
     if (val === "pending") {
       const pending = applications.filter((item: { status: string }) => (item.status === "pending"))
@@ -111,10 +88,7 @@ export default function PropertyApplicationsTab({
       <PropertyApplicationDetails
         applications={applications}
         onClose={handleCloseDetails}
-        onApprove={handleApprove}
-        onReject={handleReject}
-        isApproving={isApproving}
-        isRejecting={isRejecting}
+
       />
     );
   }
@@ -267,7 +241,7 @@ export default function PropertyApplicationsTab({
                         {new Date(app.move_in_date).toLocaleDateString()}
                       </div>
                       <div className="col-span-1 justify-center flex">
-                        {getStatusBadge("pending")}
+                        {getStatusBadge(app.status)}
                       </div>
                       <div className="col-span-2 justify-center flex">
                         {getStatusBadge("pending")}

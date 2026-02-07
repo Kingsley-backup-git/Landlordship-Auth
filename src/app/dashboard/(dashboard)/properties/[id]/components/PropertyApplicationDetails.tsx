@@ -5,16 +5,14 @@ import { LiaFileAlt } from "react-icons/lia";
 import { getStatusBadge } from "./utils";
 import { MdFilePresent } from "react-icons/md";
 import { PiDownloadSimple } from "react-icons/pi";
+import useUpdateApplication from "@/hooks/property/useUpdateApplication";
 
 
 interface PropertyApplicationDetailsProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   applications: any;
   onClose: () => void;
-  onApprove?: (id: string) => void;
-  onReject?: (id: string) => void;
-  isApproving?: boolean;
-  isRejecting?: boolean;
+ 
 }
 
 const DocumentCard = ({ url, label }: { url: string; label: string }) => (
@@ -35,10 +33,7 @@ const DocumentCard = ({ url, label }: { url: string; label: string }) => (
 export default function PropertyApplicationDetails({
   applications,
   onClose,
-  onApprove,
-  onReject,
-  isApproving = false,
-  isRejecting = false,
+
 }: PropertyApplicationDetailsProps) {
   // if (!application) return null;
 
@@ -53,7 +48,7 @@ export default function PropertyApplicationDetails({
   //     onReject(application.propertyId);
   //   }
   // };
-
+const {handleUpdateApplication, updateApplicationMutation} = useUpdateApplication()
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat("en-GB", {
       style: "currency",
@@ -109,7 +104,7 @@ export default function PropertyApplicationDetails({
             <span className="text-[#00000066] font-[400] text-xs sm:text-sm">
               Status:
             </span>
-            {getStatusBadge("pending")}
+            {getStatusBadge(application.status)}
           </div>
 
           {/* Applicant Information */}
@@ -656,18 +651,18 @@ export default function PropertyApplicationDetails({
           {application.status === "pending" && (
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-6 border-t-[1px] border-[#0000000A]">
               <button
-               
-                disabled={isApproving || isRejecting}
+               onClick={async()=> await handleUpdateApplication({status: "success", applicationId : application?._id})}
+                disabled={updateApplicationMutation.isPending}
                 className="flex-1 bg-black text-white font-semibold text-sm sm:text-base py-3 px-6 rounded-lg hover:bg-[#333] transition-all duration-300 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-black"
               >
-                {isApproving ? "Approving..." : "Approve Application"}
+                {updateApplicationMutation.isPending ? "Approving..." : "Approve Application"}
               </button>
               <button
-            
-                disabled={isApproving || isRejecting}
+              onClick={async()=> await handleUpdateApplication({status: "rejected", applicationId : application?._id})}
+                disabled={updateApplicationMutation.isPending}
                 className="flex-1 bg-white border-[.5px] border-[#0000001A] text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-lg hover:bg-[#F9F9FA] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isRejecting ? "Rejecting..." : "Reject Application"}
+                {updateApplicationMutation.isPending ? "Rejecting..." : "Reject Application"}
               </button>
             </div>
           )}

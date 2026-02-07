@@ -6,10 +6,12 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { LegalDocument, DocumentFormData } from "./types";
 
 interface AddDocumentFormProps {
-  onAddDocument: (document: Omit<LegalDocument, "uploadDate">) => void;
+  onAddDocument: (values: FormData) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  AddDocumentMutation : any
 }
 
-export default function AddDocumentForm({ onAddDocument }: AddDocumentFormProps) {
+export default function AddDocumentForm({ onAddDocument, AddDocumentMutation }: AddDocumentFormProps) {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState<DocumentFormData>({
     documentName: "",
@@ -42,20 +44,18 @@ export default function AddDocumentForm({ onAddDocument }: AddDocumentFormProps)
     };
   }, [showForm]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const today = new Date().toISOString().split("T")[0];
-    onAddDocument({
-      documentName: formData.documentName,
-      type: formData.type,
-      expiryDate: formData.expiryDate,
-    });
-    setFormData({
-      documentName: "",
-      type: "Lease",
-      expiryDate: "",
-      file: null,
-    });
+    const formdata = new FormData()
+    formdata.append("name", formData?.documentName)
+    formdata.append("type", formData?.type.toLowerCase())
+    formdata.append("expiryDate", formData?.expiryDate)
+    if (formData?.file !== null) {
+         formdata.append("document", formData?.file)
+    }
+
+    await onAddDocument(formdata);
+   
     setShowForm(false);
   };
 
@@ -199,6 +199,7 @@ export default function AddDocumentForm({ onAddDocument }: AddDocumentFormProps)
                 <div className="flex gap-3 pt-2">
                   <button
                     type="button"
+                  
                     onClick={() => {
                       setShowForm(false);
                       setFormData({
@@ -213,8 +214,9 @@ export default function AddDocumentForm({ onAddDocument }: AddDocumentFormProps)
                     Cancel
                   </button>
                   <button
+                      disabled = {AddDocumentMutation.isPending}
                     type="submit"
-                    className="flex-1 bg-black text-white text-sm font-[400] rounded-lg py-2 px-4 hover:bg-[#333] transition-colors"
+                    className="flex-1 bg-black disabled:bg-gray-200 disabled:cursor-not-allowed text-white text-sm font-[400] rounded-lg py-2 px-4 hover:bg-[#333] transition-colors"
                   >
                     Add Document
                   </button>

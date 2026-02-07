@@ -8,7 +8,7 @@ const CreateRequest = (stepHandler: (num: number) => void) => {
             return await new MaintenanceService().createRequest(values)
         },
         onMutate: () => {
-            toast.loading("Create Request",{toastId : "createReq"})
+            toast.loading("Creating Request",{toastId : "createReq"})
         },
         onSuccess : (data)=> {
             console.log(data)

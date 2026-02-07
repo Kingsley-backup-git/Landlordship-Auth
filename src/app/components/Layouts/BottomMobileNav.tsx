@@ -43,8 +43,8 @@ const BottomNav: React.FC = () => {
       </Link>
 
       <Link
-        href="/dashboard"
-        className={` flex-1 grow opacity-10 pointer-events-none max-w-fit w-[100%] `}
+        href="/dashboard/profile"
+        className="flex-1 grow max-w-fit w-[100%]"
       >
         <Image
           src={UserImg}
