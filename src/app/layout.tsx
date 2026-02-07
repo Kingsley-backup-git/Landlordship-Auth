@@ -47,9 +47,9 @@ export default function RootLayout({
               pauseOnHover
               theme="light"
             />
-            <UserProvider>
+         
               <ReactQueryProvider>{children}</ReactQueryProvider>
-              </UserProvider>
+          
           </ProgressProvider>
         </MyContextProvider>
       </body>
