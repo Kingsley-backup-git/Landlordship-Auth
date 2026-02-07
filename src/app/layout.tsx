@@ -6,6 +6,7 @@ import { MyContextProvider } from "@/context/NavProvider";
 import { ToastContainer } from "react-toastify";
 
 import ReactQueryProvider from "./components/Providers/QueryProvider";
+import UserProvider from "./components/Providers/UserProvider";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -46,7 +47,9 @@ export default function RootLayout({
               pauseOnHover
               theme="light"
             />
-            <ReactQueryProvider>{children}</ReactQueryProvider>
+            <UserProvider>
+              <ReactQueryProvider>{children}</ReactQueryProvider>
+              </UserProvider>
           </ProgressProvider>
         </MyContextProvider>
       </body>
