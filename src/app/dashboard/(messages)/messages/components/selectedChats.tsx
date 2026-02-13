@@ -1,23 +1,19 @@
 import React from "react";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { MdKeyboardArrowUp } from "react-icons/md";
-import TextInput from "./inputs/TextInput";
-export default function SelectedChats() {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function SelectedChats({ typingUser,data, isSuccess, userdata }: { typingUser:string | null, data: any; isSuccess: boolean;  userdata:any}) {
   return (
-    <div className="flex flex-col py-3 divide-y-[1px] divide-[#0000000A] border-[1px] border-[#0000000A] rounded-lg">
+    <div className="flex flex-col py-3 divide-y-[1px] justify-center divide-[#0000000A] border-[1px] border-[#0000000A] rounded-lg">
       <div className="px-4 flex pb-3 items-center gap-x-2">
         <h1 className="text-[#00000066] font-[400] text-sm">To</h1>
-        <div className="flex-1"></div>
-        <div className="ms-auto flex flex-col items-center">
-          <MdKeyboardArrowUp className="text-[#00000066] text-sm relative top-[4px]" />
-          <MdOutlineKeyboardArrowDown className="text-[#00000066] text-sm relative top-[-4px]" />
+        <div className="flex-1">
+       
+         <h1 className="text-black/80 font-bold text-sm">{(data?.participants?.find((item: {_id:string}) => item?._id !== userdata?.data?._id)?.userName)}</h1>
+      
         </div>
+       
       </div>
 
-      <div className="flex gap-x-4 items-center pt-2 px-4">
-        <h1 className="text-[#00000066] font-[400] text-sm">Subject</h1>
-        <TextInput classname="flex-1 outline-none w-[100%] border-0 font-[400] text-sm text-black p-1" />
-      </div>
+      {(typingUser !== null && (typingUser !== userdata?.data?._id)) && <h1 className="text-sm font-bold pt-3 text-black ps-4">Typing...</h1>}
     </div>
   );
 }

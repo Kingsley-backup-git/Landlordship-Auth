@@ -6,7 +6,7 @@ import { MyContextProvider } from "@/context/NavProvider";
 import { ToastContainer } from "react-toastify";
 
 import ReactQueryProvider from "./components/Providers/QueryProvider";
-import UserProvider from "./components/Providers/UserProvider";
+
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",

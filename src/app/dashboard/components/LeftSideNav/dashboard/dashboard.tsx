@@ -86,7 +86,7 @@ export default function DashboardList({ leftNav }: { leftNav: boolean }) {
           <>
             
 
-            <Link
+            {/* <Link
               href="/dashboard/documentation/finance"
               className={`flex rounded-xl  hover:bg-[#1C1C1C0D] gap-x-2 p-2  items-center ${pathname.includes("/finance") ? "bg-[#1C1C1C0D]" : null}`}
             >
@@ -94,9 +94,9 @@ export default function DashboardList({ leftNav }: { leftNav: boolean }) {
               {leftNav ? (
                 <h1 className="text-[#1C1C1C] text-xs font-[400]">Finance</h1>
               ) : null}
-            </Link>
+            </Link> */}
 
-            <Link
+            {/* <Link
               href="/dashboard/documentation/finance"
               className={`flex rounded-xl  hover:bg-[#1C1C1C0D] gap-x-2 p-2  items-center ${pathname.includes("/finance") ? "bg-[#1C1C1C0D]" : null}`}
             >
@@ -104,7 +104,7 @@ export default function DashboardList({ leftNav }: { leftNav: boolean }) {
               {leftNav ? (
                 <h1 className="text-[#1C1C1C] text-xs font-[400]">Files</h1>
               ) : null}
-            </Link>
+            </Link> */}
           </>
         )}
 

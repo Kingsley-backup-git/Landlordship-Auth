@@ -29,6 +29,8 @@ import Income from "./components/income";
 import { IoCopyOutline } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import { UserService } from "@/services/user";
+import Skeleton from "@/app/components/ui/loaders/Skeleton";
+import ErrorDisplay from "@/app/components/ui/ErrorDisplay";
 export default function Unit() {
   const type = useUserStore(state => state.type)
   const userQuery = useQuery({
@@ -125,7 +127,14 @@ export default function Unit() {
           </div>
 
                         {/* Application Link Card */}
-                          {userQuery.isSuccess &&
+                        {/* Application Link Card */}
+                        {userQuery.isLoading ? (
+                            <Skeleton className="h-24 w-full rounded-2xl" />
+                        ) : userQuery.isError ? (
+                            <div className="bg-[#F9F9FA] w-full sm:p-6 p-4 rounded-2xl">
+                                <ErrorDisplay message="Failed to load application link" onRetry={userQuery.refetch} />
+                            </div>
+                        ) : userQuery.isSuccess && (
                             <div className="bg-[#F9F9FA] w-full sm:p-6 p-4 rounded-2xl">
                               <h1 className="font-semibold text-sm text-black mb-4">
                                 Application Link
@@ -155,7 +164,7 @@ export default function Unit() {
                                 </button>
                               </div>
                             </div>
-                          }
+                          )}
           <div className="sm:hidden flex gap-x-6 ps-4 pe-4 py-6 bg-white rounded-full items-center my-5">
             <RiAddLargeLine className="text-black  text-xl" />
 

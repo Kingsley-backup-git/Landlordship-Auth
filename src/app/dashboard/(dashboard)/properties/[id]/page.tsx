@@ -21,6 +21,8 @@ import PropertyInterestTab from "./components/PropertyInterestTab";
 import { useQuery } from "@tanstack/react-query";
 import { PropertyService } from "@/services/property";
 import { ApplicationService } from "@/services/application";
+import Spinner from "@/app/components/ui/loaders/Spinner";
+import ErrorDisplay from "@/app/components/ui/ErrorDisplay";
 
 export default function PropertyDetailsPage({
   params,
@@ -134,10 +136,8 @@ const [applicationStatus, setApplicationStatus] = useState<string>("all")
       <div className="sm:p-6 py-2 px-4 mx-auto w-[100%] pb-6 overflow-x-hidden">
         <PropertyHeader />
         <div className="flex items-center justify-center py-20">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
-            <p className="text-[#00000066] font-[400] text-sm">Loading property details...</p>
-          </div>
+          <Spinner size="lg" className="border-black" />
+          <p className="text-[#00000066] font-[400] text-sm mt-4 ml-2">Loading property details...</p>
         </div>
       </div>
     );
@@ -148,18 +148,11 @@ const [applicationStatus, setApplicationStatus] = useState<string>("all")
     return (
       <div className="sm:p-6 py-2 px-4 mx-auto w-[100%] pb-6 overflow-x-hidden">
         <PropertyHeader />
-        <div className="bg-[#FFE5E5] border border-red-200 rounded-xl p-8 text-center max-w-md mx-auto mt-8">
-          <div className="text-4xl mb-4">⚠️</div>
-          <h2 className="text-xl font-semibold text-black mb-2">Failed to Load Property</h2>
-          <p className="text-red-600 font-[400] text-sm mb-6">
-            We couldn&apos;t load the property details. Please try again later.
-          </p>
-          <button
-            onClick={() => window.location.reload()}
-            className="px-6 py-2 bg-black text-white rounded-lg hover:bg-black/90 transition-colors text-sm font-[400]"
-          >
-            Retry
-          </button>
+        <div className="mt-8">
+            <ErrorDisplay 
+                message="We couldn't load the property details. Please try again later."
+                onRetry={() => window.location.reload()} // or refetch() if available from useQuery result
+            />
         </div>
       </div>
     );

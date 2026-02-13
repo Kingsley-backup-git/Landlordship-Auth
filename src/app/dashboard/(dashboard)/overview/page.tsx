@@ -58,9 +58,9 @@ export default function Overview() {
           </div>
 
           <div className="grid grid-cols-12 sm:gap-4 gap-y-6 mt-6">
-            <Timeline />
+            {/* <Timeline />
 
-            <RecentlyViewed />
+            <RecentlyViewed /> */}
 
             <Maintenance />
 

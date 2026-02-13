@@ -57,7 +57,10 @@ export default function TopNavbar() {
 
         <PiCalendarDuotone className="text-black text-xl" />
 
-        <VscBell className="text-black text-xl" />
+        <VscBell 
+          className="text-black text-xl cursor-pointer" 
+          onClick={() => push("/dashboard/notifications")}
+        />
 
         <PiSidebarDuotone className="text-black 1md:flex hidden text-xl" />
       </div>

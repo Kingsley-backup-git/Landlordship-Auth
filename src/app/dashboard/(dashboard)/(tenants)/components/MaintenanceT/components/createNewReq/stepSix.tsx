@@ -3,7 +3,8 @@ import Options from "../options";
 import Button from "@/app/components/ui/ButtonTwo";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { requestTypes } from "../../maintenanceT";
-import { LuLoaderCircle } from "react-icons/lu";
+
+import Spinner from "@/app/components/ui/loaders/Spinner";
 
 export default function StepSix({
   stepHandler,
@@ -114,7 +115,7 @@ export default function StepSix({
                                     }}
                                     classname={`bg-[#1D3639] cursor-pointer flex items-center gap-x-2 justify-center max-w-[170px] w-full rounded-xl py-2 px-4`}
         >
-          {createReqMutation.isPending ? <LuLoaderCircle className="animate-spin  text-xl" /> :
+          {createReqMutation.isPending ? <Spinner className="w-5 h-5 text-white" /> :
             <h1 className="text-sm font-[400] text-white">Create Request</h1>}
                                     <FaAngleRight className="text-[#00000066] text-white text-base" />
                                   </Button>
