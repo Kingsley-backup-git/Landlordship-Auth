@@ -14,6 +14,9 @@ import { useUser } from "@/app/components/Providers/UserProvider";
 import Details from "./components/details";
 import GetEachRequests from "@/hooks/maintenance/getGetEachRequest";
 import AgentRequestPage from "../(agent)/components/MaintenanceA";
+import AppRequestPage from "../(agent)/components/MaintenanceA";
+import Skeleton from "@/app/components/ui/loaders/Skeleton";
+import ErrorDisplay from "@/app/components/ui/ErrorDisplay";
 // import Details from './components/details';
 
 export default function Maintenance() {
@@ -110,35 +113,26 @@ const {tenantData, tenantQuery, data, agentQuery, agentData} = useUser()
               getReqMutation={getReqMutation}
             />
           ) : maintenanceQuery.isError ? (
-            <div className="bg-white border border-[#0000000A] rounded-2xl p-8 text-center max-w-lg mx-auto mt-8 shadow-sm">
-              <div className="text-4xl mb-3">⚠️</div>
-              <h2 className="text-xl font-semibold text-black mb-2">
-                We couldn&apos;t load maintenance requests
-              </h2>
-              <p className="text-[#00000066] font-[400] text-sm mb-6">
-                Please check your connection and try again.
-              </p>
-              <button
-                onClick={() => maintenanceQuery.refetch()}
-                className="px-6 py-3 bg-black text-white rounded-xl hover:bg-black/90 transition-all duration-300 text-sm font-[400] shadow-sm hover:shadow-md"
-              >
-                Retry
-              </button>
+            <div className="bg-white border border-[#0000000A] rounded-2xl p-8 max-w-lg mx-auto mt-8 shadow-sm">
+              <ErrorDisplay 
+                message="We couldn't load maintenance requests. Please check your connection and try again."
+                onRetry={() => maintenanceQuery.refetch()}
+              />
             </div>
           ) : isListLoading ? (
             <div className="mt-6">
-              <div className="sm:grid grid-cols-12 hidden sm:gap-x-5 gap-x-3 mt-5 w-full">
+               <div className="sm:grid grid-cols-12 hidden sm:gap-x-5 gap-x-3 mt-5 w-full">
                 <div className="col-span-4 w-full ">
-                  <div className="h-4 w-40 bg-[#F5F5F5] rounded-lg animate-pulse" />
-                  <div className="h-[5px] sm:flex hidden w-[100%] bg-[#F5F5F5] mt-2 rounded-2xl animate-pulse"></div>
+                  <Skeleton className="h-4 w-40 rounded-lg mb-2" />
+                  <Skeleton className="h-[5px] sm:flex hidden w-[100%] rounded-2xl" />
                 </div>
                 <div className="col-span-4 w-full">
-                  <div className="h-4 w-40 bg-[#F5F5F5] rounded-lg animate-pulse" />
-                  <div className="h-[5px] w-[100%] bg-[#F5F5F5] mt-2 rounded-2xl animate-pulse"></div>
+                  <Skeleton className="h-4 w-40 rounded-lg mb-2" />
+                  <Skeleton className="h-[5px] w-[100%] rounded-2xl" />
                 </div>
                 <div className="sm:col-span-4 col-span-12">
-                  <div className="h-4 w-40 bg-[#F5F5F5] rounded-lg animate-pulse" />
-                  <div className="h-[5px] w-[100%] bg-[#F5F5F5] mt-2 rounded-2xl animate-pulse"></div>
+                   <Skeleton className="h-4 w-40 rounded-lg mb-2" />
+                   <Skeleton className="h-[5px] w-[100%] rounded-2xl" />
                 </div>
               </div>
 
@@ -146,19 +140,19 @@ const {tenantData, tenantQuery, data, agentQuery, agentData} = useUser()
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div
                     key={i}
-                    className="sm:bg-[#F9F9FA] bg-white rounded-2xl sm:p-6 xs:p-5 p-4 border border-[#0000000A] animate-pulse"
+                    className="sm:bg-[#F9F9FA] bg-white rounded-2xl sm:p-6 xs:p-5 p-4 border border-[#0000000A]"
                   >
                     <div className="flex items-center justify-between">
-                      <div className="h-5 w-28 bg-[#F5F5F5] rounded-lg" />
-                      <div className="w-[9px] h-[9px] rounded-full bg-[#F5F5F5]" />
+                      <Skeleton className="h-5 w-28 rounded-lg" />
+                      <Skeleton className="w-[9px] h-[9px] rounded-full" variant="circular" />
                     </div>
                     <div className="mt-3 space-y-2">
-                      <div className="h-5 w-3/4 bg-[#F5F5F5] rounded-lg" />
-                      <div className="h-4 w-full bg-[#F5F5F5] rounded-lg" />
+                      <Skeleton className="h-5 w-3/4 rounded-lg" />
+                      <Skeleton className="h-4 w-full rounded-lg" />
                     </div>
                     <div className="mt-4 flex items-center justify-between">
-                      <div className="h-4 w-20 bg-[#F5F5F5] rounded-lg" />
-                      <div className="h-4 w-20 bg-[#F5F5F5] rounded-lg" />
+                      <Skeleton className="h-4 w-20 rounded-lg" />
+                      <Skeleton className="h-4 w-20 rounded-lg" />
                     </div>
                   </div>
                 ))}

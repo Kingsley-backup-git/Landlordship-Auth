@@ -22,6 +22,8 @@ import UserImg from "../../../../../../../public/user.png";
 import { useQuery } from "@tanstack/react-query";
 import { AgentService } from "@/services/agent";
 import { toast } from "react-toastify";
+import Spinner from "@/app/components/ui/loaders/Spinner";
+import ErrorDisplay from "@/app/components/ui/ErrorDisplay";
 
 // Dummy agent data matching schema
 const DUMMY_AGENT: AgentRecord = {
@@ -113,6 +115,23 @@ export default function AgentDetailsPage({
     (isSuccess && data.specialization?.length > 0)
       ? data.specialization.join(", ")
       : "No specialization added";
+
+  if (isPending) {
+    return (
+      <div className="sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-full flex items-center justify-center min-h-[50vh]">
+         <Spinner size="lg" className="border-black" />
+      </div>
+    )
+  }
+
+  if (isError) {
+      return (
+         <div className="sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-full flex items-center justify-center min-h-[50vh]">
+             <ErrorDisplay onRetry={() => window.location.reload()} />
+         </div>
+      )
+  }
+
 if(isSuccess)
   return (
     <div className="sm:p-6 py-2 px-4 sm:max-w-[960px] mx-auto w-full">

@@ -56,4 +56,15 @@ export class AgentService {
             throw new Error(error?.error)
         }
     }
+
+        getAgentAssignedRequests = async() => {
+        try {
+            const res = await userInstance.get(`/api/maintenance/agent/all`)
+            
+            return res?.data
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error:any) {
+            throw new Error(error?.error)
+        }
+    }
 }

@@ -1,29 +1,41 @@
 import { userInstance } from "@/utils/axios"
 
 export class MaintenanceService {
-    createRequest = async (values:FormData) => {
+    createRequest = async (values: FormData) => {
         try {
             const res = await userInstance.post("/api/maintenance-request/", values, { headers: { 'Content-Type': "multipart/form-data" } })
             return res?.data
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        catch (error:any) {
-throw Error(error?.error)
+        catch (error: any) {
+            throw Error(error?.error)
         }
      
-    }
+    };
 
-     getLandlordRequests = async () => {
+    getLandlordRequests = async () => {
         try {
             const res = await userInstance.get("/api/maintenance-request/landlord")
             return res?.data
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        catch (error:any) {
-throw Error(error?.error)
+        catch (error: any) {
+            throw Error(error?.error)
         }
      
-     }
+    };
+
+       getTenantRequests = async () => {
+        try {
+            const res = await userInstance.get("/api/maintenance/my")
+            return res?.data
+        }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        catch (error: any) {
+            throw Error(error?.error)
+        }
+     
+    };
     
         getEachRequests = async (requestId:string) => {
         try {
@@ -52,6 +64,31 @@ throw Error(error?.error)
         rejectRequestStatus = async (requestId:string) => {
         try {
             const res = await userInstance.patch(`/api/maintenance/${requestId}/reject`)
+            return res?.data
+        }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        catch (error:any) {
+throw Error(error?.error)
+        }
+     
+    }
+
+
+         agentAcceptRequest = async (requestId:string) => {
+        try {
+            const res = await userInstance.patch(`/api/maintenance/${requestId}/agent-accept`)
+            return res?.data
+        }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        catch (error:any) {
+throw Error(error?.error)
+        }
+     
+         }
+    
+         agentRejectRequest= async (requestId:string) => {
+        try {
+            const res = await userInstance.patch(`/api/maintenance/${requestId}/agent-reject`)
             return res?.data
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

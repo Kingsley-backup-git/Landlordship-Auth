@@ -18,6 +18,9 @@ import AddAgentModal from "./components/AddAgentModal";
 import { useQuery } from "@tanstack/react-query";
 import { AgentService } from "@/services/agent";
 import UserImg from "../../../../../../public/user.png";
+import Skeleton from "@/app/components/ui/loaders/Skeleton";
+import ErrorDisplay from "@/app/components/ui/ErrorDisplay";
+import EmptyState from "@/app/components/ui/EmptyState";
 
 export default function Agents() {
   const [isAddAgentModalOpen, setIsAddAgentModalOpen] = useState(false);
@@ -68,7 +71,25 @@ export default function Agents() {
 
       <div className={`grid grid-cols-12 sm:mt-10 mt-2 gap-y-6 gap-x-4 w-full`}>
         <div className="sm:flex grid 2sm:grid-cols-2 grid-cols-1 flex-col sm:gap-y-6 gap-y-4 sm:col-span-6 col-span-12">
-          {isSuccess && data.map((agent: { name: string; email: string; _id: string; phone: string;  address:string}) => {
+            {isPending && (
+                <>
+                <Skeleton className="h-24 w-full rounded-2xl" />
+                <Skeleton className="h-24 w-full rounded-2xl" />
+                <Skeleton className="h-24 w-full rounded-2xl" />
+                </>
+            )}
+
+            {isError && (
+                <div className="bg-white rounded-2xl p-6">
+                    <ErrorDisplay onRetry={() => window.location.reload()} />
+                </div>
+            )}
+
+            {isSuccess && (data?.length === 0 ? (
+                <div className="col-span-12">
+                     <EmptyState message="No agents found" />
+                </div>
+            ) : data.map((agent: { name: string; email: string; _id: string; phone: string;  address:string}) => {
             return (
               <Link
                 href={`/dashboard/people/agents/${agent._id}`}
@@ -106,7 +127,7 @@ export default function Agents() {
              
               </Link>
             );
-          })}
+          }))}
         </div>
 
         <div className="w-[100%] sm:flex hidden col-span-6 ">

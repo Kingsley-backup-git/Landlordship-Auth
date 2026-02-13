@@ -16,7 +16,7 @@ export default function PeopleList({ leftNav }: { leftNav: boolean }) {
       <div
         className={`mt-3 flex flex-col ${leftNav ? "" : "items-center"} gap-y-1`}
       >
-        <Link
+        {/* <Link
           href="/dashboard/people/tenants"
           className={`flex rounded-xl  hover:bg-[#1C1C1C0D] gap-x-2 p-2  items-center ${pathname.includes("/tenants") ? "bg-[#1C1C1C0D]" : null}`}
         >
@@ -24,9 +24,9 @@ export default function PeopleList({ leftNav }: { leftNav: boolean }) {
           {leftNav ? (
             <h1 className="text-[#1C1C1C] text-xs font-[400]">Tenants</h1>
           ) : null}
-        </Link>
+        </Link> */}
 
-        <Link
+        {/* <Link
           href="/dashboard/overview"
           className="flex rounded-xl  hover:bg-[#1C1C1C0D] gap-x-2 p-2  items-center"
         >
@@ -34,9 +34,9 @@ export default function PeopleList({ leftNav }: { leftNav: boolean }) {
           {leftNav ? (
             <h1 className="text-[#1C1C1C] text-xs font-[400]">Tenancies</h1>
           ) : null}
-        </Link>
+        </Link> */}
 
-        <Link
+        {/* <Link
           href="/dashboard/people/applications"
           className={`flex rounded-xl   hover:bg-[#1C1C1C0D] gap-x-2 p-2  items-center ${pathname.includes("/applications") ? "bg-[#1C1C1C0D]" : null}`}
         >
@@ -44,7 +44,7 @@ export default function PeopleList({ leftNav }: { leftNav: boolean }) {
           {leftNav ? (
             <h1 className="text-[#1C1C1C] text-xs font-[400]">Applications</h1>
           ) : null}
-        </Link>
+        </Link> */}
 
         <Link
           href="/dashboard/people/agents"

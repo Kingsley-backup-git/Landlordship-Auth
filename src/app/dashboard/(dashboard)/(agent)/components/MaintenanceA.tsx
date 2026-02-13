@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { getStatusBadge } from "../../properties/[id]/components/utils";
-
+import { MdOutlineMessage } from "react-icons/md";
+import useCreateOrGetChat from "@/hooks/chats/useCreateOrGetChat";
+import useAgentDecideRequest from "@/hooks/maintenance/useAgentDecideRequest";
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,7 +18,11 @@ const priorityColor:any = {
 export default function AgentRequestPage({agentData}: {agentData: any}) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selected, setSelected] = useState<any>({});
-
+  const { mutation, createChatHandler } = useCreateOrGetChat()
+  const {  handleAcceptRequest,
+          handleRejectRequest,
+          mutation:acceptMutation,
+          rejectMutation} = useAgentDecideRequest("")
   return (
     <div className="max-w-5xl mx-auto p-4 md:p-8">
       <h1 className="text-2xl text-black font-semibold mb-6">Maintenance Requests</h1>
@@ -28,7 +34,10 @@ export default function AgentRequestPage({agentData}: {agentData: any}) {
           priority: string;
 description:string;
           title: string;
-          status:string
+          status: string;
+          landlordId: {
+            _id:string
+          }
         }) => (
           <div
             key={req._id}
@@ -56,18 +65,31 @@ description:string;
             </div>
 
             {req.status === "assigned_pending" && (
-              <div className="flex gap-2 sm:self-end">
+              <div className="flex gap-2 sm:self-end items-center">
+                <MdOutlineMessage size={28} className="text-black " onClick={async (e) => {
+                  e.stopPropagation()
+                  await createChatHandler({ otherUserId: req?.landlordId?._id, context:{type:"maintenance"} })
+                }} />
+
+
                 <button
                   type="button"
-                  onClick={(e) => e.stopPropagation()}
-                  className="px-4 py-2 text-sm text-red-400 border rounded-lg hover:bg-red-300"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    handleRejectRequest(req?._id)
+                  }}
+                  className={`px-4 py-2 text-sm ${rejectMutation?.isPending ? "opacity-30 pointer-events-none": "opacity-100"} text-red-400 border rounded-lg hover:bg-red-300`}
                 >
                   Reject
                 </button>
                 <button
                   type="button"
-                  onClick={(e) => e.stopPropagation()}
-                  className="px-4 py-2 text-sm bg-black text-white rounded-lg hover:opacity-90"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleAcceptRequest(req?._id)
+
+                  }}
+                  className={`px-4 ${acceptMutation?.isPending ? "opacity-30 pointer-events-none": "opacity-100"} py-2 text-sm bg-black text-white rounded-lg hover:opacity-90`}
                 >
                   Accept
                 </button>

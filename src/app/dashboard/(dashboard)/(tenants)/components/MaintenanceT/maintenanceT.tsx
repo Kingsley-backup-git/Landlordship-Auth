@@ -20,14 +20,23 @@ import { useQuery } from "@tanstack/react-query";
 import { TenantService } from "@/services/tenant";
 import CreateRequest from "@/hooks/maintenance/useCreateReq";
 import { useUser } from "@/app/components/Providers/UserProvider";
+import { MaintenanceService } from "@/services/maintenance";
+import RequestHistory from "./components/requestHistory";
+import { useUserStore } from "@/store/useUserStore";
 export interface requestTypes {
 title: string,
     description:string,
     attachment: File[] | null,
 }
 export default function MaintenanceT() {
-  const {tenantData, tenantQuery} = useUser()
-  console.log(tenantData)
+  const { tenantData, tenantQuery } = useUser()
+  const type = useUserStore(state=> state.type)
+  const { data, isSuccess, isPending, isError } = useQuery({
+    queryKey: ["tenant_requests"],
+    queryFn: async () => await new MaintenanceService().getTenantRequests(),
+    enabled : (type === "tenant")
+  })
+
   const {CreateRequestHandler, createReqMutation} = CreateRequest(stepHandler)
   const [request, setRequest] = useState<requestTypes>({
     title: "",
@@ -135,7 +144,10 @@ await CreateRequestHandler(formdata)
                 name={"searchinput"}
               />
             </div>
-          </div>
+                    </div>
+                    
+
+                    <RequestHistory isPending={isPending} isSuccess={isSuccess} isError={isError} data={data} />  
         </div>
       )}
     </>
