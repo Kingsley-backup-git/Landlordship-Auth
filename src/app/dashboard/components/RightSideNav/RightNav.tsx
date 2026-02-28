@@ -58,7 +58,7 @@ export default function RightNav() {
         notificationData={notificationData}
       />
 
-      <Contacts />
+      {/* <Contacts /> */}
     </div>
   );
 }

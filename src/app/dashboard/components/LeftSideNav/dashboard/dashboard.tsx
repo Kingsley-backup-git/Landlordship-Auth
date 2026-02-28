@@ -108,7 +108,7 @@ export default function DashboardList({ leftNav }: { leftNav: boolean }) {
           </>
         )}
 
-          {type === "agent" && (
+          {/* {type === "agent" && (
           <>
             
 
@@ -124,7 +124,7 @@ export default function DashboardList({ leftNav }: { leftNav: boolean }) {
 
           
           </>
-        )}
+        )} */}
 
         <Link
           href="/dashboard/profile"

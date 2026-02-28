@@ -48,12 +48,12 @@ export default function SigninInputs() {
           classname="bg-transparent p-2 text-sm font-[400] flex-1 placeholder:text-[#00000033] text-black outline-none w-[100%]"
         />
       </div>
-      <Link
+      {/* <Link
         href="/auth/forgot"
         className="text-end ms-auto block max-w-fit  text-[#E3572B] font-[400] text-sm pt-3"
       >
         Forgot Password?
-      </Link>
+      </Link> */}
 
       <Button
         onClick={() => {

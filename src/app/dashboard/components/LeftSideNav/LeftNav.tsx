@@ -77,7 +77,7 @@ export default function LeftNav() {
 
         {(type !== "tenant" && type !== "agent") && <PeopleList leftNav={leftNav} />}
 
-        {(type !== "tenant" && type !== "agent") && <DocList leftNav={leftNav} />}
+        {/* {(type !== "tenant" && type !== "agent") && <DocList leftNav={leftNav} />} */}
       </div>
       <Image
         src={Logo}

@@ -12,7 +12,7 @@ export default function Signup() {
         Your Social Campaigns
       </p>
 
-      <div className="flex gap-x-4 items-center mt-6 max-w-[404px] w-[100%]">
+      {/* <div className="flex gap-x-4 items-center mt-6 max-w-[404px] w-[100%]">
         <AppleButton
           classname="flex flex-1 items-center gap-x-2 px-4 py-2 rounded-xl border-[1px] bg-transparent text-black border-[#0000001A] text-sm font-[400]"
           text="Sign in with Apple"
@@ -22,7 +22,7 @@ export default function Signup() {
           classname="flex flex-1 items-center gap-x-2 px-4 py-2 rounded-xl border-[1px] bg-transparent text-black border-[#0000001A] text-sm font-[400]"
           text="Sign in with Google"
         />
-      </div>
+      </div> */}
 
       <div className="flex mt-6 items-center max-w-[404px] justify-around w-[100%] gap-x-4">
         <div className="max-w-[126px] w-[100%] h-[1px] border-[.5px] border-[#0000001A]"></div>

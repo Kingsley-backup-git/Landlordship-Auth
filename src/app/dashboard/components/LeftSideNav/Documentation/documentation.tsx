@@ -10,14 +10,14 @@ export default function DocList({ leftNav }: { leftNav: boolean }) {
   const pathname = usePathname();
   return (
     <div className="mt-1 pt-1 pb-2">
-      {leftNav ? (
+      {/* {leftNav ? (
         <h1 className="ps-3 text-[#1C1C1C66] text-sm front-[400]">
           Documentation
         </h1>
       ) : null}
       <div
         className={`mt-3 flex flex-col ${leftNav ? "" : "items-center"} gap-y-1`}
-      >
+      > */}
         {/* <Link
           href="/dashboard/documentation/finance"
           className={`flex rounded-xl  hover:bg-[#1C1C1C0D] gap-x-2 p-2  items-center ${pathname.includes("/finance") ? "bg-[#1C1C1C0D]" : null}`}
@@ -28,7 +28,7 @@ export default function DocList({ leftNav }: { leftNav: boolean }) {
           ) : null}
         </Link> */}
 
-        <Link
+        {/* <Link
           href="/dashboard/documentation/documents"
           className={`flex rounded-xl  hover:bg-[#1C1C1C0D] gap-x-2 p-2  items-center ${pathname.includes("/documents") ? "bg-[#1C1C1C0D]" : null}`}
         >
@@ -36,7 +36,7 @@ export default function DocList({ leftNav }: { leftNav: boolean }) {
           {leftNav ? (
             <h1 className="text-[#1C1C1C] text-xs font-[400]">Documents</h1>
           ) : null}
-        </Link>
+        </Link> */}
 
         {/* <Link
           href="/dashboard/overview"
@@ -57,7 +57,7 @@ export default function DocList({ leftNav }: { leftNav: boolean }) {
             <h1 className="text-[#1C1C1C] text-xs font-[400]">Tools</h1>
           ) : null}
         </Link> */}
-      </div>
+      {/* </div> */}
     </div>
   );
 }
