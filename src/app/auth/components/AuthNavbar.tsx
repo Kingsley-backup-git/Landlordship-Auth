@@ -31,7 +31,7 @@ export default function AuthNavbar() {
     <div className="flex justify-between items-center">
       <Image alt="logo-image" src={Logo} width={150} height={150} />
 
-      <div className="md:flex hidden  items-center">
+      {/* <div className="md:flex hidden  items-center">
         {Links.map((item, index) => {
           return (
             <Link
@@ -43,7 +43,7 @@ export default function AuthNavbar() {
             </Link>
           );
         })}
-      </div>
+      </div> */}
 
       <div className="flex items-center space-x-4"></div>
     </div>

@@ -176,7 +176,7 @@ export default function Unit() {
           </div>
 
           <div className="sm:flex hidden justify-between items-center bg-[#F9F9FA] rounded-lg p-3 mt-6">
-            <div className="flex items-center gap-x-4">
+            {/* <div className="flex items-center gap-x-4">
               <PiFunnelSimple className="w-[17px] h-[17px] text-black" />
               <PiArrowsDownUp className="w-[17px] h-[17px] text-black" />
 
@@ -189,7 +189,7 @@ export default function Unit() {
                   name={"searchinput"}
                 />
               </div>
-            </div>
+            </div> */}
 
             <div className="flex gap-x-5 items-center">
               <div

@@ -18,7 +18,7 @@ export default function Navbar() {
             height={200}
           />
 
-          <div className="space-x-4 sm:inline-block hidden">
+          {/* <div className="space-x-4 sm:inline-block hidden">
             <Link
               href={""}
               className="text-sm text-white font-medium inline-block px-3"
@@ -37,7 +37,7 @@ export default function Navbar() {
             >
               Changelog
             </Link>
-          </div>
+          </div> */}
         </div>
 
         <div className="sm:flex gap-x-6 items-center hidden">

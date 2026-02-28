@@ -4,18 +4,18 @@ import Properties from "./components/properties";
 import Tenants from "./components/tenants";
 import Tenancies from "./components/tenancies";
 import Revenue from "./components/revenue";
-import Timeline from "./components/timeline";
-import RecentlyViewed from "./components/recentlyViewed";
-import Maintenance from "./components/maintenance";
+// import Timeline from "./components/timeline";
+// import RecentlyViewed from "./components/recentlyViewed";
+// import Maintenance from "./components/maintenance";
 import { BsThreeDots } from "react-icons/bs";
 import { FaChevronLeft } from "react-icons/fa6";
-import RevenueChart from "./components/revenueChart";
-import FinancialOverview from "./components/financialOverview";
+// import RevenueChart from "./components/revenueChart";
+// import FinancialOverview from "./components/financialOverview";
 import Link from "next/link";
 import OverviewT from "../(tenants)/components/overviewT/overviewT";
 import { useUserStore } from "@/store/useUserStore";
-import { useQuery } from "@tanstack/react-query";
-import { TenantService } from "@/services/tenant";
+// import { useQuery } from "@tanstack/react-query";
+// import { TenantService } from "@/services/tenant";
 import NotFoundImg from "../../../../../public/notfound.png";
 import Image from "next/image";
 import { useUser } from "@/app/components/Providers/UserProvider";
@@ -57,19 +57,19 @@ export default function Overview() {
             <Revenue />
           </div>
 
-          <div className="grid grid-cols-12 sm:gap-4 gap-y-6 mt-6">
-            {/* <Timeline />
+          {/* <div className="grid grid-cols-12 sm:gap-4 gap-y-6 mt-6">
+            <Timeline />
 
-            <RecentlyViewed /> */}
+            <RecentlyViewed />
 
             <Maintenance />
 
             <RevenueChart />
-          </div>
+          </div> */}
 
-          <div className="grid grid-cols-12 mt-6">
+          {/* <div className="grid grid-cols-12 mt-6">
             <FinancialOverview />
-          </div>
+          </div> */}
         </>
       ) : (type === "tenant" &&
         query?.isSuccess &&
