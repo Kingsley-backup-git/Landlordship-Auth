@@ -50,11 +50,11 @@ export default function Overview() {
           <div className="grid lg:grid-cols-3 1md:grid-cols-2 1/2md:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 1sm:grid-cols-2 grid-cols-1  mt-5 sm:gap-5 gap-3">
             <Properties />
 
-            <Tenants />
+            {/* <Tenants />
 
             <Tenancies />
 
-            <Revenue />
+            <Revenue /> */}
           </div>
 
           {/* <div className="grid grid-cols-12 sm:gap-4 gap-y-6 mt-6">

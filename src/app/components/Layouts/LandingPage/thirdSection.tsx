@@ -95,7 +95,7 @@ export default function ThirdSection() {
               automatic reminders, and early payments.
             </p>
 
-            <div className="border-[1px] rounded-xl border-[#FFFFFF99] mt-8 max-w-fit flex gap-x-4 items-center py-3 md:py-4 px-6">
+            <div className="border-[1px] cursor-not-allowed opacity-30 rounded-xl border-[#FFFFFF99] mt-8 max-w-fit flex gap-x-4 items-center py-3 md:py-4 px-6">
               <h1 className="text-sm text-[#FFFFFF99] font-medium">
                 Explore Now
               </h1>
@@ -118,7 +118,7 @@ export default function ThirdSection() {
             details, payment status, and upcoming events
           </p>
 
-          <div className="border-[1px] rounded-lg border-[#FFFFFF99] mt-7 max-w-fit flex gap-x-4 items-center py-2 px-6">
+          <div className="border-[1px] cursor-not-allowed opacity-30  rounded-lg border-[#FFFFFF99] mt-7 max-w-fit flex gap-x-4 items-center py-2 px-6">
             <h1 className="text-sm text-[#FFFFFF99] font-medium">
               Documentation
             </h1>
@@ -154,7 +154,7 @@ export default function ThirdSection() {
             channels, without having to leave the platform
           </p>
 
-          <div className="border-[1px] rounded-xl border-[#FFFFFF99] mt-8 max-w-fit flex gap-x-4 items-center py-4 px-6">
+          <div className="border-[1px] rounded-xl cursor-not-allowed opacity-30  border-[#FFFFFF99] mt-8 max-w-fit flex gap-x-4 items-center py-4 px-6">
             <h1 className="text-sm text-[#FFFFFF99] font-medium">Components</h1>
             <VscArrowRight />
           </div>
@@ -173,7 +173,7 @@ export default function ThirdSection() {
             including EPCs and ASTs.
           </p>
 
-          <div className="border-[1px] rounded-lg border-[#FFFFFF99] mt-7 max-w-fit flex gap-x-4 items-center py-2 px-6">
+          <div className="border-[1px] cursor-not-allowed opacity-30  rounded-lg border-[#FFFFFF99] mt-7 max-w-fit flex gap-x-4 items-center py-2 px-6">
             <h1 className="text-sm text-[#FFFFFF99] font-medium">
               Start Course
             </h1>

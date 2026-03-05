@@ -8,8 +8,10 @@ import { motion } from "motion/react";
 import ThirdSection from "./components/Layouts/LandingPage/thirdSection";
 import FirstSection from "./components/Layouts/LandingPage/firstSection";
 import Footer from "./components/Layouts/LandingPage/footer";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter()
   return (
     <div className="bg-black w-full min-h-screen    py-6">
       <Navbar />
@@ -61,7 +63,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             {" "}
-            <Button classname="bg-[#E3572B] text-base  flex mx-auto border-[1px]  gap-x-3 justify-center shadow-2xl shadow-[#F6F9FF33] xs:py-3 py-2 text-white border-[#FFFFFF33] mt-6 w-full items-center max-w-[220px] rounded-lg">
+            <Button onClick = {()=>router.push("/auth/signin")} classname="bg-[#E3572B] text-base  flex mx-auto border-[1px]  gap-x-3 justify-center shadow-2xl shadow-[#F6F9FF33] xs:py-3 py-2 text-white border-[#FFFFFF33] mt-6 w-full items-center max-w-[220px] rounded-lg">
               <h1>Add New Property</h1>{" "}
               <HiOutlineChevronRight className="text-xl" />
             </Button>
